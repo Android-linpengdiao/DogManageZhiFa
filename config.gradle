@@ -1,0 +1,89 @@
+ext{
+
+    minSdkVersion = 19
+    targetSdkVersion = 29
+    compileSdkVersion = 29
+    buildToolsVersion = '28.0.3'
+
+    //Dependencies
+    externalAndroidAppCompatV7 = 'androidx.appcompat:appcompat:1.2.0'
+    externalAndroidSupportV4 = 'androidx.legacy:legacy-support-v4:1.0.0'
+    externalAndroidDesign = 'com.google.android.material:material:1.4.0'
+    externalAndroidCardview = 'androidx.cardview:cardview:1.0.0'
+    externalAndroidAnnotations = 'androidx.annotation:annotation:1.0.0'
+    externalAndroidRecyclerView = 'androidx.recyclerview:recyclerview:1.0.0'
+    externalAndroidXRecyclerview = 'com.jcodecraeer:xrecyclerview:1.5.9'
+    externalAndroidTestRunner = 'androidx.test.ext:junit:1.1.1'
+    externalAndroidTestEspressoCore = 'androidx.test.espresso:espresso-core:3.1.1'
+    externalJunit = 'junit:junit:4.12'
+
+    externalAndroidCnstraint = 'androidx.constraintlayout:constraintlayout:2.0.1'
+    externalAndroidMultiDex = 'androidx.multidex:multidex:2.0.0'
+
+    externalWechat = 'com.tencent.mm.opensdk:wechat-sdk-android-without-mta:+'
+    externalPaypal = 'com.paypal.sdk:paypal-android-sdk:2.16.0'
+
+    //okhttp
+    externalOkhttp = 'com.squareup.okhttp3:okhttp:4.9.1'
+    externalOkhttpInterceptor = 'com.squareup.okhttp3:logging-interceptor:3.8.1'
+
+    //retrofit
+    externalRetrofit = 'com.squareup.retrofit2:retrofit:2.4.0'
+    externalRetrofitConverter = 'com.squareup.retrofit2:converter-gson:2.4.0'
+    externalRetrofitAdapter = 'com.squareup.retrofit2:adapter-rxjava2:2.4.0'
+
+    //rxjava
+//    rxjava = 'io.reactivex.rxjava2:rxjava:2.2.4'
+//    rxandroid = 'io.reactivex.rxjava2:rxandroid:2.1.0'
+    rxjava = 'io.reactivex.rxjava3:rxjava:3.1.2'
+    rxandroid = 'io.reactivex.rxjava3:rxandroid:3.0.0'
+
+    dagger = 'com.google.dagger:dagger:2.7'
+    daggerCompiler = 'com.google.dagger:dagger-compiler:2.7'
+
+    //加载动画
+    lottie = 'com.airbnb.android:lottie:3.4.0'
+    cardview = 'com.zyp.cardview:cardview:1.0.1'
+
+    //刷新
+    smartrefresh = 'com.scwang.smart:refresh-layout-kernel:2.0.3'
+    smartrefreshHeaderClassics =  'com.scwang.smart:refresh-header-classics:2.0.3'    //经典刷新头
+    smartrefreshHeaderRadar =  'com.scwang.smart:refresh-header-radar:2.0.3'       //雷达刷新头
+    smartrefreshHeaderFalsify =  'com.scwang.smart:refresh-header-falsify:2.0.3'     //虚拟刷新头
+    smartrefreshHeaderMaterial =  'com.scwang.smart:refresh-header-material:2.0.3'    //谷歌刷新头
+    smartrefreshHeaderTwo =  'com.scwang.smart:refresh-header-two-level:2.0.3'   //二级刷新头
+    smartrefreshFooterBall =  'com.scwang.smart:refresh-footer-ball:2.0.3'        //球脉冲加载
+    smartrefreshFooterClassics =  'com.scwang.smart:refresh-footer-classics:2.0.3'    //经典加载
+    luban = 'top.zibin:Luban:1.1.8'
+
+    lombok =  'org.projectlombok:lombok:1.16.18'
+    annotation =  'org.glassfish:javax.annotation:10.0-b28'
+
+
+    //华为云存储
+    huaweicloud = 'com.huaweicloud:esdk-obs-android:3.21.12';
+
+
+    externalGlide = 'com.github.bumptech.glide:glide:4.9.0'
+    externalTransformations = 'jp.wasabeef:glide-transformations:2.0.2'
+    externalEventBus = 'org.greenrobot:eventbus:3.1.1'
+    externalEasypermissions = 'pub.devrel:easypermissions:1.0.1'
+    externalAliyunOSS = 'com.aliyun.dpa:oss-android-sdk:2.4.5'
+    externalGson = 'com.google.code.gson:gson:2.8.1'
+
+    externalBuglyCrashreport = 'com.tencent.bugly:crashreport:latest.release'
+    externalBuglyNativecrashreport = 'com.tencent.bugly:nativecrashreport:latest.release'
+    externalBanner = 'com.youth.banner:banner:1.4.10'
+
+    filedownloader = 'com.liulishuo.filedownloader:library:1.7.6'
+    externalDateTimePickerLibrary = 'jsc.kit.datetimepicker:DateTimePickerLibrary:0.4.8'
+    externalSpringview = 'com.liaoinstan.springview:library:1.2.6'
+    //滑动删除
+    externalSwipeDelMenuLayout = 'com.github.mcxtzhang:SwipeDelMenuLayout:V1.3.0'
+    externalRangeSeekBar = 'com.github.Jay-Goo:RangeSeekBar:v1.0.0'
+
+    externalDragonBar = 'com.github.yujinzhao123:DoubleHeadedDragonBar:1.0.4'
+    externalXRecyclerview = 'com.jcodecraeer:xrecyclerview:1.5.9'
+    //滚轮控件时间选择等
+    pickerView = 'com.contrarywind:Android-PickerView:4.1.9'
+}

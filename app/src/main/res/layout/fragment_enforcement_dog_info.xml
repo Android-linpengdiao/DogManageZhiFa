@@ -1,0 +1,1015 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/transparent"
+        android:orientation="vertical">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:overScrollMode="never">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingBottom="@dimen/dp_100"
+                android:focusable="true"
+                android:orientation="vertical"
+                android:focusableInTouchMode="true">
+
+                <LinearLayout
+                    android:id="@+id/certificateContainer"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:visibility="gone"
+                    tools:visibility="visible">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white"
+                        android:focusable="true"
+                        android:focusableInTouchMode="true"
+                        android:gravity="center_horizontal"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/dp_16"
+                            android:layout_marginTop="@dimen/dp_12"
+                            android:layout_marginRight="@dimen/dp_16"
+                            android:layout_marginBottom="@dimen/dp_20"
+                            android:background="@drawable/card"
+                            android:gravity="center_vertical"
+                            android:orientation="vertical"
+                            android:paddingLeft="@dimen/dp_30"
+                            android:paddingTop="@dimen/dp_13"
+                            android:paddingRight="@dimen/dp_11"
+                            android:paddingBottom="@dimen/dp_16">
+
+                            <com.dog.manage.zhifa.app.view.TextBoldView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:singleLine="true"
+                                android:text="北京市养犬登记证"
+                                android:textColor="#000000"
+                                android:textSize="@dimen/sp_12" />
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/dp_14">
+
+                                <ImageView
+                                    android:id="@+id/certificateCoverView"
+                                    android:layout_width="@dimen/dp_84"
+                                    android:layout_height="@dimen/dp_78"
+                                    android:layout_alignParentRight="true"
+                                    android:layout_marginRight="@dimen/dp_30"
+                                    android:background="@drawable/image_8" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_below="@+id/certificateCoverView"
+                                    android:layout_alignStart="@+id/certificateCoverView"
+                                    android:layout_marginTop="@dimen/dp_8"
+                                    android:gravity="center"
+                                    android:text="免疫证状态:有效"
+                                    android:textColor="#000000"
+                                    android:textSize="@dimen/certificateSize" />
+
+                                <LinearLayout
+                                    android:id="@+id/certificateInfoContainer"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical">
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:gravity="center_vertical"
+                                        android:orientation="horizontal">
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:gravity="center_vertical"
+                                            android:text="犬证编号:"
+                                            android:textColor="#000000"
+                                            android:textSize="@dimen/certificateSize" />
+
+                                        <TextView
+                                            android:id="@+id/idNumView"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginLeft="@dimen/dp_8"
+                                            android:gravity="center_vertical"
+                                            tools:text="0100000 "
+                                            android:textColor="#000000"
+                                            android:textSize="@dimen/certificateSize" />
+
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="@dimen/certificateMarginTop"
+                                        android:gravity="center_vertical"
+                                        android:orientation="horizontal">
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:gravity="center_vertical"
+                                            android:text="犬只品种:"
+                                            android:textColor="#000000"
+                                            android:textSize="@dimen/certificateSize" />
+
+                                        <TextView
+                                            android:id="@+id/dogTypeView"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginLeft="@dimen/dp_8"
+                                            android:gravity="center_vertical"
+                                            tools:text="萨摩耶"
+                                            android:textColor="#000000"
+                                            android:textSize="@dimen/certificateSize" />
+
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="@dimen/certificateMarginTop"
+                                        android:gravity="center_vertical"
+                                        android:orientation="horizontal">
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:gravity="center_vertical"
+                                            android:text="犬只毛色:"
+                                            android:textColor="#000000"
+                                            android:textSize="@dimen/certificateSize" />
+
+                                        <TextView
+                                            android:id="@+id/dogColorView"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginLeft="@dimen/dp_8"
+                                            android:gravity="center_vertical"
+                                            tools:text="白色"
+                                            android:textColor="#000000"
+                                            android:textSize="@dimen/certificateSize" />
+
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="@dimen/certificateMarginTop"
+                                        android:gravity="center_vertical"
+                                        android:orientation="horizontal">
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:gravity="center_vertical"
+                                            android:text="犬只性别:"
+                                            android:textColor="#000000"
+                                            android:textSize="@dimen/certificateSize" />
+
+                                        <TextView
+                                            android:id="@+id/dogGenderView"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginLeft="@dimen/dp_8"
+                                            android:gravity="center_vertical"
+                                            tools:text="雄性"
+                                            android:textColor="#000000"
+                                            android:textSize="@dimen/certificateSize" />
+
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="@dimen/certificateMarginTop"
+                                        android:gravity="center_vertical"
+                                        android:orientation="horizontal">
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:gravity="center_vertical"
+                                            android:text="犬主姓名:"
+                                            android:textColor="#000000"
+                                            android:textSize="@dimen/certificateSize" />
+
+                                        <TextView
+                                            android:id="@+id/orgNameView"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="match_parent"
+                                            android:layout_marginLeft="@dimen/dp_8"
+                                            android:gravity="center_vertical"
+                                            tools:text="张三"
+                                            android:textColor="#000000"
+                                            android:textSize="@dimen/certificateSize" />
+
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="@dimen/certificateMarginTop"
+                                        android:gravity="center_vertical"
+                                        android:orientation="horizontal">
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:gravity="center_vertical"
+                                            android:text="发证日期:"
+                                            android:textColor="#000000"
+                                            android:textSize="@dimen/certificateSize" />
+
+                                        <TextView
+                                            android:id="@+id/awardTimeView"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginLeft="@dimen/dp_8"
+                                            android:gravity="center_vertical"
+                                            tools:text="2021年3月31日"
+                                            android:textColor="#000000"
+                                            android:textSize="@dimen/certificateSize" />
+
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="@dimen/certificateMarginTop"
+                                        android:gravity="center_vertical"
+                                        android:orientation="horizontal">
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:gravity="center_vertical"
+                                            android:text="居住住址:"
+                                            android:textColor="#000000"
+                                            android:textSize="@dimen/certificateSize" />
+
+                                        <TextView
+                                            android:id="@+id/detailedAddressView"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginLeft="@dimen/dp_8"
+                                            android:gravity="center_vertical"
+                                            tools:text="北京市西城区天桥街道"
+                                            android:textColor="#000000"
+                                            android:textSize="@dimen/certificateSize" />
+
+                                    </LinearLayout>
+
+                                    <com.dog.manage.zhifa.app.view.TextBoldView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="@dimen/dp_15"
+                                        android:gravity="center"
+                                        android:text="北京市公安局统一监制"
+                                        android:textColor="#000000"
+                                        android:textSize="@dimen/sp_11" />
+
+                                </LinearLayout>
+
+                                <ImageView
+                                    android:layout_width="@dimen/dp_70"
+                                    android:layout_height="@dimen/dp_70"
+                                    android:layout_alignBottom="@+id/certificateInfoContainer"
+                                    android:layout_alignParentRight="true"
+                                    android:background="@drawable/gongzhang" />
+                            </RelativeLayout>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <com.dog.manage.zhifa.app.view.TextBoldView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:paddingBottom="@dimen/dp_22"
+                        android:text="犬证有效"
+                        android:textColor="#ff273154"
+                        android:textSize="@dimen/sp_15" />
+
+                    <com.dog.manage.zhifa.app.view.ViewItemLayout
+                        android:id="@+id/dogOwnerInfoView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/app_background"
+                        app:item_container_height="@dimen/dp_50"
+                        app:item_container_margin_left="@dimen/dp_15"
+                        app:item_container_margin_right="@dimen/dp_15"
+                        app:item_content="张三"
+                        app:item_content_color="@color/colorAppTheme"
+                        app:item_content_size="@dimen/sp_14"
+                        app:item_divider_visible="true"
+                        app:item_info="查看详情"
+                        app:item_info_size="@dimen/sp_14"
+                        app:item_info_visible="true"
+                        app:item_info_width="@dimen/dp_84"
+                        app:item_title="犬主信息"
+                        app:item_title_bold="true"
+                        app:item_title_size="@dimen/sp_14" />
+
+                    <com.dog.manage.zhifa.app.view.ViewItemLayout
+                        android:id="@+id/dogDetailsView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/app_background"
+                        app:item_container_height="@dimen/dp_50"
+                        app:item_container_margin_left="@dimen/dp_15"
+                        app:item_container_margin_right="@dimen/dp_15"
+                        app:item_content="萨摩耶"
+                        app:item_content_color="@color/colorAppTheme"
+                        app:item_content_size="@dimen/sp_14"
+                        app:item_divider_visible="true"
+                        app:item_info="查看详情"
+                        app:item_info_size="@dimen/sp_14"
+                        app:item_info_visible="true"
+                        app:item_info_width="@dimen/dp_84"
+                        app:item_title="犬只信息"
+                        app:item_title_bold="true"
+                        app:item_title_size="@dimen/sp_14" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/immuneContainer"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:visibility="gone"
+                    tools:visibility="visible">
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/dp_16"
+                        android:layout_marginTop="@dimen/dp_5"
+                        android:layout_marginRight="@dimen/dp_16"
+                        android:layout_marginBottom="@dimen/dp_10"
+                        android:background="@color/white"
+                        android:visibility="visible"
+                        app:cardCornerRadius="@dimen/dp_8"
+                        app:cardElevation="@dimen/dp_6"
+                        app:cardPreventCornerOverlap="false">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical"
+                            android:orientation="vertical"
+                            android:paddingLeft="@dimen/dp_35"
+                            android:paddingTop="@dimen/dp_23"
+                            android:paddingRight="@dimen/dp_35"
+                            android:paddingBottom="@dimen/dp_40">
+
+                            <com.dog.manage.zhifa.app.view.TextBoldView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:singleLine="true"
+                                android:text="北京市动物健康免疫证"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/sp_20" />
+
+                            <com.dog.manage.zhifa.app.view.TextBoldView
+                                android:id="@+id/immuneIdNumView"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/dp_13"
+                                android:gravity="center"
+                                android:singleLine="true"
+                                android:text="免疫证明编号："
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/sp_13" />
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/dp_22">
+
+                                <LinearLayout
+                                    android:id="@+id/infoContainer"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical">
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:gravity="center_vertical"
+                                        android:orientation="horizontal">
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:gravity="center_vertical"
+                                            android:text="犬名:"
+                                            android:textColor="@color/black"
+                                            android:textSize="@dimen/sp_12" />
+
+                                        <TextView
+                                            android:id="@+id/immuneDogNameView"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginLeft="@dimen/dp_8"
+                                            android:gravity="center_vertical"
+                                            tools:text="旺财"
+                                            android:textColor="@color/black"
+                                            android:textSize="@dimen/sp_12" />
+
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="@dimen/dp_4"
+                                        android:gravity="center_vertical"
+                                        android:orientation="horizontal">
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:gravity="center_vertical"
+                                            android:text="性别:"
+                                            android:textColor="@color/black"
+                                            android:textSize="@dimen/sp_12" />
+
+                                        <TextView
+                                            android:id="@+id/immuneDogGenderView"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginLeft="@dimen/dp_8"
+                                            android:gravity="center_vertical"
+                                            tools:text="雄性"
+                                            android:textColor="@color/black"
+                                            android:textSize="@dimen/sp_12" />
+
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="@dimen/dp_4"
+                                        android:gravity="center_vertical"
+                                        android:orientation="horizontal">
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:gravity="center_vertical"
+                                            android:text="犬只毛色:"
+                                            android:textColor="@color/black"
+                                            android:textSize="@dimen/sp_12" />
+
+                                        <TextView
+                                            android:id="@+id/immuneDogColorView"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginLeft="@dimen/dp_8"
+                                            android:gravity="center_vertical"
+                                            tools:text="白色"
+                                            android:textColor="@color/black"
+                                            android:textSize="@dimen/sp_12" />
+
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="@dimen/dp_4"
+                                        android:gravity="center_vertical"
+                                        android:orientation="horizontal">
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:gravity="center_vertical"
+                                            android:text="犬只品种:"
+                                            android:textColor="@color/black"
+                                            android:textSize="@dimen/sp_12" />
+
+                                        <TextView
+                                            android:id="@+id/immuneDogTypeView"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginLeft="@dimen/dp_8"
+                                            android:gravity="center_vertical"
+                                            tools:text="严摩耶"
+                                            android:textColor="@color/black"
+                                            android:textSize="@dimen/sp_12" />
+
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="@dimen/dp_4"
+                                        android:gravity="center_vertical"
+                                        android:orientation="horizontal">
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:gravity="center_vertical"
+                                            android:text="街道(乡镇):"
+                                            android:textColor="@color/black"
+                                            android:textSize="@dimen/sp_12" />
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginLeft="@dimen/dp_8"
+                                            android:gravity="center_vertical"
+                                            android:text="大红门街道"
+                                            android:textColor="@color/black"
+                                            android:textSize="@dimen/sp_12" />
+
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="@dimen/dp_4"
+                                        android:gravity="center_vertical"
+                                        android:orientation="horizontal">
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:gravity="center_vertical"
+                                            android:text="详细地址:"
+                                            android:textColor="@color/black"
+                                            android:textSize="@dimen/sp_12" />
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginLeft="@dimen/dp_8"
+                                            android:gravity="center_vertical"
+                                            android:text="XXXXX地址"
+                                            android:textColor="@color/black"
+                                            android:textSize="@dimen/sp_12" />
+
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="@dimen/dp_4"
+                                        android:gravity="center_vertical"
+                                        android:orientation="horizontal">
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:gravity="center_vertical"
+                                            android:text="免疫状态:"
+                                            android:textColor="@color/black"
+                                            android:textSize="@dimen/sp_12" />
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginLeft="@dimen/dp_8"
+                                            android:gravity="center_vertical"
+                                            android:text="已免疫"
+                                            android:textColor="@color/black"
+                                            android:textSize="@dimen/sp_12" />
+
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="@dimen/dp_4"
+                                        android:gravity="center_vertical"
+                                        android:orientation="horizontal">
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:gravity="center_vertical"
+                                            android:text="免疫点名称:"
+                                            android:textColor="@color/black"
+                                            android:textSize="@dimen/sp_12" />
+
+                                        <TextView
+                                            android:id="@+id/hospitalNameView"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginLeft="@dimen/dp_8"
+                                            android:gravity="center_vertical"
+                                            tools:text="北京友好动物医院"
+                                            android:textColor="@color/black"
+                                            android:textSize="@dimen/sp_12" />
+
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="@dimen/dp_4"
+                                        android:gravity="center_vertical"
+                                        android:orientation="horizontal">
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:gravity="center_vertical"
+                                            android:text="疫苗名称:"
+                                            android:textColor="@color/black"
+                                            android:textSize="@dimen/sp_12" />
+
+                                        <TextView
+                                            android:id="@+id/immuneNameView"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginLeft="@dimen/dp_8"
+                                            android:gravity="center_vertical"
+                                            tools:text="狂犬病疫苗"
+                                            android:textColor="@color/black"
+                                            android:textSize="@dimen/sp_12" />
+
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="@dimen/dp_4"
+                                        android:gravity="center_vertical"
+                                        android:orientation="horizontal">
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:gravity="center_vertical"
+                                            android:text="疫苗批号:"
+                                            android:textColor="@color/black"
+                                            android:textSize="@dimen/sp_12" />
+
+                                        <TextView
+                                            android:id="@+id/immuneBatchView"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginLeft="@dimen/dp_8"
+                                            android:gravity="center_vertical"
+                                            tools:text="CEWERWERW"
+                                            android:textColor="@color/black"
+                                            android:textSize="@dimen/sp_12" />
+
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="@dimen/dp_4"
+                                        android:gravity="center_vertical"
+                                        android:orientation="horizontal">
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:gravity="center_vertical"
+                                            android:text="疫苗厂家:"
+                                            android:textColor="@color/black"
+                                            android:textSize="@dimen/sp_12" />
+
+                                        <TextView
+                                            android:id="@+id/immuneFactoryView"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginLeft="@dimen/dp_8"
+                                            android:gravity="center_vertical"
+                                            tools:text="XXXXX厂家"
+                                            android:textColor="@color/black"
+                                            android:textSize="@dimen/sp_12" />
+
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="@dimen/dp_4"
+                                        android:gravity="center_vertical"
+                                        android:orientation="horizontal">
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:gravity="center_vertical"
+                                            android:text="免疫日期:"
+                                            android:textColor="@color/black"
+                                            android:textSize="@dimen/sp_12" />
+
+                                        <TextView
+                                            android:id="@+id/immuneDataView"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginLeft="@dimen/dp_8"
+                                            android:gravity="center_vertical"
+                                            tools:text="2022-03-05"
+                                            android:textColor="@color/black"
+                                            android:textSize="@dimen/sp_12" />
+
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="@dimen/dp_4"
+                                        android:gravity="center_vertical"
+                                        android:orientation="horizontal">
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:gravity="center_vertical"
+                                            android:text="免疫标识号:"
+                                            android:textColor="@color/black"
+                                            android:textSize="@dimen/sp_12" />
+
+                                        <TextView
+                                            android:id="@+id/immuneNumView"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginLeft="@dimen/dp_8"
+                                            android:gravity="center_vertical"
+                                            tools:text="02798"
+                                            android:textColor="@color/black"
+                                            android:textSize="@dimen/sp_12" />
+
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="@dimen/dp_4"
+                                        android:gravity="center_vertical"
+                                        android:orientation="horizontal">
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:gravity="center_vertical"
+                                            android:text="免疫人员:"
+                                            android:textColor="@color/black"
+                                            android:textSize="@dimen/sp_12" />
+
+                                        <TextView
+                                            android:id="@+id/immuneUserView"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginLeft="@dimen/dp_8"
+                                            android:gravity="center_vertical"
+                                            tools:text="张三"
+                                            android:textColor="@color/black"
+                                            android:textSize="@dimen/sp_12" />
+
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="@dimen/dp_4"
+                                        android:layout_marginBottom="@dimen/dp_17"
+                                        android:gravity="center_vertical"
+                                        android:orientation="horizontal">
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:gravity="center_vertical"
+                                            android:text="下次免疫时间:"
+                                            android:textColor="@color/black"
+                                            android:textSize="@dimen/sp_12" />
+
+                                        <TextView
+                                            android:id="@+id/nextImmuneDataView"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginLeft="@dimen/dp_8"
+                                            android:gravity="center_vertical"
+                                            tools:text="2023-03-05"
+                                            android:textColor="@color/black"
+                                            android:textSize="@dimen/sp_12" />
+
+                                    </LinearLayout>
+                                </LinearLayout>
+
+                                <ImageView
+                                    android:id="@+id/immuneCoverView"
+                                    android:layout_width="@dimen/dp_84"
+                                    android:layout_height="@dimen/dp_78"
+                                    android:layout_alignParentRight="true"
+                                    android:layout_marginRight="@dimen/dp_20"
+                                    android:background="@drawable/image_8" />
+
+                                <ImageView
+                                    android:layout_width="@dimen/dp_70"
+                                    android:layout_height="@dimen/dp_70"
+                                    android:layout_alignBottom="@+id/infoContainer"
+                                    android:layout_alignParentRight="true"
+                                    android:layout_marginRight="@dimen/dp_10"
+                                    android:background="@drawable/gongzhang" />
+                            </RelativeLayout>
+
+                        </LinearLayout>
+
+                    </androidx.cardview.widget.CardView>
+
+                    <com.dog.manage.zhifa.app.view.TextBoldView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/dp_12"
+                        android:text="免疫证有效"
+                        android:textColor="#ff273154"
+                        android:textSize="@dimen/sp_15" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/editContainer"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:visibility="gone"
+                    tools:visibility="visible">
+
+                    <com.dog.manage.zhifa.app.view.TextBoldView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dp_15"
+                        android:text="查无此信息"
+                        android:textColor="#ff1111"
+                        android:textSize="@dimen/sp_15" />
+
+                    <com.dog.manage.zhifa.app.view.TextBoldView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dp_20"
+                        android:layout_marginBottom="@dimen/dp_15"
+                        android:text="——新建执法录入——"
+                        android:textColor="#273154"
+                        android:textSize="@dimen/sp_15" />
+
+                    <com.dog.manage.zhifa.app.view.ViewItemLayout
+                        android:id="@+id/dogOwnerName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/app_background"
+                        app:item_container_height="@dimen/dp_50"
+                        app:item_container_margin_left="@dimen/viewPadding"
+                        app:item_container_margin_right="@dimen/viewPadding"
+                        app:item_divider_visible="true"
+                        app:item_edit_hint="请输入犬主姓名"
+                        app:item_edit_size="@dimen/viewItemTitleSize"
+                        app:item_edit_visible="true"
+                        app:item_title="犬主姓名/单位名称"
+                        app:item_title_bold="true"
+                        app:item_title_size="@dimen/viewItemTitleSize" />
+
+                    <com.dog.manage.zhifa.app.view.ViewItemLayout
+                        android:id="@+id/dogOwnerPhoneView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/app_background"
+                        app:item_container_height="@dimen/dp_50"
+                        app:item_container_margin_left="@dimen/viewPadding"
+                        app:item_container_margin_right="@dimen/viewPadding"
+                        app:item_divider_visible="true"
+                        app:item_edit_hint="请输入手机号码"
+                        app:item_edit_size="@dimen/viewItemTitleSize"
+                        app:item_edit_visible="true"
+                        app:item_title="手机号码"
+                        app:item_title_bold="true"
+                        app:item_title_size="@dimen/viewItemTitleSize" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/app_background"
+                        android:orientation="vertical"
+                        android:paddingLeft="@dimen/viewPadding"
+                        android:paddingRight="@dimen/viewPadding">
+
+                        <com.dog.manage.zhifa.app.view.TextBoldView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/dp_20"
+                            android:text="身份证号/统一社会信用代码"
+                            android:textColor="#333333"
+                            android:textSize="@dimen/sp_14" />
+
+                        <EditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@null"
+                            android:gravity="top|right"
+                            android:hint="请输入证件号码"
+                            android:paddingTop="@dimen/dp_20"
+                            android:paddingBottom="@dimen/dp_14"
+                            android:textColor="#333333"
+                            android:textColorHint="#999999"
+                            android:textSize="@dimen/sp_14" />
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dividerHeight"
+                        android:background="@color/colorDivider" />
+
+                    <com.dog.manage.zhifa.app.view.ViewItemLayout
+                        android:id="@+id/addressView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/app_background"
+                        app:item_arrow_visible="true"
+                        app:item_container_height="@dimen/viewItemHeight"
+                        app:item_container_margin_left="@dimen/viewPadding"
+                        app:item_container_margin_right="@dimen/viewPadding"
+                        app:item_content="请选择省市区"
+                        app:item_content_color="#273154"
+                        app:item_content_size="@dimen/sp_14"
+                        app:item_divider_visible="true"
+                        app:item_title="居住地址"
+                        app:item_title_bold="true"
+                        app:item_title_size="@dimen/sp_14" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/app_background"
+                        android:minHeight="@dimen/dp_121"
+                        android:orientation="horizontal"
+                        android:paddingLeft="@dimen/viewPadding"
+                        android:paddingTop="@dimen/dp_12"
+                        android:paddingRight="@dimen/viewPadding"
+                        android:paddingBottom="@dimen/dp_12">
+
+                        <com.dog.manage.zhifa.app.view.TextBoldView
+                            android:id="@+id/detailedAddressHintView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="详细地址"
+                            android:textColor="#333333"
+                            android:textSize="@dimen/sp_14" />
+
+                        <EditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@null"
+                            android:gravity="top|right"
+                            android:hint="请输入详细地址"
+                            android:minHeight="@dimen/dp_60"
+                            android:textColor="#333333"
+                            android:textColorHint="#999999"
+                            android:textSize="@dimen/sp_14" />
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dividerHeight"
+                        android:background="@color/colorDivider" />
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+        </ScrollView>
+
+    </RelativeLayout>
+</layout>

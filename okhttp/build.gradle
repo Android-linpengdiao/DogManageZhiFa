@@ -1,0 +1,32 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion rootProject.ext.compileSdkVersion
+
+    defaultConfig {
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    androidTestImplementation externalAndroidTestRunner
+    androidTestImplementation externalAndroidTestEspressoCore
+    testImplementation externalJunit
+    implementation externalAndroidAppCompatV7
+    implementation externalAndroidCnstraint
+    api externalOkhttp
+    api externalOkhttpInterceptor
+    implementation externalGson
+    implementation project(':base')
+}

@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:overScrollMode="never">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                tools:context=".activity.MainActivity">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_212">
+
+                    <com.xw.banner.Banner
+                        android:id="@+id/mainBanner"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dp_212"
+                        app:xw_banner_layout="@layout/banner_layout"
+                        app:xw_indicator_drawable_selected="@drawable/tab_w"
+                        app:xw_indicator_drawable_unselected="@drawable/tab_g"
+                        app:xw_indicator_height="@dimen/dp_2"
+                        app:xw_indicator_width="@dimen/dp_19" />
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:src="#1A000000" />
+
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingLeft="@dimen/dp_16"
+                    android:paddingTop="@dimen/dp_16"
+                    android:paddingBottom="@dimen/dp_16">
+
+                    <ImageView
+                        android:id="@+id/checkView"
+                        android:layout_width="@dimen/dp_90"
+                        android:layout_height="@dimen/dp_20"
+                        android:src="@drawable/zcfg" />
+
+                    <com.dog.manage.zhifa.app.view.MarqueeTextView
+                        android:id="@+id/noticeView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/dp_16"
+                        android:ellipsize="marquee"
+                        android:marqueeRepeatLimit="marquee_forever"
+                        android:singleLine="true"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/sp_15"
+                        tools:text="近日于3月13日起开展文明养犬督查活动，请广大市民" />
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:descendantFocusability="blocksDescendants">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/frameItemRecyclerView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/dp_16"
+                        android:layout_marginRight="@dimen/dp_16"
+                        android:overScrollMode="never" />
+                </RelativeLayout>
+
+                <com.xw.banner.Banner
+                    android:id="@+id/banner"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_150"
+                    android:layout_marginLeft="@dimen/dp_16"
+                    android:layout_marginRight="@dimen/dp_16"
+                    android:layout_marginBottom="@dimen/dp_16"
+                    app:xw_banner_layout="@layout/banner_layout"
+                    app:xw_indicator_drawable_selected="@drawable/tab_b"
+                    app:xw_indicator_drawable_unselected="@drawable/tab_b_t50"
+                    app:xw_indicator_height="@dimen/dp_2"
+                    app:xw_indicator_width="@dimen/dp_19" />
+
+            </LinearLayout>
+
+        </ScrollView>
+
+        <include layout="@layout/status_bar" />
+
+        <RelativeLayout
+            android:id="@+id/topView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/status_bar"
+            android:visibility="visible">
+
+            <ImageView
+                android:id="@+id/userView"
+                android:layout_width="@dimen/dp_46"
+                android:layout_height="@dimen/dp_46"
+                android:layout_marginLeft="@dimen/dp_4"
+                android:onClick="onClickUser"
+                android:padding="@dimen/dp_10"
+                android:src="@drawable/user"
+                android:visibility="gone" />
+
+            <com.dog.manage.zhifa.app.view.TextBoldView
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/dp_46"
+                android:layout_centerInParent="true"
+                android:gravity="center"
+                android:text="北京市犬只管理执法平台"
+                android:textColor="@color/white"
+                android:textSize="@dimen/sp_18" />
+
+            <RelativeLayout
+                android:id="@+id/messageView"
+                android:layout_width="@dimen/dp_46"
+                android:layout_height="@dimen/dp_46"
+                android:layout_alignParentRight="true"
+                android:layout_marginLeft="@dimen/dp_4"
+                android:onClick="onClickMessage"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <ImageView
+                    android:id="@+id/iconImageView"
+                    android:layout_width="@dimen/dp_46"
+                    android:layout_height="@dimen/dp_46"
+                    android:padding="@dimen/dp_10"
+                    android:src="@drawable/notification" />
+
+                <TextView
+                    android:id="@+id/unreadMessageView"
+                    android:layout_width="@dimen/dp_8"
+                    android:layout_height="@dimen/dp_8"
+                    android:layout_alignParentRight="true"
+                    android:layout_margin="@dimen/dp_8"
+                    android:background="@drawable/unread"
+                    android:gravity="center"
+                    android:paddingLeft="@dimen/dp_5"
+                    android:paddingTop="@dimen/dp_1"
+                    android:paddingRight="@dimen/dp_5"
+                    android:paddingBottom="@dimen/dp_1"
+                    android:text="1"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/sp_12"
+                    android:visibility="visible"
+                    tools:visibility="visible" />
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+</layout>

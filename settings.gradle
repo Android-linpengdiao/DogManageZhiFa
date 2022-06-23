@@ -1,0 +1,6 @@
+include ':camera'
+include ':banner'
+include ':okhttp'
+include ':base'
+include ':app'
+rootProject.name = "DogManageZhiFa"

@@ -1,0 +1,152 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="LoginTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/app_background</item>
+        <item name="colorPrimaryDark">@color/app_background</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="MyDialogStyle">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>
+        <item name="android:backgroundDimEnabled">true</item>
+    </style>
+
+    <style name="WindowDialog" parent="@style/Theme.AppCompat.Light.Dialog.Alert">
+        <!--是否去除标题 -->
+        <item name="windowNoTitle">true</item>
+        <!--是否去除边框-->
+        <item name="android:windowFrame">@null</item>
+        <!--是否浮现在activity之上-->
+        <item name="android:windowIsFloating">true</item>
+        <!--是否模糊-->
+        <item name="android:backgroundDimEnabled">true</item>
+        <!-- 背景透明 -->
+        <item name="android:background">#00000000</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <!-- 没有windowActionBar-->
+        <item name="windowActionBar">false</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <!-- <item name="android:windowAnimationStyle">@android:style/Animation.Translucent</item> -->
+
+        <!-- <item name="android:backgroundDimEnabled">false</item> -->
+    </style>
+
+    <declare-styleable name="TitleView">
+        <attr name="tv_title" format="string" />
+        <attr name="tv_title_size" format="dimension" />
+        <attr name="tv_title_color" format="color" />
+        <attr name="tv_title_bold" format="boolean" />
+        <attr name="tv_content" format="string" />
+        <attr name="tv_content_size" format="dimension" />
+        <attr name="tv_content_color" format="color" />
+    </declare-styleable>
+
+    <declare-styleable name="ViewItemLayout">
+        <attr name="item_title" format="string" />
+        <attr name="item_title_size" format="dimension" />
+        <attr name="item_title_color" format="color" />
+        <attr name="item_title_bold" format="boolean" />
+        <attr name="item_content" format="string" />
+        <attr name="item_content_size" format="dimension" />
+        <attr name="item_content_color" format="color" />
+        <attr name="item_content_bold" format="boolean" />
+        <attr name="item_edit" format="string" />
+        <attr name="item_edit_hint" format="string" />
+        <attr name="item_edit_size" format="dimension" />
+        <attr name="item_edit_color" format="color" />
+        <attr name="item_edit_visible" format="boolean" />
+        <attr name="item_info" format="string" />
+        <attr name="item_info_size" format="dimension" />
+        <attr name="item_info_color" format="color" />
+        <attr name="item_info_visible" format="boolean" />
+        <attr name="item_info_width" format="dimension" />
+        <attr name="item_desc" format="string" />
+        <attr name="item_desc_size" format="dimension" />
+        <attr name="item_container_height" format="dimension" />
+        <attr name="item_container_margin_left" format="dimension" />
+        <attr name="item_container_margin_right" format="dimension" />
+        <attr name="item_desc_color" format="color" />
+        <attr name="item_desc_visible" format="boolean" />
+        <attr name="item_icon_left" format="reference" />
+        <attr name="item_icon_left_width" format="integer" />
+        <attr name="item_icon_left_visible" format="boolean" />
+        <attr name="item_icon_right" format="reference" />
+        <attr name="item_icon_right_visible" format="boolean" />
+        <attr name="item_switch" format="reference" />
+        <attr name="item_switch_visible" format="boolean" />
+        <attr name="item_arrow_visible" format="boolean" />
+        <attr name="item_divider_visible" format="boolean" />
+    </declare-styleable>
+
+    <declare-styleable name="TextBoldView">
+        <attr name="text_bold" format="boolean" />
+    </declare-styleable>
+
+    <declare-styleable name="TopTabLayout">
+        <attr name="yj_tabIndicatorColor" format="color" />
+        <attr name="yj_tabIndicatorHeight" format="dimension" />
+        <attr name="yj_tabContentStart" format="dimension" />
+        <attr name="yj_tabBackground" format="reference" />
+        <attr name="yj_tabIndicatorDrawable" format="reference" />
+        <attr name="yj_tabIndicatorDrawableHeight" format="dimension" />
+        <attr name="yj_tabIndicatorPaddingBottom" format="dimension" />
+        <attr name="yj_tabIndicatorPaddingTop" format="dimension" />
+        <attr name="yj_tabIndicatorPaddingLeft" format="dimension" />
+        <attr name="yj_tabIndicatorPaddingRight" format="dimension" />
+
+        <attr name="yj_tabMode">
+            <enum name="scrollable" value="0" />
+            <enum name="fixed" value="1" />
+        </attr>
+        <attr name="yj_tabGravity">
+            <enum name="fill" value="0" />
+            <enum name="center" value="1" />
+        </attr>
+        <attr name="yj_tabMinWidth" format="dimension" />
+        <attr name="yj_tabMaxWidth" format="dimension" />
+        <attr name="yj_tabTextAppearance" format="reference" />
+        <attr name="yj_tabTextColor" format="color" />
+        <attr name="yj_tabSelectedTextColor" format="color" />
+        <attr name="yj_tabPaddingStart" format="dimension" />
+        <attr name="yj_tabPaddingTop" format="dimension" />
+        <attr name="yj_tabPaddingEnd" format="dimension" />
+        <attr name="yj_tabPaddingBottom" format="dimension" />
+        <attr name="yj_tabPadding" format="dimension" />
+        <attr name="yj_tabTextSize" format="dimension" />
+        <attr name="yj_tabSelectTextSize" format="dimension" />
+    </declare-styleable>
+
+    <style name="YJTabLayoutStyle" parent="android:Widget">
+        <item name="yj_tabMaxWidth" tools:ignore="PrivateResource">@dimen/design_tab_max_width
+        </item>
+        <item name="yj_tabIndicatorColor">?attr/colorAccent</item>
+        <item name="yj_tabIndicatorHeight">2dp</item>
+        <item name="yj_tabPaddingStart">12dp</item>
+        <item name="yj_tabPaddingEnd">12dp</item>
+        <item name="yj_tabBackground">?attr/selectableItemBackground</item>
+        <item name="yj_tabTextAppearance">@style/TextAppearance.Design.Tab</item>
+        <item name="yj_tabSelectedTextColor">?android:textColorPrimary</item>
+        <item name="yj_tabGravity">center</item>
+        <item name="yj_tabMode">scrollable</item>
+    </style>
+
+    <style name="YueTabLayoutTextStyle" parent="TextAppearance.AppCompat.Widget.ActionBar.Title">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+</resources>

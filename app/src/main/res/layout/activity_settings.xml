@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <com.dog.manage.zhifa.app.view.TitleView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_48"
+            android:background="@color/colorAppTheme"
+            app:tv_content=""
+            app:tv_content_size="@dimen/sp_14"
+            app:tv_title="设置"
+            app:tv_title_bold="true"
+            app:tv_title_size="@dimen/titleViewSize" />
+
+        <com.dog.manage.zhifa.app.view.ViewItemLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:item_container_margin_left="@dimen/viewPadding"
+            app:item_container_margin_right="@dimen/viewPadding"
+            app:item_divider_visible="true"
+            app:item_container_height="@dimen/dp_50"
+            android:onClick="onClickAbout"
+            app:item_arrow_visible="true"
+            app:item_title="软件介绍"
+            app:item_title_size="@dimen/sp_17" />
+
+
+        <com.dog.manage.zhifa.app.view.ViewItemLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:item_container_margin_left="@dimen/viewPadding"
+            app:item_container_margin_right="@dimen/viewPadding"
+            app:item_divider_visible="true"
+            app:item_container_height="@dimen/dp_50"
+            app:item_arrow_visible="true"
+            android:onClick="onClickAccount"
+            app:item_title="修改登录密码"
+            app:item_title_size="@dimen/sp_17" />
+
+        <com.dog.manage.zhifa.app.view.ViewItemLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:item_container_margin_left="@dimen/viewPadding"
+            app:item_container_margin_right="@dimen/viewPadding"
+            app:item_divider_visible="true"
+            app:item_container_height="@dimen/dp_50"
+            app:item_arrow_visible="true"
+            app:item_content="0.00M"
+            app:item_content_size="@dimen/sp_17"
+            app:item_title="清理缓存"
+            app:item_title_size="@dimen/sp_17"
+            android:onClick="onClickClear"/>
+
+
+        <com.dog.manage.zhifa.app.view.ViewItemLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:item_container_margin_left="@dimen/viewPadding"
+            app:item_container_margin_right="@dimen/viewPadding"
+            app:item_divider_visible="true"
+            app:item_container_height="@dimen/dp_50"
+            android:onClick="onClickLogout"
+            app:item_arrow_visible="true"
+            app:item_title="退出登录"
+            app:item_title_color="@color/red"
+            app:item_title_size="@dimen/sp_17" />
+
+    </LinearLayout>
+</layout>
