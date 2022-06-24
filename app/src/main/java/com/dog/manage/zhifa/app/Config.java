@@ -7,7 +7,7 @@ public class Config {
     public final static String yueBaoSecretKey = "561d9f5c775a578f85f32f2a5405140c";
 
     //华为云
-    public final static String huaweiCloudEndPoint = "dogmanage.file.obs.cn-north-4.myhuaweicloud.com";
+    public final static String huaweiCloudEndPoint = "obs.cn-north-4.myhuaweicloud.com";
     public final static String huaweiCloudAccessKey = "NSUCIEWATZVUNAPHIYHL";
     public final static String huaweiCloudSecretKey = "Kpz5EtNguToEs4Ww5lDpsJAU9mIdZHpS00wYZgO9";
     public final static String huaweiBucketName = "dogmanage.file";

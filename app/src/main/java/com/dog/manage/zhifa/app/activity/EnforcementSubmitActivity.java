@@ -171,7 +171,7 @@ public class EnforcementSubmitActivity extends BaseActivity {
         paramsMap.put("illegalMeasure", illegalMeasure);
         paramsMap.put("illegalTime", illegalTime);
         paramsMap.put("dogLicenceNum", dogLicenceNum);
-        paramsMap.put("phoneNum", "13521614868");
+//        paramsMap.put("phoneNum", "13521614868");
 
         SendRequest.saveIllegal(paramsMap, new GenericsCallback<BaseData>(new JsonGenericsSerializator()) {
 
@@ -218,9 +218,6 @@ public class EnforcementSubmitActivity extends BaseActivity {
 
     }
 
-    public void onClickPicture(View view) {
-    }
-
     private final int request_IllegalFile = 100;
 
     /**
@@ -228,7 +225,7 @@ public class EnforcementSubmitActivity extends BaseActivity {
      *
      * @param view
      */
-    public void onClickIllegalFile(View view) {
+    public void onClickPicture(View view) {
         if (checkPermissions(PermissionUtils.STORAGE, request_IllegalFile)) {
             Bundle bundle = new Bundle();
             bundle.putInt("mediaType", MediaUtils.MEDIA_TYPE_PHOTO);

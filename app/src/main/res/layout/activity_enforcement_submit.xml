@@ -57,7 +57,6 @@
                         android:layout_width="@dimen/dp_111"
                         android:layout_height="@dimen/dp_108"
                         android:layout_marginBottom="@dimen/dp_17"
-                        android:onClick="onClickIllegalFile"
                         android:background="@drawable/upload_bg">
 
                         <ImageView
