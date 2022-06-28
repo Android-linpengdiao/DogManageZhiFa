@@ -6,6 +6,7 @@ import android.view.View;
 import androidx.recyclerview.widget.GridLayoutManager;
 
 import com.base.view.OnClickListener;
+import com.dog.manage.zhifa.app.activity.AdvertiseActivity;
 import com.dog.manage.zhifa.app.activity.BaseActivity;
 import com.dog.manage.zhifa.app.activity.EnforcementActivity;
 import com.dog.manage.zhifa.app.activity.EnforcementRecordActivity;
@@ -116,12 +117,12 @@ public class MainActivity extends BaseActivity {
         binding.banner.setBannerAnimation(Transformer.Default);
         binding.banner.setIndicatorGravity(BannerConfig.CENTER);
         binding.banner.setDelayTime(5000);
-        binding.banner.setOnBannerListener(new OnBannerListener() {
-            @Override
-            public void OnBannerClick(int position) {
-//                openActivity(AdvertiseActivity.class);
-            }
-        });
+//        binding.banner.setOnBannerListener(new OnBannerListener() {
+//            @Override
+//            public void OnBannerClick(int position) {
+////                openActivity(AdvertiseActivity.class);
+//            }
+//        });
 
         bannerInfoList();
         getForbiddenById();
@@ -164,13 +165,24 @@ public class MainActivity extends BaseActivity {
             @Override
             public void onResponse(ResultClient<PoliciesBean> response, int id) {
                 if (response != null && response.getData() != null) {
-                    try {
-                        List<String> imageList = new Gson().fromJson(response.getData().getImageUrl(), new TypeToken<List<String>>() {
-                        }.getType());
-                        binding.banner.setImages(imageList).start();
-                    } catch (Exception e) {
-                        e.getMessage();
-                    }
+                    binding.banner.setOnBannerListener(new OnBannerListener() {
+                        @Override
+                        public void OnBannerClick(int position) {
+                            Bundle bundle = new Bundle();
+                            bundle.putSerializable("policiesBean",response.getData());
+                            openActivity(AdvertiseActivity.class,bundle);
+                        }
+                    });
+                    List<String> imageList = new ArrayList<>();
+                    imageList.add(response.getData().getImageUrl());
+                    binding.banner.setImages(imageList).start();
+//                    try {
+//                        List<String> imageList = new Gson().fromJson(response.getData().getImageUrl(), new TypeToken<List<String>>() {
+//                        }.getType());
+//                        binding.banner.setImages(imageList).start();
+//                    } catch (Exception e) {
+//                        e.getMessage();
+//                    }
                 }
             }
         });

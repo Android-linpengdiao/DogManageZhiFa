@@ -21,7 +21,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity.DogUserActivity"></activity>
+        <activity android:name=".activity.AdvertiseActivity"></activity>
+        <activity android:name=".activity.DogUserActivity" />
         <activity android:name=".activity.DogDetailsActivity" />
         <activity android:name=".activity.EnforcementSubmitActivity" />
         <activity android:name=".activity.EnforcementDogInfoActivity" />

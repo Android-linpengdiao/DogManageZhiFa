@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<meta charset=utf-8/>
+<meta name=viewport content=width= 100%, initial-scale=1, maximum-scale=1.0, user-scalable=no>
+<html>
+<head>
+    <style>
+        body{
+            font-size: 15px;
+            font-family: PingFang SC;
+            font-style: Regular;
+        }
+        *{
+            margin: 0;
+            padding: 0;
+            text-align:justify;
+            text-justify:inter-ideograph;
+            width: 100%;
+            letter-spacing:0.4px;
+        }
+        span{
+            display: inline-block;
+            text-align:justify;
+            text-justify:inter-ideograph;
+        }
+        blockquote {
+//            background: #fff3d4;
+            border: none;
+//            border-left: 5px solid #f6b73c;
+//            border-radius: 2px;
+//          border-top-left-radius: 4px;
+            border-left: 5px solid #999999;
+//            line-height: 1px;
+            padding: 1px 1px 1px 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="element">
+            <span id="content" class="custom"></span>
+        </div>
+    </div>
+</body>
+<script type="text/javascript">
+        function getContent(data){
+            document.getElementById("content").innerHTML = data;
+            window.injectedObject.getHeight(document.getElementById("content").offsetHeight);
+        }
+        function getHeight(){
+            window.injectedObject.getHeight(document.getElementById("content").offsetHeight);
+        }
+    </script>
+</html>

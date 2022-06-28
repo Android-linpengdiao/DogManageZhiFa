@@ -48,36 +48,36 @@ public class EnforcementDogInfoActivity extends BaseActivity implements Enforcem
 
 
     private void getLicenceInfo() {
-        SendRequest.getLicenceInfo(noseprint,dogLicenceNum,
+        SendRequest.getLicenceInfo(noseprint, dogLicenceNum,
                 new GenericsCallback<ResultClient<LicenceInfo>>(new JsonGenericsSerializator()) {
 
-            @Override
-            public void onBefore(Request request, int id) {
-                super.onBefore(request, id);
-                LoadingManager.showLoadingDialog(EnforcementDogInfoActivity.this);
-            }
+                    @Override
+                    public void onBefore(Request request, int id) {
+                        super.onBefore(request, id);
+                        LoadingManager.showLoadingDialog(EnforcementDogInfoActivity.this);
+                    }
 
-            @Override
-            public void onAfter(int id) {
-                super.onAfter(id);
-                LoadingManager.hideLoadingDialog(EnforcementDogInfoActivity.this);
-            }
+                    @Override
+                    public void onAfter(int id) {
+                        super.onAfter(id);
+                        LoadingManager.hideLoadingDialog(EnforcementDogInfoActivity.this);
+                    }
 
-            @Override
-            public void onError(Call call, Exception e, int id) {
+                    @Override
+                    public void onError(Call call, Exception e, int id) {
 
-            }
+                    }
 
-            @Override
-            public void onResponse(ResultClient<LicenceInfo> response, int id) {
-                if (response.isSuccess() && response.getData() != null) {
-                    initView(response.getData());
+                    @Override
+                    public void onResponse(ResultClient<LicenceInfo> response, int id) {
+                        if (response.isSuccess() && response.getData() != null) {
+                            initView(response.getData());
 
-                } else {
-                    ToastUtils.showShort(getApplicationContext(), response.getMessage());
-                }
-            }
-        });
+                        } else {
+                            ToastUtils.showShort(getApplicationContext(), response.getMessage());
+                        }
+                    }
+                });
     }
 
     private void initView(LicenceInfo data) {
@@ -109,11 +109,10 @@ public class EnforcementDogInfoActivity extends BaseActivity implements Enforcem
     }
 
 
-
     public void onClickConfirm(View view) {
         Bundle bundle = new Bundle();
-        bundle.putString("dogLicenceNum",dogLicenceNum);
-        openActivity(EnforcementSubmitActivity.class,bundle);
+        bundle.putString("dogLicenceNum", dogLicenceNum);
+        openActivity(EnforcementSubmitActivity.class, bundle);
 
     }
 
