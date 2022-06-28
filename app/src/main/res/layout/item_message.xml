@@ -58,27 +58,30 @@
                 android:orientation="horizontal">
 
                 <com.dog.manage.zhifa.app.view.TextBoldView
+                    android:id="@+id/noticeTitleView"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:text="犬证办理"
+                    tools:text="犬证办理"
                     android:textColor="#323232"
                     android:textSize="@dimen/sp_15" />
 
                 <TextView
+                    android:id="@+id/createTimeView"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:text="刚刚"
+                    tools:text="刚刚"
                     android:textColor="#999999"
                     android:textSize="@dimen/sp_12" />
             </LinearLayout>
 
             <TextView
+                android:id="@+id/noticeContentView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dp_8"
                 android:singleLine="true"
-                android:text="尊敬的用户您好,您的犬证即将到期,请及时参加年审,请进入首页点击“犬证年审“来进行办理!"
+                tools:text="尊敬的用户您好,您的犬证即将到期,请及时参加年审,请进入首页点击“犬证年审“来进行办理!"
                 android:textColor="#999999"
                 android:textSize="@dimen/sp_13" />
 

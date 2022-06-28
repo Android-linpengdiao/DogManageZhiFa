@@ -26,6 +26,19 @@ public class APIUrls {
     public final static String getImmuneDetail = URL_DOMAIN + "/user/dog/getImmuneDetail";
     //执法端-保存
     public final static String saveIllegal = URL_DOMAIN + "/user/saveIllegal";
+    //执法端-处罚记录
+    public final static String getIllegalList = URL_DOMAIN + "/user/law/getIllegalList";
+    //执法端-处罚记录详情
+    public final static String getIllegalDetails = URL_DOMAIN + "/user/law/getIllegalDetails";
+
+    /**
+     * 系统消息
+     */
+    //系统消息
+    public final static String sysNoticeList = URL_DOMAIN + "/sysNotice/sysNoticeList";
+    public final static String getSysNoticeById = URL_DOMAIN + "/notice/getSysNoticeById";
+
+
 
 
 
@@ -130,10 +143,10 @@ public class APIUrls {
     //变更手机号-修改登录手机号
     public final static String editUserPhone = URL_DOMAIN + "/user/editUserPhone";
 
-    //处罚记录
-    public final static String getIllegalList = URL_DOMAIN + "/user/getIllegalList";
-    //处罚-处罚记录详情
-    public final static String getIllegalDetails = URL_DOMAIN + "/user/getIllegalDetails";
+//    //处罚记录
+//    public final static String getIllegalList = URL_DOMAIN + "/user/getIllegalList";
+//    //处罚-处罚记录详情
+//    public final static String getIllegalDetails = URL_DOMAIN + "/user/getIllegalDetails";
 
     /**
      * 犬只领养

@@ -1,6 +1,7 @@
 package com.dog.manage.zhifa.app.activity;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -18,6 +19,12 @@ import com.base.utils.PermissionUtils;
 import com.base.utils.TimeUtils;
 import com.base.utils.ToastUtils;
 import com.base.view.OnClickListener;
+import com.bigkoo.pickerview.builder.OptionsPickerBuilder;
+import com.bigkoo.pickerview.builder.TimePickerBuilder;
+import com.bigkoo.pickerview.listener.OnOptionsSelectListener;
+import com.bigkoo.pickerview.listener.OnTimeSelectListener;
+import com.bigkoo.pickerview.view.OptionsPickerView;
+import com.bigkoo.pickerview.view.TimePickerView;
 import com.dog.manage.zhifa.app.Config;
 import com.dog.manage.zhifa.app.R;
 import com.dog.manage.zhifa.app.adapter.TypeAdapter;
@@ -40,7 +47,11 @@ import com.okhttp.callbacks.GenericsCallback;
 import com.okhttp.sample_okhttp.JsonGenericsSerializator;
 
 import java.io.File;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -85,6 +96,61 @@ public class EnforcementSubmitActivity extends BaseActivity {
                 new TypeBean(3, "未牵狗绳"),
                 new TypeBean(4, "其他")));
 
+        binding.illegalTimeView.binding.itemContent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getTime();
+            }
+        });
+
+    }
+
+    /**
+     * 违法时间
+     */
+    private void getTime() {
+        Calendar selectedDate = Calendar.getInstance();
+        Calendar startDate = Calendar.getInstance();
+        Calendar endDate = Calendar.getInstance();
+
+        //正确设置方式 原因：注意事项有说明
+        SimpleDateFormat yearSimpleDateFormat = new SimpleDateFormat("yyyy");
+        SimpleDateFormat monthSimpleDateFormat = new SimpleDateFormat("MM");
+        SimpleDateFormat dateSimpleDateFormat = new SimpleDateFormat("dd");
+        Date date = new Date(System.currentTimeMillis());
+        startDate.set(2010, 11, 31);
+        endDate.set(Integer.parseInt(yearSimpleDateFormat.format(date)), Integer.parseInt(monthSimpleDateFormat.format(date)) - 1, Integer.parseInt(dateSimpleDateFormat.format(date)));
+
+        TimePickerView timePickerView = new TimePickerBuilder(EnforcementSubmitActivity.this, new OnTimeSelectListener() {
+            @Override
+            public void onTimeSelect(Date date, View v) {//选中事件回调
+                illegalTime = String.valueOf(date.getTime());
+                SimpleDateFormat sdr = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+                binding.illegalTimeView.binding.itemContent.setText(sdr.format(date));
+            }
+        })
+                .setType(new boolean[]{true, true, true, true, true, false})// 默认全部显示
+                .setCancelText("取消")//取消按钮文字
+                .setSubmitText("确定")//确认按钮文字
+                .setSubCalSize(16)//滚轮文字大小
+                .setContentTextSize(18)//滚轮文字大小
+                .setTitleSize(18)//标题文字大小
+                .setTitleText("选择时间")//标题文字
+                .setOutSideCancelable(false)//点击屏幕，点在控件外部范围时，是否取消显示
+                .isCyclic(false)//是否循环滚动
+                .setTitleColor(Color.BLACK)//标题文字颜色
+                .setSubmitColor(Color.BLACK)//确定按钮文字颜色
+                .setCancelColor(Color.BLACK)//取消按钮文字颜色
+                .setTitleBgColor(getResources().getColor(R.color.white))//标题背景颜色 Night mode
+                .setBgColor(getResources().getColor(R.color.white))//滚轮背景颜色 Night mode
+                .setDate(selectedDate)// 如果不设置的话，默认是系统时间*/
+                .setRangDate(startDate, endDate)//起始终止年月日设定
+                .setLabel("年", "月", "日", "时", "分", "秒")//默认设置为年月日时分秒
+                .isCenterLabel(false) //是否只显示中间选中项的label文字，false则每项item全部都带有label。
+                .isDialog(false)//是否显示为对话框样式
+                .setLineSpacingMultiplier(2.6f)//设置间距倍数,但是只能在1.0-4.0f之间
+                .build();
+        timePickerView.show();
     }
 
     /**
@@ -158,7 +224,6 @@ public class EnforcementSubmitActivity extends BaseActivity {
             return;
         }
 
-        illegalTime = TimeUtils.getTimeEnforcement(System.currentTimeMillis());
         if (CommonUtil.isBlank(illegalTime)) {
             ToastUtils.showShort(getApplicationContext(), "请选择违法时间");
             return;

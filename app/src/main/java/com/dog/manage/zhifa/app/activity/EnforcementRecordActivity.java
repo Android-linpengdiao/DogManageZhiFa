@@ -1,6 +1,5 @@
 package com.dog.manage.zhifa.app.activity;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.graphics.Color;
@@ -65,8 +64,7 @@ public class EnforcementRecordActivity extends BaseActivity {
             }
         });
 
-        adapter.refreshData(Arrays.asList(new PunishRecord(), new PunishRecord(), new PunishRecord()));
-//        setRefresh();
+        setRefresh();
     }
 
     private Pager<PunishRecord> pager = new Pager<>();
@@ -130,7 +128,7 @@ public class EnforcementRecordActivity extends BaseActivity {
                                 binding.refreshLayout.setNoMoreData(true);
                             }
                             binding.emptyView.setVisibility(adapter.getList().size() > 0 ? View.GONE : View.VISIBLE);
-                            binding.emptyView.setText("暂无犬只～");
+                            binding.emptyView.setText("暂无执法记录～");
                         } else {
                             ToastUtils.showShort(getApplicationContext(), response.getMessage());
                         }
