@@ -24,8 +24,11 @@ import com.base.utils.MsgCache;
 import com.base.utils.PermissionUtils;
 import com.base.utils.StatusBarUtil;
 import com.base.utils.ToastUtils;
+import com.base.view.OnClickListener;
 import com.dog.manage.zhifa.app.Config;
+import com.dog.manage.zhifa.app.DogDialogManager;
 import com.dog.manage.zhifa.app.R;
+import com.dog.manage.zhifa.app.model.Dog;
 import com.okhttp.ResultClient;
 import com.okhttp.SendRequest;
 import com.okhttp.callbacks.GenericsCallback;
@@ -91,6 +94,17 @@ public class BaseActivity extends AppCompatActivity {
     public void setTypeface(TextView textView) {
         Typeface typeface = BaseApplication.getInstance().getTypeface();
         textView.setTypeface(typeface);
+    }
+
+    public void onClickDogCertificate(Activity activity, List<Dog> list, int index, OnClickListener listener) {
+        DogDialogManager.getInstance().showDogListDialog(activity, list, index,
+                new DogDialogManager.OnClickListener() {
+                    @Override
+                    public void onClick(View view, Object object) {
+                        if (listener != null)
+                            listener.onClick(view, object);
+                    }
+                });
     }
 
     public void getAccessToken(Activity activity) {

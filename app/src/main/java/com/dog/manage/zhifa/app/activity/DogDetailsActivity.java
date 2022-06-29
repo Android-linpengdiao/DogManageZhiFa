@@ -1,11 +1,13 @@
 package com.dog.manage.zhifa.app.activity;
 
-import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
 import com.base.manager.LoadingManager;
+import com.base.utils.CommonUtil;
+import com.base.utils.GlideLoader;
 import com.base.utils.ToastUtils;
 import com.dog.manage.zhifa.app.R;
 import com.dog.manage.zhifa.app.databinding.ActivityDogDetailsBinding;
@@ -86,7 +88,7 @@ public class DogDetailsActivity extends BaseActivity {
                 if (response.isSuccess() && response.getData() != null) {
                     binding.container.setVisibility(View.VISIBLE);
                     DogDetail dogDetail = response.getData();
-                    binding.dogNameView.setText(dogDetail.getDogName() + "|" + dogDetail.getDogColor() + "|" + dogDetail.getDogAge() + "岁3个月");
+                    binding.dogNameView.setText(dogDetail.getDogName() + "|" + dogDetail.getDogColor() + "|" + CommonUtil.getDogAge(dogDetail.getDogAge()));
                     binding.leaveCenterView.setText(dogDetail.getLeaveCenter());
                     binding.centerAddressView.setText(dogDetail.getCenterAddress());
                     binding.phoneView.setText(dogDetail.getPhone());
@@ -99,11 +101,13 @@ public class DogDetailsActivity extends BaseActivity {
                         binding.immuneStatus.setText("免疫情况：未免疫");
                     }
                     binding.sterilizationView.setText("绝育情况：" + (dogDetail.getSterilization() == 0 ? "未绝育" : "已绝育"));
-
+//                    GlideLoader.LoderImage(DogDetailsActivity.this, dogDetail.getDogPhoto(), binding.coverView);
                     try {
+                        Log.i(TAG, "onResponse: "+dogDetail.getDogPhoto());
                         List<String> imageList = new Gson().fromJson(dogDetail.getDogPhoto(), new TypeToken<List<String>>() {
                         }.getType());
-                        binding.banner.setImages(imageList).start();
+                        GlideLoader.LoderImage(DogDetailsActivity.this, imageList.get(0), binding.coverView);
+//                        binding.banner.setImages(imageList).start();
                     } catch (Exception e) {
                         e.getMessage();
                     }

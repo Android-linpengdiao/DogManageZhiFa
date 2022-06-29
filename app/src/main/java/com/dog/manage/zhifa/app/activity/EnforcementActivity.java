@@ -53,16 +53,19 @@ public class EnforcementActivity extends BaseActivity {
 
         Bundle bundle = new Bundle();
         if (!CommonUtil.isBlank(name)) {
-            bundle.putString("dogLicenceNum", name);
+            bundle.putInt("type", EnforcementDogInfoActivity.type_orgName);
+            bundle.putString("content", name);
 
         } else if (!CommonUtil.isBlank(phone)) {
             if (!CommonUtil.isPhone(getApplicationContext(), phone)) {
                 return;
             }
-            bundle.putString("dogLicenceNum", phone);
+            bundle.putInt("type", EnforcementDogInfoActivity.type_userPhone);
+            bundle.putString("content", phone);
 
         } else if (!CommonUtil.isBlank(idNum)) {
-            bundle.putString("dogLicenceNum", idNum);
+            bundle.putInt("type", EnforcementDogInfoActivity.type_idNum);
+            bundle.putString("content", idNum);
 
         } else {
             ToastUtils.showShort(getApplicationContext(), "请输入要查询的内容");
@@ -81,6 +84,7 @@ public class EnforcementActivity extends BaseActivity {
                     if (data != null) {
                         String petId = data.getStringExtra("petId");
                         Bundle bundle = new Bundle();
+                        bundle.putInt("type", EnforcementDogInfoActivity.type_noseprint);
                         bundle.putString("noseprint", petId);
                         openActivity(EnforcementDogInfoActivity.class, bundle);
                     }

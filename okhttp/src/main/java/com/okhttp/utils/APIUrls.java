@@ -22,6 +22,8 @@ public class APIUrls {
 
     //执法端-获取犬证
     public final static String getLicenceInfo = URL_DOMAIN + "/user/dog/getLicenceInfo";
+    //执法端-根据用户身份获取犬只信息
+    public final static String getDogByUser = URL_DOMAIN + "/user/law/getDogByUser";
     //我的-免疫证详情
     public final static String getImmuneDetail = URL_DOMAIN + "/user/dog/getImmuneDetail";
     //执法端-保存

@@ -43,13 +43,13 @@
                     app:xw_indicator_drawable_selected="@drawable/tab_b"
                     app:xw_indicator_drawable_unselected="@drawable/tab_b_t50"
                     app:xw_indicator_height="@dimen/dp_0"
-                    app:xw_indicator_width="@dimen/dp_0" />
+                    app:xw_indicator_width="@dimen/dp_0"
+                    android:visibility="gone"/>
 
                 <ImageView
                     android:id="@+id/coverView"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/dp_294"
-                    android:visibility="gone" />
+                    android:layout_height="@dimen/dp_294"/>
 
 
                 <com.dog.manage.zhifa.app.view.TextBoldView

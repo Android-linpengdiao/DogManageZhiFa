@@ -36,13 +36,14 @@
                 android:orientation="vertical">
 
                 <com.dog.manage.zhifa.app.view.ViewItemLayout
+                    android:id="@+id/unitNameView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:onClick="onClickRecord"
                     app:item_container_height="@dimen/viewItemHeight"
                     app:item_container_margin_left="@dimen/dp_14"
-                    app:item_container_margin_right="@dimen/dp_34"
-                    app:item_content="青龙桥派出所"
+                    app:item_container_margin_right="@dimen/dp_14"
+                    app:item_content=""
                     app:item_content_color="#273154"
                     app:item_content_size="@dimen/sp_14"
                     app:item_divider_visible="true"
@@ -52,13 +53,14 @@
                     app:item_title_size="@dimen/sp_14" />
 
                 <com.dog.manage.zhifa.app.view.ViewItemLayout
+                    android:id="@+id/userNameView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:onClick="onClickRecord"
                     app:item_container_height="@dimen/viewItemHeight"
                     app:item_container_margin_left="@dimen/dp_14"
-                    app:item_container_margin_right="@dimen/dp_34"
-                    app:item_content="张三"
+                    app:item_container_margin_right="@dimen/dp_14"
+                    app:item_content=""
                     app:item_content_color="#273154"
                     app:item_content_size="@dimen/sp_14"
                     app:item_divider_visible="true"
@@ -68,6 +70,7 @@
                     app:item_title_size="@dimen/sp_14" />
 
 
+                <!--查无此犬信息-->
                 <com.dog.manage.zhifa.app.view.ViewItemLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -75,7 +78,7 @@
                     app:item_container_height="@dimen/viewItemHeight"
                     app:item_container_margin_left="@dimen/dp_14"
                     app:item_container_margin_right="@dimen/dp_34"
-                    app:item_content="查无此犬信息"
+                    app:item_content=""
                     app:item_content_color="#FF0000"
                     app:item_content_size="@dimen/sp_14"
                     app:item_title="违法犬只"
@@ -111,6 +114,25 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/dp_14">
 
+                        <ImageView
+                            android:id="@+id/certificateCoverView"
+                            android:layout_width="@dimen/dp_84"
+                            android:layout_height="@dimen/dp_78"
+                            android:layout_alignParentRight="true"
+                            android:layout_marginRight="@dimen/dp_30"
+                            android:background="@drawable/image_8" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/certificateCoverView"
+                            android:layout_alignStart="@+id/certificateCoverView"
+                            android:layout_marginTop="@dimen/dp_8"
+                            android:gravity="center"
+                            android:text="免疫证状态:有效"
+                            android:textColor="#000000"
+                            android:textSize="@dimen/certificateSize" />
+
                         <LinearLayout
                             android:id="@+id/certificateInfoContainer"
                             android:layout_width="match_parent"
@@ -132,11 +154,12 @@
                                     android:textSize="@dimen/certificateSize" />
 
                                 <TextView
+                                    android:id="@+id/idNumView"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginLeft="@dimen/dp_8"
                                     android:gravity="center_vertical"
-                                    android:text="0100000 "
+                                    tools:text="0100000"
                                     android:textColor="#000000"
                                     android:textSize="@dimen/certificateSize" />
 
@@ -158,11 +181,12 @@
                                     android:textSize="@dimen/certificateSize" />
 
                                 <TextView
+                                    android:id="@+id/dogTypeView"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginLeft="@dimen/dp_8"
                                     android:gravity="center_vertical"
-                                    android:text="萨摩耶"
+                                    tools:text="萨摩耶"
                                     android:textColor="#000000"
                                     android:textSize="@dimen/certificateSize" />
 
@@ -184,11 +208,12 @@
                                     android:textSize="@dimen/certificateSize" />
 
                                 <TextView
+                                    android:id="@+id/dogColorView"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginLeft="@dimen/dp_8"
                                     android:gravity="center_vertical"
-                                    android:text="白色"
+                                    tools:text="白色"
                                     android:textColor="#000000"
                                     android:textSize="@dimen/certificateSize" />
 
@@ -210,11 +235,12 @@
                                     android:textSize="@dimen/certificateSize" />
 
                                 <TextView
+                                    android:id="@+id/dogGenderView"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginLeft="@dimen/dp_8"
                                     android:gravity="center_vertical"
-                                    android:text="雄性"
+                                    tools:text="雄性"
                                     android:textColor="#000000"
                                     android:textSize="@dimen/certificateSize" />
 
@@ -236,11 +262,12 @@
                                     android:textSize="@dimen/certificateSize" />
 
                                 <TextView
+                                    android:id="@+id/orgNameView"
                                     android:layout_width="wrap_content"
                                     android:layout_height="match_parent"
                                     android:layout_marginLeft="@dimen/dp_8"
                                     android:gravity="center_vertical"
-                                    android:text="张三"
+                                    tools:text="张三"
                                     android:textColor="#000000"
                                     android:textSize="@dimen/certificateSize" />
 
@@ -262,11 +289,12 @@
                                     android:textSize="@dimen/certificateSize" />
 
                                 <TextView
+                                    android:id="@+id/awardTimeView"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginLeft="@dimen/dp_8"
                                     android:gravity="center_vertical"
-                                    android:text="2021年3月31日"
+                                    tools:text="2021年3月31日"
                                     android:textColor="#000000"
                                     android:textSize="@dimen/certificateSize" />
 
@@ -288,11 +316,12 @@
                                     android:textSize="@dimen/certificateSize" />
 
                                 <TextView
+                                    android:id="@+id/detailedAddressView"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginLeft="@dimen/dp_8"
                                     android:gravity="center_vertical"
-                                    android:text="北京市西城区天桥街道"
+                                    tools:text="北京市西城区天桥街道"
                                     android:textColor="#000000"
                                     android:textSize="@dimen/certificateSize" />
 
@@ -308,25 +337,6 @@
                                 android:textSize="@dimen/sp_11" />
 
                         </LinearLayout>
-
-                        <ImageView
-                            android:id="@+id/certificateCoverView"
-                            android:layout_width="@dimen/dp_84"
-                            android:layout_height="@dimen/dp_78"
-                            android:layout_alignParentRight="true"
-                            android:layout_marginRight="@dimen/dp_40"
-                            android:background="@drawable/image_8" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@+id/certificateCoverView"
-                            android:layout_alignStart="@+id/certificateCoverView"
-                            android:layout_marginTop="@dimen/dp_8"
-                            android:gravity="center"
-                            android:text="免疫证状态:有效"
-                            android:textColor="#000000"
-                            android:textSize="@dimen/certificateSize" />
 
                         <ImageView
                             android:layout_width="@dimen/dp_70"

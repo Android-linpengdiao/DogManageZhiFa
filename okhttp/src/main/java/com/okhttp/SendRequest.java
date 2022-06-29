@@ -33,6 +33,28 @@ public class SendRequest {
     }
 
     /**
+     * 执法端-根据用户身份获取犬只信息
+     * @param orgName
+     * @param userPhone
+     * @param idNum
+     * @param call
+     */
+    public static void getDogByUser(String orgName, String userPhone, String idNum, Callback call) {
+        Map<String, String> headers = new HashMap<>();
+        headers.put("Authorization", BaseApplication.getInstance().getUserInfo().getAuthorization());
+
+        Map<String, String> map = new HashMap<>();
+        if (!CommonUtil.isBlank(orgName))
+            map.put("orgName", orgName);
+        if (!CommonUtil.isBlank(userPhone))
+            map.put("userPhone", userPhone);
+        if (!CommonUtil.isBlank(idNum))
+            map.put("idNum", idNum);
+        OkHttpUtils.post().headers(headers).params(map).url(APIUrls.getDogByUser).build().execute(call);
+
+    }
+
+    /**
      * @param noseprint     鼻纹信息（与犬证2选1）
      * @param dogLicenceNum 鼻纹信息（与犬证2选1）
      * @param call

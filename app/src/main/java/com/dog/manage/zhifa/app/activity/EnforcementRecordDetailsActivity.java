@@ -5,11 +5,14 @@ import android.view.View;
 
 import androidx.recyclerview.widget.GridLayoutManager;
 
+import com.base.manager.LoadingManager;
 import com.base.utils.CommonUtil;
 import com.base.utils.GlideLoader;
+import com.base.utils.ToastUtils;
 import com.base.view.OnClickListener;
 import com.dog.manage.zhifa.app.R;
 import com.dog.manage.zhifa.app.databinding.ActivityEnforcementRecordDetailsBinding;
+import com.dog.manage.zhifa.app.model.LicenceInfo;
 import com.dog.manage.zhifa.app.model.PunishRecord;
 import com.okhttp.ResultClient;
 import com.okhttp.SendRequest;
@@ -19,6 +22,7 @@ import com.okhttp.sample_okhttp.JsonGenericsSerializator;
 import java.util.Arrays;
 
 import okhttp3.Call;
+import okhttp3.Request;
 
 /**
  * 我的执法记录详情
@@ -35,6 +39,7 @@ public class EnforcementRecordDetailsActivity extends BaseActivity {
         PunishRecord dataBean = (PunishRecord) getIntent().getSerializableExtra("dataBean");
         if (dataBean != null) {
             getIllegalDetails(dataBean);
+            getLicenceInfo(dataBean.getDogLicenceNum());
         }
 
     }
@@ -58,7 +63,30 @@ public class EnforcementRecordDetailsActivity extends BaseActivity {
         });
     }
 
+    private void getLicenceInfo(String dogLicenceNum) {
+        SendRequest.getLicenceInfo(null, dogLicenceNum,
+                new GenericsCallback<ResultClient<LicenceInfo>>(new JsonGenericsSerializator()) {
+
+                    @Override
+                    public void onError(Call call, Exception e, int id) {
+
+                    }
+
+                    @Override
+                    public void onResponse(ResultClient<LicenceInfo> response, int id) {
+                        if (response.isSuccess() && response.getData() != null) {
+                            intiCertificate(response.getData());
+
+                        } else {
+                            ToastUtils.showShort(getApplicationContext(), "获取犬证信息失败");
+                        }
+                    }
+                });
+    }
+
     private void initView(PunishRecord dataBean) {
+        binding.unitNameView.binding.itemContent.setText(dataBean.getUnitName());
+        binding.userNameView.binding.itemContent.setText(dataBean.getUserName());
         binding.illegalTypeView.binding.itemContent.setText(
                 (dataBean.getIllegalTypeId() == 1 ? "犬只伤人" :
                         dataBean.getIllegalTypeId() == 2 ? "犬吠" :
@@ -68,25 +96,23 @@ public class EnforcementRecordDetailsActivity extends BaseActivity {
         binding.illegalMeasureView.binding.itemContent.setText(dataBean.getIllegalMeasure());
         binding.illegalTimeView.binding.itemContent.setText(dataBean.getIllegalTime());
 
-//        GridItemDecoration.Builder builder = new GridItemDecoration.Builder(this);
-//        builder.color(R.color.transparent);
-//        builder.size(CommonUtil.dip2px(this, 12));
-//        binding.recyclerView.addItemDecoration(new GridItemDecoration(builder));
-//        binding.recyclerView.setLayoutManager(new GridLayoutManager(getApplicationContext(), 3));
-//        VideoAdapter videoAdapter = new VideoAdapter(getApplicationContext());
-//        binding.recyclerView.setAdapter(videoAdapter);
-//        videoAdapter.refreshData(Arrays.asList(dataBean.getIllegalFileUrl()));
-//        videoAdapter.setOnClickListener(new OnClickListener() {
-//            @Override
-//            public void onClick(View view, Object object) {
-//
-//
-//            }
-//
-//            @Override
-//            public void onLongClick(View view, Object object) {
-//
-//            }
-//        });
+    }
+
+    /**
+     * 犬证信息
+     *
+     * @param licenceBean
+     */
+    private void intiCertificate(LicenceInfo licenceBean) {
+        if (licenceBean != null) {
+            binding.idNumView.setText(licenceBean.getIdNum());
+            binding.dogTypeView.setText(licenceBean.getDogType());
+            binding.dogColorView.setText(licenceBean.getDogColor());
+            binding.dogGenderView.setText(licenceBean.getDogGender() == 0 ? "雌性" : "雄性");
+            binding.orgNameView.setText(licenceBean.getOrgName());
+            binding.awardTimeView.setText(licenceBean.getAwardTime());
+            binding.detailedAddressView.setText(licenceBean.getDetailedAddress());
+            GlideLoader.LoaderDogCover(EnforcementRecordDetailsActivity.this, "", binding.certificateCoverView, 5);
+        }
     }
 }

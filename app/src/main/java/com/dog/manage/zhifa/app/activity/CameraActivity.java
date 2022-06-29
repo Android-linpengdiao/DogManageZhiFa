@@ -245,7 +245,7 @@ public class CameraActivity extends BaseActivity {
 
     public void onClickTest(View view) {
         Intent intent = new Intent();
-        intent.putExtra("petId", "23325059-b2c1-11eb-1Vu7hqwN6");
+        intent.putExtra("petId", "23325059-b2c1-11eb-1Vu7hqwN61");
         setResult(RESULT_OK, intent);
         finish();
     }

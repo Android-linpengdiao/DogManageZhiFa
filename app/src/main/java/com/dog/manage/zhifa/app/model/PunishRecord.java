@@ -38,4 +38,6 @@ public class PunishRecord implements Serializable {
     private Integer villageId;
     private Integer unitId;
     private String acceptUnit;
+    private String unitName;
+    private String userName;
 }

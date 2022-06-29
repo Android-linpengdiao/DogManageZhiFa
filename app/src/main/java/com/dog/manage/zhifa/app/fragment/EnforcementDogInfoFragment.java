@@ -74,7 +74,7 @@ public class EnforcementDogInfoFragment extends BaseFragment {
                 intiCertificate();
 
             } else if (type == type_immune) {
-                intiImmune(0);
+                intiImmune(licenceBean.getImmuneLicenceId());
             }
 
 
@@ -105,7 +105,7 @@ public class EnforcementDogInfoFragment extends BaseFragment {
             binding.orgNameView.setText(licenceBean.getOrgName());
             binding.awardTimeView.setText(licenceBean.getAwardTime());
             binding.detailedAddressView.setText(licenceBean.getDetailedAddress());
-            GlideLoader.LoderImage(getActivity(), "https://pics7.baidu.com/feed/6c224f4a20a446236fb6db0ac3bf5d040df3d785.jpeg", binding.certificateCoverView, 5);
+            GlideLoader.LoaderDogCover(getActivity(), "", binding.certificateCoverView, 5);
 
             binding.dogOwnerInfoView.binding.itemContent.setText(licenceBean.getOrgName());
             binding.dogDetailsView.binding.itemContent.setText(licenceBean.getDogType());

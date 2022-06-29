@@ -63,6 +63,7 @@ public class LicenceInfo implements Serializable {
     private Integer addressId = 0;
     private Integer dogId = 0;
     private Integer surplusDate = 0;
+    private Integer immuneLicenceId = 0;
     private Integer immuneLicenceStatus = 0;
     private String detailedAddress;
 
