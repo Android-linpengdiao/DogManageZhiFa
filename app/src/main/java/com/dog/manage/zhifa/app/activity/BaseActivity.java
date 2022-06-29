@@ -23,11 +23,16 @@ import com.base.utils.CommonUtil;
 import com.base.utils.MsgCache;
 import com.base.utils.PermissionUtils;
 import com.base.utils.StatusBarUtil;
+import com.base.utils.ToastUtils;
+import com.dog.manage.zhifa.app.Config;
 import com.dog.manage.zhifa.app.R;
 import com.okhttp.ResultClient;
 import com.okhttp.SendRequest;
 import com.okhttp.callbacks.GenericsCallback;
+import com.okhttp.callbacks.StringCallback;
 import com.okhttp.sample_okhttp.JsonGenericsSerializator;
+
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -86,6 +91,37 @@ public class BaseActivity extends AppCompatActivity {
     public void setTypeface(TextView textView) {
         Typeface typeface = BaseApplication.getInstance().getTypeface();
         textView.setTypeface(typeface);
+    }
+
+    public void getAccessToken(Activity activity) {
+        SendRequest.getAccessToken(Config.yueBaoAccessKey, Config.yueBaoSecretKey,
+                new StringCallback() {
+                    @Override
+                    public void onError(Call call, Exception e, int id) {
+
+                    }
+
+                    @Override
+                    public void onResponse(String response, int id) {
+
+                        try {
+                            JSONObject object = new JSONObject(response);
+                            int status = object.optInt("status");
+                            if (status == 200) {
+                                String accessToken = object.optJSONObject("data").optString("access_token");
+                                UserInfo userInfo = getUserInfo();
+                                userInfo.setAccessToken(accessToken);
+                                setUserInfo(userInfo);
+
+                            } else if (status == 401) {
+                                ToastUtils.showShort(activity, object.optString("message"));
+                            }
+
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
     }
 
     public boolean checkUserRank(Context context) {

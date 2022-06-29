@@ -548,7 +548,7 @@ public class SendRequest {
         Map<String, String> headers = new HashMap<>();
         headers.put("Authorization", BaseApplication.getInstance().getUserInfo().getAuthorization());
         Map<String, String> map = new HashMap<>();
-        map.put("pageNum", String.valueOf(id));
+        map.put("id", String.valueOf(id));
         OkHttpUtils.post().headers(headers).params(map).url(APIUrls.getIllegalDetails).build().execute(call);
 
     }

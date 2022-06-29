@@ -1,6 +1,7 @@
 package com.dog.manage.zhifa.app.activity;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
@@ -16,11 +17,13 @@ import com.dog.manage.zhifa.app.databinding.ActivityEnforcementBinding;
 public class EnforcementActivity extends BaseActivity {
 
     private ActivityEnforcementBinding binding;
+    private final int request_petArchive = 100;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = getViewData(R.layout.activity_enforcement);
+        addActivity(this);
 
 
     }
@@ -34,7 +37,7 @@ public class EnforcementActivity extends BaseActivity {
         if (checkPermissions(PermissionUtils.CAMERA, 100)) {
             Bundle bundle = new Bundle();
             bundle.putInt("type", CameraActivity.type_petArchives);
-            openActivity(CameraActivity.class, bundle);
+            openActivity(CameraActivity.class, bundle, request_petArchive);
         }
     }
 
@@ -50,11 +53,14 @@ public class EnforcementActivity extends BaseActivity {
 
         Bundle bundle = new Bundle();
         if (!CommonUtil.isBlank(name)) {
+            bundle.putString("dogLicenceNum", name);
 
         } else if (!CommonUtil.isBlank(phone)) {
             if (!CommonUtil.isPhone(getApplicationContext(), phone)) {
                 return;
             }
+            bundle.putString("dogLicenceNum", phone);
+
         } else if (!CommonUtil.isBlank(idNum)) {
             bundle.putString("dogLicenceNum", idNum);
 
@@ -64,6 +70,23 @@ public class EnforcementActivity extends BaseActivity {
         }
         openActivity(EnforcementDogInfoActivity.class, bundle);
 
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_OK) {
+            switch (requestCode) {
+                case request_petArchive:
+                    if (data != null) {
+                        String petId = data.getStringExtra("petId");
+                        Bundle bundle = new Bundle();
+                        bundle.putString("noseprint", petId);
+                        openActivity(EnforcementDogInfoActivity.class, bundle);
+                    }
+                    break;
+            }
+        }
     }
 
 }

@@ -30,10 +30,8 @@ public class CameraActivity extends Activity {
     public static final String TIP = "Tip";
 
 
-    public static void startCameraActivity(Activity activity, int setid, int sid, int minTime, int maxTime, String color, int stateType, int requestCode, String tip) {
+    public static void startCameraActivity(Activity activity, int minTime, int maxTime, String color, int stateType, int requestCode, String tip) {
         Intent intent = new Intent(activity, CameraActivity.class);
-        intent.putExtra("setid", setid);
-        intent.putExtra("sid", sid);
         intent.putExtra(CameraActivity.MIN_TIME, minTime * 1000);
         intent.putExtra(CameraActivity.MAX_TIME, maxTime * 1000);
         intent.putExtra(CameraActivity.COLOR, color);

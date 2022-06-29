@@ -1,10 +1,12 @@
 package com.dog.manage.zhifa.app.activity;
 
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.LinearLayout;
 
 import com.base.UserInfo;
 import com.base.utils.CommonUtil;
@@ -48,10 +50,13 @@ public class CameraActivity extends BaseActivity {
         binding.titleView.setText(type == type_petType ? "犬只品种" : "鼻纹采集");
 
         if (CommonUtil.isBlank(getUserInfo().getAccessToken())) {
-//            getAccessToken();
+            getAccessToken(this);
         }
 
         initCamera();
+
+        LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) binding.hintView.getLayoutParams();
+        layoutParams.topMargin = CommonUtil.getScreenWidth(this) / 2 + getResources().getDimensionPixelSize(R.dimen.dp_78);
 
     }
 
@@ -113,10 +118,19 @@ public class CameraActivity extends BaseActivity {
                 if (bitmap != null) {
                     String path = FileUtils.saveFirstFrameBitmap(bitmap);
                     Log.i(TAG, "run: path " + path);
+                    if (!CommonUtil.isBlank(path)) {
+                        if (type == type_petType) {
+                            petType(path);
+
+                        } else if (type == type_petArchives) {
+                            createPetArchives(path);
+
+                        }
+                    }
                 }
             }
         };
-        timer.schedule(timerTask, 0, 2000);
+        timer.schedule(timerTask, 3000, 3000);
 
     }
 
@@ -133,7 +147,8 @@ public class CameraActivity extends BaseActivity {
      */
     public void onClickCapture(View view) {
         isCapture = !isCapture;
-        binding.captureView.setText(isCapture ? "停止查询" : "开始查询");
+        binding.captureView.setText(isCapture ? "停止采集" : "开始采集");
+        ToastUtils.showShort(CameraActivity.this, isCapture ? "开始采集" : "停止采集");
         executorService.submit(new Runnable() {
             @Override
             public void run() {
@@ -149,38 +164,6 @@ public class CameraActivity extends BaseActivity {
 
     }
 
-
-    private void getAccessToken() {
-        SendRequest.getAccessToken(Config.yueBaoAccessKey, Config.yueBaoSecretKey,
-                new StringCallback() {
-                    @Override
-                    public void onError(Call call, Exception e, int id) {
-
-                    }
-
-                    @Override
-                    public void onResponse(String response, int id) {
-
-                        try {
-                            JSONObject object = new JSONObject(response);
-                            int status = object.optInt("status");
-                            if (status == 200) {
-                                String accessToken = object.optJSONObject("data").optString("access_token");
-                                UserInfo userInfo = getUserInfo();
-                                userInfo.setAccessToken(accessToken);
-                                setUserInfo(userInfo);
-
-                            } else if (status == 401) {
-                                ToastUtils.showShort(CameraActivity.this, object.optString("message"));
-                            }
-
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
-                    }
-                });
-    }
-
     /**
      * 宠物狗面部+鼻纹建档
      *
@@ -192,15 +175,23 @@ public class CameraActivity extends BaseActivity {
                 new GenericsCallback<PetArchives>(new JsonGenericsSerializator()) {
                     @Override
                     public void onError(Call call, Exception e, int id) {
-
+                        startTimer();
                     }
 
                     @Override
                     public void onResponse(PetArchives response, int id) {
-                        if (response.getStatus() == 200 && response.getData() != null) {
-
+                        if (response.getStatus() == 200) {
+                            if (response.getData() != null &&
+                                    response.getData().getPetId() != null) {
+                                Intent intent = new Intent();
+                                intent.putExtra("petId", response.getData().getPetId());
+                                setResult(RESULT_OK, intent);
+                                finish();
+                            }
                         } else {
+                            startTimer();
                             ToastUtils.showShort(CameraActivity.this, response.getMessage());
+                            binding.testView.setVisibility(View.VISIBLE);
                         }
 
                     }
@@ -233,7 +224,11 @@ public class CameraActivity extends BaseActivity {
                                 String english_name = response.getData().getPet().get(0).getIdentification().get(0).getEnglish_name();
                                 String chinese_name = response.getData().getPet().get(0).getIdentification().get(0).getChinese_name();
                                 Double confidence = response.getData().getPet().get(0).getIdentification().get(0).getConfidence();
-                                ToastUtils.showShort(CameraActivity.this, chinese_name);
+//                                ToastUtils.showShort(CameraActivity.this, chinese_name);
+                                Intent intent = new Intent();
+                                intent.putExtra("dogType", chinese_name);
+                                setResult(RESULT_OK, intent);
+                                finish();
 
                             } else {
                                 startTimer();
@@ -246,5 +241,12 @@ public class CameraActivity extends BaseActivity {
 
                     }
                 });
+    }
+
+    public void onClickTest(View view) {
+        Intent intent = new Intent();
+        intent.putExtra("petId", "23325059-b2c1-11eb-1Vu7hqwN6");
+        setResult(RESULT_OK, intent);
+        finish();
     }
 }

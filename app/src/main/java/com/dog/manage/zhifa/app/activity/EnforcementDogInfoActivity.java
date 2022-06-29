@@ -74,7 +74,7 @@ public class EnforcementDogInfoActivity extends BaseActivity implements Enforcem
                             initView(response.getData());
 
                         } else {
-                            ToastUtils.showShort(getApplicationContext(), response.getMessage());
+                            ToastUtils.showShort(getApplicationContext(), "获取犬证信息失败");
                         }
                     }
                 });

@@ -15,7 +15,7 @@ public class BaseData implements Serializable {
     private Object data;
 
     public boolean isSuccess() {
-        return success;
+        return code == 200;
     }
 
     public void setSuccess(boolean success) {

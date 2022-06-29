@@ -344,13 +344,13 @@
                     android:background="@color/colorDivider" />
 
                 <com.dog.manage.zhifa.app.view.ViewItemLayout
+                    android:id="@+id/illegalTypeView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:onClick="onClickRecord"
                     app:item_container_height="@dimen/viewItemHeight"
                     app:item_container_margin_left="@dimen/dp_14"
                     app:item_container_margin_right="@dimen/dp_34"
-                    app:item_content="未牵犬绳"
+                    app:item_content=""
                     app:item_content_color="#273154"
                     app:item_content_size="@dimen/sp_14"
                     app:item_divider_visible="true"
@@ -361,13 +361,13 @@
 
 
                 <com.dog.manage.zhifa.app.view.ViewItemLayout
+                    android:id="@+id/illegalDescribeView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:onClick="onClickRecord"
                     app:item_container_height="@dimen/viewItemHeight"
                     app:item_container_margin_left="@dimen/dp_14"
                     app:item_container_margin_right="@dimen/dp_34"
-                    app:item_content="遛狗时候未牵犬绳，情节恶劣"
+                    app:item_content=""
                     app:item_content_color="#273154"
                     app:item_content_size="@dimen/sp_14"
                     app:item_divider_visible="true"
@@ -377,9 +377,9 @@
                     app:item_title_size="@dimen/sp_14" />
 
                 <com.dog.manage.zhifa.app.view.ViewItemLayout
+                    android:id="@+id/illegalMeasureView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:onClick="onClickRecord"
                     app:item_container_height="@dimen/viewItemHeight"
                     app:item_container_margin_left="@dimen/dp_14"
                     app:item_container_margin_right="@dimen/dp_34"
@@ -393,13 +393,13 @@
                     app:item_title_size="@dimen/sp_14" />
 
                 <com.dog.manage.zhifa.app.view.ViewItemLayout
+                    android:id="@+id/illegalTimeView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:onClick="onClickRecord"
                     app:item_container_height="@dimen/viewItemHeight"
                     app:item_container_margin_left="@dimen/dp_14"
                     app:item_container_margin_right="@dimen/dp_34"
-                    app:item_content="2022年10月10日  13:10"
+                    app:item_content=""
                     app:item_content_color="#273154"
                     app:item_content_size="@dimen/sp_14"
                     app:item_divider_visible="true"

@@ -255,6 +255,13 @@ public class PetCameraView extends FrameLayout implements CameraInterface.Camera
 
     @Override
     public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
+        LogUtil.i("JCameraView surfaceChanged");
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                setFocusViewWidthAnimation(getWidth()/2, getHeight()/2);
+            }
+        },2000);
     }
 
     @Override

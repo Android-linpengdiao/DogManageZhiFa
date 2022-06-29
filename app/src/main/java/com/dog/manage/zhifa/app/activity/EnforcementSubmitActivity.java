@@ -124,12 +124,12 @@ public class EnforcementSubmitActivity extends BaseActivity {
         TimePickerView timePickerView = new TimePickerBuilder(EnforcementSubmitActivity.this, new OnTimeSelectListener() {
             @Override
             public void onTimeSelect(Date date, View v) {//选中事件回调
-                SimpleDateFormat sdr = new SimpleDateFormat("yyyy-MM-dd");
+                SimpleDateFormat sdr = new SimpleDateFormat("yyyy-MM-dd HH:mm");
                 illegalTime = sdr.format(date);
                 binding.illegalTimeView.binding.itemContent.setText(sdr.format(date));
             }
         })
-                .setType(new boolean[]{true, true, true, false, false, false})// 默认全部显示
+                .setType(new boolean[]{true, true, true, true, true, false})// 默认全部显示
                 .setCancelText("取消")//取消按钮文字
                 .setSubmitText("确定")//确认按钮文字
                 .setSubCalSize(16)//滚轮文字大小

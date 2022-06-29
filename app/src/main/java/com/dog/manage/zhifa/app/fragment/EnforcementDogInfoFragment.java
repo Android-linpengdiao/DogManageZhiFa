@@ -159,7 +159,7 @@ public class EnforcementDogInfoFragment extends BaseFragment {
                 if (response.isSuccess() && response.getData() != null) {
                     immuneView(response.getData());
                 } else {
-                    ToastUtils.showShort(getActivity(), response.getMsg());
+                    ToastUtils.showShort(getActivity(), "获取免疫信息失败");
                 }
 
             }
