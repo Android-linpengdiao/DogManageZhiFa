@@ -2,6 +2,7 @@ package com.dog.manage.zhifa.app.fragment;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,7 @@ import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 
 import com.base.utils.GlideLoader;
+import com.base.utils.GsonUtils;
 import com.base.utils.ToastUtils;
 import com.dog.manage.zhifa.app.R;
 import com.dog.manage.zhifa.app.activity.DogDetailsActivity;
@@ -36,13 +38,11 @@ public class EnforcementDogInfoFragment extends BaseFragment {
     public static final int type_certificate = 0;//犬证信息
     public static final int type_immune = 1;//免疫信息
     private int type; // 0-犬证信息  ;1-免疫信息
-    private LicenceInfo licenceBean;
 
-    public static EnforcementDogInfoFragment getInstance(int type, LicenceInfo data) {
+    public static EnforcementDogInfoFragment getInstance(int type) {
         EnforcementDogInfoFragment fragment = new EnforcementDogInfoFragment();
         Bundle bundle = new Bundle();
         bundle.putInt("type", type);
-        bundle.putSerializable("data", data);
         fragment.setArguments(bundle);
         return fragment;
 
@@ -63,31 +63,21 @@ public class EnforcementDogInfoFragment extends BaseFragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_enforcement_dog_info, container, false);
         if (getArguments() != null) {
 
             type = getArguments().getInt("type");
-            licenceBean = (LicenceInfo) getArguments().getSerializable("data");
 
-            if (type == type_certificate) {
-                intiCertificate();
-
-            } else if (type == type_immune) {
-                intiImmune(licenceBean.getImmuneLicenceId());
-            }
-
+//            licenceBean = (LicenceInfo) getArguments().getSerializable("data");
+//            if (type == type_certificate) {
+//                intiCertificate();
+//
+//            } else if (type == type_immune) {
+//                if (licenceBean.getImmuneLicenceId() != null)
+//                    intiImmune(licenceBean.getImmuneLicenceId());
+//            }
 
         }
-
-//        binding.confirmView.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                if (mOnCallEvents != null) {
-//                    mOnCallEvents.onSubmit(null);
-//                }
-//            }
-//        });
 
         return binding.getRoot();
     }
@@ -95,7 +85,7 @@ public class EnforcementDogInfoFragment extends BaseFragment {
     /**
      * 犬证信息
      */
-    private void intiCertificate() {
+    public void intiCertificate(LicenceInfo licenceBean) {
         binding.certificateContainer.setVisibility(View.VISIBLE);
         if (licenceBean != null) {
             binding.idNumView.setText(licenceBean.getIdNum());
@@ -118,7 +108,6 @@ public class EnforcementDogInfoFragment extends BaseFragment {
                     }
                     Bundle bundle = new Bundle();
                     bundle.putInt("dogId", licenceBean.getDogId());
-//                bundle.putInt("type", DogCertificateEditDogOwnerActivity.type_details);
                     openActivity(DogUserActivity.class, bundle);
                 }
             });
@@ -146,8 +135,11 @@ public class EnforcementDogInfoFragment extends BaseFragment {
      *
      * @param immuneId
      */
-    private void intiImmune(int immuneId) {
-        binding.immuneContainer.setVisibility(View.VISIBLE);
+    public void intiImmune(int immuneId) {
+        if (immuneId == 0) {
+            immuneView(null);
+        }
+        binding.immuneContainer.setVisibility(View.GONE);
         SendRequest.getImmuneDetail(immuneId, new GenericsCallback<ResultClient<ImmuneDetail>>(new JsonGenericsSerializator()) {
             @Override
             public void onError(Call call, Exception e, int id) {
@@ -167,21 +159,26 @@ public class EnforcementDogInfoFragment extends BaseFragment {
     }
 
     private void immuneView(ImmuneDetail immuneDetail) {
-        binding.immuneIdNumView.setText("免疫证明编号：" + immuneDetail.getIdNum());
-        binding.immuneDogNameView.setText(immuneDetail.getDogName());
-        if (immuneDetail.getDogGender() != null)
-            binding.immuneDogGenderView.setText(immuneDetail.getDogGender() == 0 ? "雌性" : "雄性");
-        binding.immuneDogColorView.setText(immuneDetail.getDogColor());
-        binding.immuneDogTypeView.setText(immuneDetail.getDogType());
-        binding.hospitalNameView.setText(immuneDetail.getHospitalName());
+        if (immuneDetail != null) {
+            binding.immuneContainer.setVisibility(View.VISIBLE);
+            binding.immuneIdNumView.setText("免疫证明编号：" + immuneDetail.getIdNum());
+            binding.immuneDogNameView.setText(immuneDetail.getDogName());
+            if (immuneDetail.getDogGender() != null)
+                binding.immuneDogGenderView.setText(immuneDetail.getDogGender() == 0 ? "雌性" : "雄性");
+            binding.immuneDogColorView.setText(immuneDetail.getDogColor());
+            binding.immuneDogTypeView.setText(immuneDetail.getDogType());
+            binding.hospitalNameView.setText(immuneDetail.getHospitalName());
 
-        binding.immuneNameView.setText(immuneDetail.getImmuneName());
-        binding.immuneBatchView.setText(immuneDetail.getImmuneBatch());
-        binding.immuneFactoryView.setText(immuneDetail.getImmuneFactory());
-        binding.immuneDataView.setText(immuneDetail.getImmuneData());
-        binding.immuneNumView.setText(immuneDetail.getImmuneNum());
-        binding.immuneUserView.setText(immuneDetail.getImmuneUser());
-        binding.nextImmuneDataView.setText(immuneDetail.getNextImmuneData());
+            binding.immuneNameView.setText(immuneDetail.getImmuneName());
+            binding.immuneBatchView.setText(immuneDetail.getImmuneBatch());
+            binding.immuneFactoryView.setText(immuneDetail.getImmuneFactory());
+            binding.immuneDataView.setText(immuneDetail.getImmuneData());
+            binding.immuneNumView.setText(immuneDetail.getImmuneNum());
+            binding.immuneUserView.setText(immuneDetail.getImmuneUser());
+            binding.nextImmuneDataView.setText(immuneDetail.getNextImmuneData());
+        } else {
+            binding.immuneContainer.setVisibility(View.INVISIBLE);
+        }
     }
 
 

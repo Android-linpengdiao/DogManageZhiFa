@@ -32,6 +32,13 @@ public class SendRequest {
 
     }
 
+    public static void getLawUser(Callback call) {
+        Map<String, String> headers = new HashMap<>();
+        headers.put("Authorization", BaseApplication.getInstance().getUserInfo().getAuthorization());
+        OkHttpUtils.post().headers(headers).url(APIUrls.getLawUser).build().execute(call);
+
+    }
+
     /**
      * 执法端-根据用户身份获取犬只信息
      * @param orgName

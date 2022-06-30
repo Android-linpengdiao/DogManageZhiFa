@@ -75,18 +75,20 @@
                         android:padding="@dimen/dp_24">
 
                         <TextView
+                            android:id="@+id/unitNameView"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:minHeight="@dimen/dp_30"
-                            android:text="所属单位：北京市公安局海淀分局XX派出所"
+                            android:text="所属单位："
                             android:textColor="#000000"
                             android:textSize="@dimen/sp_15" />
 
                         <TextView
+                            android:id="@+id/unitUserNameView"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:minHeight="@dimen/dp_30"
-                            android:text="姓名：张三"
+                            android:text="姓名："
                             android:textColor="#000000"
                             android:textSize="@dimen/sp_15" />
 
@@ -99,25 +101,28 @@
                             android:textSize="@dimen/sp_15" />
 
                         <TextView
+                            android:id="@+id/phoneView"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:minHeight="@dimen/dp_30"
-                            android:text="电话：18909898890"
+                            android:text="电话："
                             android:textColor="#000000"
                             android:textSize="@dimen/sp_15" />
 
                         <TextView
+                            android:id="@+id/createdTimeView"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:minHeight="@dimen/dp_30"
-                            android:text="开通时间：2022-03-28"
+                            android:text="开通时间："
                             android:textColor="#000000"
                             android:textSize="@dimen/sp_15" />
 
                         <TextView
+                            android:id="@+id/statusView"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="账号状态：启用"
+                            android:text="账号状态："
                             android:textColor="#000000"
                             android:textSize="@dimen/sp_15" />
 

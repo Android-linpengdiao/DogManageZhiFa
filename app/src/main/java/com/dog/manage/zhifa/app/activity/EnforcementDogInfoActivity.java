@@ -42,6 +42,7 @@ public class EnforcementDogInfoActivity extends BaseActivity implements Enforcem
     public static final int type_userPhone = 2;//
     public static final int type_idNum = 3;//
     private int type;
+    private String dogLicenceNum;
 
     private List<Dog> dogList = new ArrayList<>();
     private Dog dogDetail;
@@ -51,6 +52,9 @@ public class EnforcementDogInfoActivity extends BaseActivity implements Enforcem
         super.onCreate(savedInstanceState);
         binding = getViewData(R.layout.activity_enforcement_dog_info);
         addActivity(this);
+
+        initView();
+
         type = getIntent().getIntExtra("type", 0);
         if (type == type_noseprint) {
             String noseprint = getIntent().getStringExtra("noseprint");
@@ -155,20 +159,39 @@ public class EnforcementDogInfoActivity extends BaseActivity implements Enforcem
 
                     @Override
                     public void onResponse(ResultClient<LicenceInfo> response, int id) {
-                        if (response.isSuccess() && response.getData() != null) {
-                            initView(response.getData());
+                        if (response.isSuccess()) {
+                            if (response.getData() != null) {
+                                binding.viewPager.setVisibility(View.VISIBLE);
+                                binding.editContainer.setVisibility(View.INVISIBLE);
+                                dogLicenceNum = response.getData().getIdNum();
+                                certificateFragment.intiCertificate(response.getData());
+                                immuneFragment.intiImmune(response.getData().getImmuneLicenceId() != null ? response.getData().getImmuneLicenceId() : 0);
+
+                            } else {
+                                ToastUtils.showShort(getApplicationContext(), "获取犬证信息失败");
+                            }
+
+                        } else if (response.getCode() == -1) {
+                            binding.editContainer.setVisibility(View.VISIBLE);
+                            binding.viewPager.setVisibility(View.INVISIBLE);
+                            ToastUtils.showShort(getApplicationContext(), "获取犬证信息失败");
 
                         } else {
-                            ToastUtils.showShort(getApplicationContext(), "获取犬证信息失败");
+                            ToastUtils.showShort(getApplicationContext(), response.getMsg());
                         }
                     }
                 });
     }
 
-    private void initView(LicenceInfo data) {
+    private EnforcementDogInfoFragment certificateFragment;
+    private EnforcementDogInfoFragment immuneFragment;
+
+    private void initView() {
         MainPagerAdapter mainPagerAdapter = new MainPagerAdapter(getSupportFragmentManager());
-        mainPagerAdapter.addFragment("犬证信息", EnforcementDogInfoFragment.getInstance(EnforcementDogInfoFragment.type_certificate, data));
-        mainPagerAdapter.addFragment("免疫信息", EnforcementDogInfoFragment.getInstance(EnforcementDogInfoFragment.type_immune, data));
+        certificateFragment = EnforcementDogInfoFragment.getInstance(EnforcementDogInfoFragment.type_certificate);
+        immuneFragment = EnforcementDogInfoFragment.getInstance(EnforcementDogInfoFragment.type_immune);
+        mainPagerAdapter.addFragment("犬证信息", certificateFragment);
+        mainPagerAdapter.addFragment("免疫信息", immuneFragment);
         binding.viewPager.setAdapter(mainPagerAdapter);
         binding.viewPager.setOffscreenPageLimit(4);
         binding.viewPager.setCurrentItem(0);
@@ -195,9 +218,9 @@ public class EnforcementDogInfoActivity extends BaseActivity implements Enforcem
 
 
     public void onClickConfirm(View view) {
-//        Bundle bundle = new Bundle();
-//        bundle.putString("dogLicenceNum", dogLicenceNum);
-//        openActivity(EnforcementSubmitActivity.class, bundle);
+        Bundle bundle = new Bundle();
+        bundle.putString("dogLicenceNum", dogLicenceNum);
+        openActivity(EnforcementSubmitActivity.class, bundle);
 
     }
 

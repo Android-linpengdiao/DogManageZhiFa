@@ -195,7 +195,7 @@ public class EnforcementSubmitActivity extends BaseActivity {
      * 用户id
      */
 
-    private String illegalFileUrl = "http://dogmanage.file.obs.cn-north-4.myhuaweicloud.com/ef02820b-5d40-457d-97e2-adb29ccbecba.jpg";
+    private String illegalFileUrl = null;
     private int illegalTypeId = 0;
     private String illegalTime = null;
     private String dogLicenceNum = null;
