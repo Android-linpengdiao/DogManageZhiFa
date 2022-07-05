@@ -15,6 +15,7 @@ public abstract class BaseBottomSheetDialog extends BottomSheetDialog {
 
     public Context context;
     private BottomSheetBehavior mDialogBehavior;
+    private static float slideOffset = 0;
 
     public BaseBottomSheetDialog(Context context) {
         super(context, R.style.BottomSheetDialog);
@@ -25,6 +26,8 @@ public abstract class BaseBottomSheetDialog extends BottomSheetDialog {
 
         mDialogBehavior = BottomSheetBehavior.from((View) rootView.getParent());
         mDialogBehavior.setPeekHeight(getWindowHeight());
+        //禁止滑动关闭但允许点击背景关闭
+        mDialogBehavior.setHideable(false);
         //dialog滑动监听
         mDialogBehavior.setBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
             @Override
@@ -32,6 +35,10 @@ public abstract class BaseBottomSheetDialog extends BottomSheetDialog {
                 if (newState == BottomSheetBehavior.STATE_HIDDEN) {
                     mDialogBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
                 } else if (newState == BottomSheetBehavior.STATE_SETTLING) {
+                    if (slideOffset <= -0.28) {
+                        //当向下滑动时 值为负数
+                        dismiss();
+                    }
                 }
             }
 

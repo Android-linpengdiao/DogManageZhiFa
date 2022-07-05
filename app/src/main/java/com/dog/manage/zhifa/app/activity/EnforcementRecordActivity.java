@@ -4,6 +4,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
 import com.base.utils.CommonUtil;
@@ -114,16 +115,18 @@ public class EnforcementRecordActivity extends BaseActivity {
 
                     @Override
                     public void onResponse(Pager<PunishRecord> response, int id) {
-                        pager = response;
                         if (response != null && response.getRows() != null) {
                             if (isRefresh) {
                                 adapter.refreshData(response.getRows());
                             } else {
                                 adapter.loadMoreData(response.getRows());
-                                if (adapter.getList().size() < response.getTotal()) {
-                                    pager.setCursor(pager.getCursor() + 1);
-                                }
                             }
+                            Log.i(TAG, "onResponse: adapter.getList().size() = "+adapter.getList().size());
+                            Log.i(TAG, "onResponse: response.getTotal() = "+response.getTotal());
+                            if (adapter.getList().size() < response.getTotal()) {
+                                pager.setCursor(pager.getCursor() + 1);
+                            }
+                            Log.i(TAG, "onResponse: pager.getCursor() = "+pager.getCursor());
                             if (adapter.getList().size() == response.getTotal()) {
                                 binding.refreshLayout.setNoMoreData(true);
                             }

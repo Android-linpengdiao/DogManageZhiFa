@@ -34,6 +34,11 @@ public class APIUrls {
     //执法端-处罚记录详情
     public final static String getIllegalDetails = URL_DOMAIN + "/user/law/getIllegalDetails";
 
+    //保存犬主-获取省市区
+    public final static String addressAreas = URL_DOMAIN + "/user/address/areas";
+    //保存犬主-根据省市区查询社区列表
+    public final static String addressList = URL_DOMAIN + "/user/address/list";
+
     /**
      * 系统消息
      */

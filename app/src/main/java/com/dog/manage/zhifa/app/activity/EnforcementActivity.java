@@ -34,11 +34,17 @@ public class EnforcementActivity extends BaseActivity {
      * @param view
      */
     public void onClickSearchPetArchives(View view) {
-        if (checkPermissions(PermissionUtils.CAMERA, 100)) {
-            Bundle bundle = new Bundle();
-            bundle.putInt("type", CameraActivity.type_petArchives);
-            openActivity(CameraActivity.class, bundle, request_petArchive);
-        }
+
+        Bundle bundle = new Bundle();
+        bundle.putInt("type", EnforcementDogInfoActivity.type_noseprint);
+        bundle.putString("noseprint", "23325059-b2c1-11eb-1Vu7hqwN61a");
+        openActivity(EnforcementDogInfoActivity.class, bundle);
+
+//        if (checkPermissions(PermissionUtils.CAMERA, 100)) {
+//            Bundle bundle = new Bundle();
+//            bundle.putInt("type", CameraActivity.type_petArchives);
+//            openActivity(CameraActivity.class, bundle, request_petArchive);
+//        }
     }
 
     /**

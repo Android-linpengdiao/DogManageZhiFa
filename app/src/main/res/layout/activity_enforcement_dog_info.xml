@@ -65,7 +65,6 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_below="@+id/tabLayout"
             android:layout_weight="1">
 
             <androidx.viewpager.widget.ViewPager
@@ -113,6 +112,7 @@
                     app:item_container_margin_right="@dimen/viewPadding"
                     app:item_divider_visible="true"
                     app:item_edit_hint="请输入犬主姓名"
+                    app:item_edit="老李"
                     app:item_edit_size="@dimen/viewItemTitleSize"
                     app:item_edit_visible="true"
                     app:item_title="犬主姓名/单位名称"
@@ -130,6 +130,7 @@
                     app:item_divider_visible="true"
                     app:item_edit_hint="请输入手机号码"
                     app:item_edit_size="@dimen/viewItemTitleSize"
+                    app:item_edit="13521612868"
                     app:item_edit_visible="true"
                     app:item_title="手机号码"
                     app:item_title_bold="true"
@@ -152,11 +153,13 @@
                         android:textSize="@dimen/sp_14" />
 
                     <EditText
+                        android:id="@+id/idNumView"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@null"
                         android:gravity="top|right"
                         android:hint="请输入证件号码"
+                        android:text="131125648852665632"
                         android:paddingTop="@dimen/dp_20"
                         android:paddingBottom="@dimen/dp_14"
                         android:textColor="#333333"
@@ -187,42 +190,59 @@
                     app:item_title_bold="true"
                     app:item_title_size="@dimen/sp_14" />
 
-                <LinearLayout
+                <com.dog.manage.zhifa.app.view.ViewItemLayout
+                    android:id="@+id/detailedAddressView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/app_background"
-                    android:minHeight="@dimen/dp_121"
-                    android:orientation="horizontal"
-                    android:paddingLeft="@dimen/viewPadding"
-                    android:paddingTop="@dimen/dp_12"
-                    android:paddingRight="@dimen/viewPadding"
-                    android:paddingBottom="@dimen/dp_12">
+                    app:item_arrow_visible="true"
+                    app:item_container_height="@dimen/viewItemHeight"
+                    app:item_container_margin_left="@dimen/viewPadding"
+                    app:item_container_margin_right="@dimen/viewPadding"
+                    app:item_content="请选择详细地址"
+                    app:item_content_color="#273154"
+                    app:item_content_size="@dimen/sp_14"
+                    app:item_divider_visible="true"
+                    app:item_title="详细地址"
+                    app:item_title_bold="true"
+                    app:item_title_size="@dimen/sp_14" />
 
-                    <com.dog.manage.zhifa.app.view.TextBoldView
-                        android:id="@+id/detailedAddressHintView"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="详细地址"
-                        android:textColor="#333333"
-                        android:textSize="@dimen/sp_14" />
+<!--                <LinearLayout-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:background="@color/app_background"-->
+<!--                    android:minHeight="@dimen/dp_121"-->
+<!--                    android:orientation="horizontal"-->
+<!--                    android:paddingLeft="@dimen/viewPadding"-->
+<!--                    android:paddingTop="@dimen/dp_12"-->
+<!--                    android:paddingRight="@dimen/viewPadding"-->
+<!--                    android:paddingBottom="@dimen/dp_12">-->
 
-                    <EditText
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@null"
-                        android:gravity="top|right"
-                        android:hint="请输入详细地址"
-                        android:minHeight="@dimen/dp_60"
-                        android:textColor="#333333"
-                        android:textColorHint="#999999"
-                        android:textSize="@dimen/sp_14" />
+<!--                    <com.dog.manage.zhifa.app.view.TextBoldView-->
+<!--                        android:id="@+id/detailedAddressHintView"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:text="详细地址"-->
+<!--                        android:textColor="#333333"-->
+<!--                        android:textSize="@dimen/sp_14" />-->
 
-                </LinearLayout>
+<!--                    <EditText-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:background="@null"-->
+<!--                        android:gravity="top|right"-->
+<!--                        android:hint="请输入详细地址"-->
+<!--                        android:minHeight="@dimen/dp_60"-->
+<!--                        android:textColor="#333333"-->
+<!--                        android:textColorHint="#999999"-->
+<!--                        android:textSize="@dimen/sp_14" />-->
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/dividerHeight"
-                    android:background="@color/colorDivider" />
+<!--                </LinearLayout>-->
+
+<!--                <View-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="@dimen/dividerHeight"-->
+<!--                    android:background="@color/colorDivider" />-->
 
             </LinearLayout>
 

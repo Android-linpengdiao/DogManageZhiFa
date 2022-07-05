@@ -64,6 +64,7 @@ import top.zibin.luban.OnCompressListener;
 public class EnforcementSubmitActivity extends BaseActivity {
 
     private ActivityEnforcementSubmitBinding binding;
+    private Map<String, String> paramsMap = new HashMap<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,6 +72,14 @@ public class EnforcementSubmitActivity extends BaseActivity {
         binding = getViewData(R.layout.activity_enforcement_submit);
 
         dogLicenceNum = getIntent().getStringExtra("dogLicenceNum");
+        String paramsJson = getIntent().getStringExtra("paramsJson");
+        Log.i(TAG, "onCreate: paramsJson = " + paramsJson);
+        if (!TextUtils.isEmpty(paramsJson)) {
+            Gson gson = new Gson();
+            paramsMap = gson.fromJson(paramsJson, new TypeToken<Map<String, Object>>() {
+            }.getType());
+            Log.i(TAG, "onCreate: paramsMap = " + paramsMap);
+        }
 
         GridItemDecoration.Builder builder = new GridItemDecoration.Builder(this);
         builder.color(R.color.transparent);
@@ -195,7 +204,7 @@ public class EnforcementSubmitActivity extends BaseActivity {
      * 用户id
      */
 
-    private String illegalFileUrl = null;
+    private String illegalFileUrl = "http://dogmanage.file.obs.cn-north-4.myhuaweicloud.com/IMG_20220601_081815.jpg";
     private int illegalTypeId = 0;
     private String illegalTime = null;
     private String dogLicenceNum = null;
@@ -229,14 +238,13 @@ public class EnforcementSubmitActivity extends BaseActivity {
             return;
         }
 
-        Map<String, String> paramsMap = new HashMap<>();
         paramsMap.put("illegalFileUrl", GsonUtils.toJson(Arrays.asList(illegalFileUrl)));
         paramsMap.put("illegalTypeId", String.valueOf(illegalTypeId));
         paramsMap.put("illegalDescribe", illegalDescribe);
         paramsMap.put("illegalMeasure", illegalMeasure);
         paramsMap.put("illegalTime", illegalTime);
-        paramsMap.put("dogLicenceNum", dogLicenceNum);
-//        paramsMap.put("phoneNum", "13521614868");
+        if (dogLicenceNum != null)
+            paramsMap.put("dogLicenceNum", dogLicenceNum);
 
         SendRequest.saveIllegal(paramsMap, new GenericsCallback<BaseData>(new JsonGenericsSerializator()) {
 

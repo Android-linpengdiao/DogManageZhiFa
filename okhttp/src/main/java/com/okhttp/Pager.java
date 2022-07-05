@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Pager<T> implements Serializable {
     private static final long serialVersionUID = -3957020823257107332L;
-    private int cursor = 0;
+    private int cursor = 1;
     private int size = 20;
     private List<T> rows;
     private long total;

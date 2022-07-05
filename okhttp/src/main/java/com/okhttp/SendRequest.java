@@ -107,6 +107,51 @@ public class SendRequest {
 
     }
 
+    /**
+     * level 级别 1 省 2 市 3 区
+     * parentId 父级id 省 0
+     * pageNum 页数
+     * pageSize 每页显示数量
+     *
+     * @param call
+     */
+    public static void getAddressAreas(int level, int parentId, int pageNum, int pageSize, Callback call) {
+        Map<String, String> headers = new HashMap<>();
+        headers.put("Authorization", BaseApplication.getInstance().getUserInfo().getAuthorization());
+
+        Map<String, String> map = new HashMap<>();
+        map.put("level", String.valueOf(level));
+        map.put("parentId", String.valueOf(parentId));
+        map.put("pageNum", String.valueOf(pageNum));
+        map.put("pageSize", String.valueOf(pageSize));
+        OkHttpUtils.post().headers(headers).params(map).url(APIUrls.addressAreas).build().execute(call);
+
+    }
+
+    /**
+     * 保存犬主-根据省市区查询社区列表
+     * communityName 社区名称
+     * provinceId 省份
+     * cityId 城市
+     * areaId 社区
+     *
+     * @param call
+     */
+    public static void getAddressList(String communityName, int provinceId, int cityId, int areaId, int pageNum, int pageSize, Callback call) {
+        Map<String, String> headers = new HashMap<>();
+        headers.put("Authorization", BaseApplication.getInstance().getUserInfo().getAuthorization());
+
+        Map<String, String> map = new HashMap<>();
+        map.put("communityName", communityName);
+        map.put("provinceId", String.valueOf(provinceId));
+        map.put("cityId", String.valueOf(cityId));
+        map.put("areaId", String.valueOf(areaId));
+        map.put("pageNum", String.valueOf(pageNum));
+        map.put("pageSize", String.valueOf(pageSize));
+        OkHttpUtils.post().headers(headers).params(map).url(APIUrls.addressList).build().execute(call);
+
+    }
+
 
     /**
      * 发送短信验证
