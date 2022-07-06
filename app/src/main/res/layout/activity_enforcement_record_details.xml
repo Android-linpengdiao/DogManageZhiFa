@@ -39,7 +39,6 @@
                     android:id="@+id/unitNameView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:onClick="onClickRecord"
                     app:item_container_height="@dimen/viewItemHeight"
                     app:item_container_margin_left="@dimen/dp_14"
                     app:item_container_margin_right="@dimen/dp_14"
@@ -56,7 +55,6 @@
                     android:id="@+id/userNameView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:onClick="onClickRecord"
                     app:item_container_height="@dimen/viewItemHeight"
                     app:item_container_margin_left="@dimen/dp_14"
                     app:item_container_margin_right="@dimen/dp_14"
@@ -72,12 +70,12 @@
 
                 <!--查无此犬信息-->
                 <com.dog.manage.zhifa.app.view.ViewItemLayout
+                    android:id="@+id/dogCertificateView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:onClick="onClickRecord"
                     app:item_container_height="@dimen/viewItemHeight"
                     app:item_container_margin_left="@dimen/dp_14"
-                    app:item_container_margin_right="@dimen/dp_34"
+                    app:item_container_margin_right="@dimen/dp_14"
                     app:item_content=""
                     app:item_content_color="#FF0000"
                     app:item_content_size="@dimen/sp_14"
@@ -87,6 +85,7 @@
                     app:item_title_size="@dimen/sp_14" />
 
                 <LinearLayout
+                    android:id="@+id/dogCertificateContainer"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/dp_16"
@@ -95,6 +94,8 @@
                     android:background="@drawable/card"
                     android:gravity="center_vertical"
                     android:orientation="vertical"
+                    android:visibility="gone"
+                    tools:visibility="visible"
                     android:paddingLeft="@dimen/dp_30"
                     android:paddingTop="@dimen/dp_13"
                     android:paddingRight="@dimen/dp_11"
@@ -159,9 +160,9 @@
                                     android:layout_height="wrap_content"
                                     android:layout_marginLeft="@dimen/dp_8"
                                     android:gravity="center_vertical"
-                                    tools:text="0100000"
                                     android:textColor="#000000"
-                                    android:textSize="@dimen/certificateSize" />
+                                    android:textSize="@dimen/certificateSize"
+                                    tools:text="0100000" />
 
                             </LinearLayout>
 
@@ -186,9 +187,9 @@
                                     android:layout_height="wrap_content"
                                     android:layout_marginLeft="@dimen/dp_8"
                                     android:gravity="center_vertical"
-                                    tools:text="萨摩耶"
                                     android:textColor="#000000"
-                                    android:textSize="@dimen/certificateSize" />
+                                    android:textSize="@dimen/certificateSize"
+                                    tools:text="萨摩耶" />
 
                             </LinearLayout>
 
@@ -213,9 +214,9 @@
                                     android:layout_height="wrap_content"
                                     android:layout_marginLeft="@dimen/dp_8"
                                     android:gravity="center_vertical"
-                                    tools:text="白色"
                                     android:textColor="#000000"
-                                    android:textSize="@dimen/certificateSize" />
+                                    android:textSize="@dimen/certificateSize"
+                                    tools:text="白色" />
 
                             </LinearLayout>
 
@@ -240,9 +241,9 @@
                                     android:layout_height="wrap_content"
                                     android:layout_marginLeft="@dimen/dp_8"
                                     android:gravity="center_vertical"
-                                    tools:text="雄性"
                                     android:textColor="#000000"
-                                    android:textSize="@dimen/certificateSize" />
+                                    android:textSize="@dimen/certificateSize"
+                                    tools:text="雄性" />
 
                             </LinearLayout>
 
@@ -267,9 +268,9 @@
                                     android:layout_height="match_parent"
                                     android:layout_marginLeft="@dimen/dp_8"
                                     android:gravity="center_vertical"
-                                    tools:text="张三"
                                     android:textColor="#000000"
-                                    android:textSize="@dimen/certificateSize" />
+                                    android:textSize="@dimen/certificateSize"
+                                    tools:text="张三" />
 
                             </LinearLayout>
 
@@ -294,9 +295,9 @@
                                     android:layout_height="wrap_content"
                                     android:layout_marginLeft="@dimen/dp_8"
                                     android:gravity="center_vertical"
-                                    tools:text="2021年3月31日"
                                     android:textColor="#000000"
-                                    android:textSize="@dimen/certificateSize" />
+                                    android:textSize="@dimen/certificateSize"
+                                    tools:text="2021年3月31日" />
 
                             </LinearLayout>
 
@@ -321,9 +322,9 @@
                                     android:layout_height="wrap_content"
                                     android:layout_marginLeft="@dimen/dp_8"
                                     android:gravity="center_vertical"
-                                    tools:text="北京市西城区天桥街道"
                                     android:textColor="#000000"
-                                    android:textSize="@dimen/certificateSize" />
+                                    android:textSize="@dimen/certificateSize"
+                                    tools:text="北京市西城区天桥街道" />
 
                             </LinearLayout>
 
@@ -359,7 +360,7 @@
                     android:layout_height="wrap_content"
                     app:item_container_height="@dimen/viewItemHeight"
                     app:item_container_margin_left="@dimen/dp_14"
-                    app:item_container_margin_right="@dimen/dp_34"
+                    app:item_container_margin_right="@dimen/dp_14"
                     app:item_content=""
                     app:item_content_color="#273154"
                     app:item_content_size="@dimen/sp_14"
@@ -376,7 +377,7 @@
                     android:layout_height="wrap_content"
                     app:item_container_height="@dimen/viewItemHeight"
                     app:item_container_margin_left="@dimen/dp_14"
-                    app:item_container_margin_right="@dimen/dp_34"
+                    app:item_container_margin_right="@dimen/dp_14"
                     app:item_content=""
                     app:item_content_color="#273154"
                     app:item_content_size="@dimen/sp_14"
@@ -392,7 +393,7 @@
                     android:layout_height="wrap_content"
                     app:item_container_height="@dimen/viewItemHeight"
                     app:item_container_margin_left="@dimen/dp_14"
-                    app:item_container_margin_right="@dimen/dp_34"
+                    app:item_container_margin_right="@dimen/dp_14"
                     app:item_content="处罚措施"
                     app:item_content_color="#273154"
                     app:item_content_size="@dimen/sp_14"
@@ -408,7 +409,7 @@
                     android:layout_height="wrap_content"
                     app:item_container_height="@dimen/viewItemHeight"
                     app:item_container_margin_left="@dimen/dp_14"
-                    app:item_container_margin_right="@dimen/dp_34"
+                    app:item_container_margin_right="@dimen/dp_14"
                     app:item_content=""
                     app:item_content_color="#273154"
                     app:item_content_size="@dimen/sp_14"

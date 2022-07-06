@@ -78,7 +78,8 @@ public class EnforcementRecordDetailsActivity extends BaseActivity {
                             intiCertificate(response.getData());
 
                         } else {
-                            ToastUtils.showShort(getApplicationContext(), "获取犬证信息失败");
+                            binding.dogCertificateView.binding.itemContent.setText("查无此犬信息");
+//                            ToastUtils.showShort(getApplicationContext(), "获取犬证信息失败");
                         }
                     }
                 });
@@ -104,15 +105,14 @@ public class EnforcementRecordDetailsActivity extends BaseActivity {
      * @param licenceBean
      */
     private void intiCertificate(LicenceInfo licenceBean) {
-        if (licenceBean != null) {
-            binding.idNumView.setText(licenceBean.getIdNum());
-            binding.dogTypeView.setText(licenceBean.getDogType());
-            binding.dogColorView.setText(licenceBean.getDogColor());
-            binding.dogGenderView.setText(licenceBean.getDogGender() == 0 ? "雌性" : "雄性");
-            binding.orgNameView.setText(licenceBean.getOrgName());
-            binding.awardTimeView.setText(licenceBean.getAwardTime());
-            binding.detailedAddressView.setText(licenceBean.getDetailedAddress());
-            GlideLoader.LoaderDogCover(EnforcementRecordDetailsActivity.this, "", binding.certificateCoverView, 5);
-        }
+        binding.dogCertificateContainer.setVisibility(View.VISIBLE);
+        binding.idNumView.setText(licenceBean.getIdNum());
+        binding.dogTypeView.setText(licenceBean.getDogType());
+        binding.dogColorView.setText(licenceBean.getDogColor());
+        binding.dogGenderView.setText(licenceBean.getDogGender() == 0 ? "雌性" : "雄性");
+        binding.orgNameView.setText(licenceBean.getOrgName());
+        binding.awardTimeView.setText(licenceBean.getAwardTime());
+        binding.detailedAddressView.setText(licenceBean.getDetailedAddress());
+        GlideLoader.LoaderDogCover(EnforcementRecordDetailsActivity.this, "", binding.certificateCoverView, 5);
     }
 }
