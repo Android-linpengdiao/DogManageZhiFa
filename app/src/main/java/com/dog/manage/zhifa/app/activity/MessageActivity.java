@@ -117,9 +117,9 @@ public class MessageActivity extends BaseActivity {
                                 adapter.refreshData(response.getRows());
                             } else {
                                 adapter.loadMoreData(response.getRows());
-                                if (adapter.getList().size() < response.getTotal()) {
-                                    pager.setCursor(pager.getCursor() + 1);
-                                }
+                            }
+                            if (adapter.getList().size() < response.getTotal()) {
+                                pager.setCursor(pager.getCursor() + 1);
                             }
                             if (adapter.getList().size() == response.getTotal()) {
                                 binding.refreshLayout.setNoMoreData(true);

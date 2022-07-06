@@ -121,12 +121,9 @@ public class EnforcementRecordActivity extends BaseActivity {
                             } else {
                                 adapter.loadMoreData(response.getRows());
                             }
-                            Log.i(TAG, "onResponse: adapter.getList().size() = "+adapter.getList().size());
-                            Log.i(TAG, "onResponse: response.getTotal() = "+response.getTotal());
                             if (adapter.getList().size() < response.getTotal()) {
                                 pager.setCursor(pager.getCursor() + 1);
                             }
-                            Log.i(TAG, "onResponse: pager.getCursor() = "+pager.getCursor());
                             if (adapter.getList().size() == response.getTotal()) {
                                 binding.refreshLayout.setNoMoreData(true);
                             }
