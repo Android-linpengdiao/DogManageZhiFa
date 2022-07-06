@@ -97,12 +97,17 @@ public class LoginActivity extends BaseActivity {
 
                     @Override
                     public void onResponse(ResultClient<UserInfo> response, int id) {
-                        if (response.isSuccess() && response.getData() != null) {
-                            BaseApplication.getInstance().setUserInfo(response.getData());
-                            finishActivity(LoginActivity.class);
-                            finish();
+                        if (response.isSuccess()) {
+                            if (response.getData() != null) {
+                                BaseApplication.getInstance().setUserInfo(response.getData());
+                                finishActivity(LoginActivity.class);
+                                finish();
+                            } else {
+                                ToastUtils.showShort(getApplicationContext(), "获取用户信息失败");
+                            }
+
                         } else {
-                            ToastUtils.showShort(getApplicationContext(), response.getMessage());
+                            ToastUtils.showShort(getApplicationContext(), !CommonUtil.isBlank(response.getMsg()) ? response.getMsg() : "获取用户信息失败");
                         }
                     }
                 });

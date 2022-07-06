@@ -107,6 +107,7 @@ public class EnforcementDogInfoFragment extends BaseFragment {
                         return;
                     }
                     Bundle bundle = new Bundle();
+                    bundle.putInt("userId", licenceBean.getUserId());
                     bundle.putInt("dogId", licenceBean.getDogId());
                     openActivity(DogUserActivity.class, bundle);
                 }
@@ -151,7 +152,7 @@ public class EnforcementDogInfoFragment extends BaseFragment {
                 if (response.isSuccess() && response.getData() != null) {
                     immuneView(response.getData());
                 } else {
-                    ToastUtils.showShort(getActivity(), "获取免疫信息失败");
+//                    ToastUtils.showShort(getActivity(), "获取免疫信息失败");
                 }
 
             }

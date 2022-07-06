@@ -24,6 +24,7 @@ public class DogUserActivity extends BaseActivity {
 
     private ActivityDogUserBinding binding;
 
+    private int userId = 0;
     private int dogId = 0;
     private DogUser dogUser = new DogUser();
 
@@ -52,6 +53,7 @@ public class DogUserActivity extends BaseActivity {
         binding.houseNumberView.binding.itemEdit.setEnabled(false);
         initPersonal();
 
+        userId = getIntent().getIntExtra("userId", 0);
         dogId = getIntent().getIntExtra("dogId", 8);
         getDogUserById();
 
@@ -61,7 +63,7 @@ public class DogUserActivity extends BaseActivity {
      * 犬证 获取犬主信息
      */
     private void getDogUserById() {
-        SendRequest.getUserById(getUserInfo().getId(), dogId,
+        SendRequest.getUserById(userId, dogId,
                 new GenericsCallback<ResultClient<DogUser>>(new JsonGenericsSerializator()) {
                     @Override
                     public void onError(Call call, Exception e, int id) {

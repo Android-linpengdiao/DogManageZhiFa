@@ -7,6 +7,7 @@ import androidx.viewpager.widget.ViewPager;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.InputType;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -352,11 +353,8 @@ public class EnforcementDogInfoActivity extends BaseActivity implements Enforcem
                             } else {
                                 areaSelectAdapter.loadMoreData(response.getRows());
                             }
-                            Log.i(TAG, "onResponse: size = " + areaSelectAdapter.getList().size());
-                            Log.i(TAG, "onResponse: getTotal = " + response.getTotal());
                             if (areaSelectAdapter.getList().size() < response.getTotal()) {
                                 areasPager.setCursor(areasPager.getCursor() + 1);
-                                Log.i(TAG, "onResponse: getCursor = " + areasPager.getCursor());
                             }
                             if (areaSelectAdapter.getList().size() == response.getTotal()) {
                                 addressBinding.refreshLayout.setNoMoreData(true);
@@ -450,10 +448,10 @@ public class EnforcementDogInfoActivity extends BaseActivity implements Enforcem
                         } else if (response.getCode() == -1 || response.getCode() == -100044) {
                             binding.editContainer.setVisibility(View.VISIBLE);
                             binding.viewPager.setVisibility(View.INVISIBLE);
-                            ToastUtils.showShort(getApplicationContext(), response.getMsg());
 
                         } else {
                             ToastUtils.showShort(getApplicationContext(), response.getMsg());
+
                         }
                     }
                 });
@@ -463,6 +461,9 @@ public class EnforcementDogInfoActivity extends BaseActivity implements Enforcem
     private EnforcementDogInfoFragment immuneFragment;
 
     private void initView() {
+
+        binding.dogOwnerPhoneView.binding.itemEdit.setInputType(InputType.TYPE_CLASS_PHONE);
+
         MainPagerAdapter mainPagerAdapter = new MainPagerAdapter(getSupportFragmentManager());
         certificateFragment = EnforcementDogInfoFragment.getInstance(EnforcementDogInfoFragment.type_certificate);
         immuneFragment = EnforcementDogInfoFragment.getInstance(EnforcementDogInfoFragment.type_immune);
