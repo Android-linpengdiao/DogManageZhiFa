@@ -32,9 +32,9 @@ public class UpdatePhoneActivity extends BaseActivity {
     }
 
     public void onClickConfirm(View view) {
-        String password = binding.passwordEditText.getText().toString().trim();
+        String oldPassword = binding.passwordEditText.getText().toString().trim();
         String newPassword = binding.newPasswordEditText.getText().toString().trim();
-        if (CommonUtil.isBlank(password)) {
+        if (CommonUtil.isBlank(oldPassword)) {
             ToastUtils.showShort(getApplicationContext(), "请输入旧密码");
             return;
         }
@@ -42,7 +42,7 @@ public class UpdatePhoneActivity extends BaseActivity {
             ToastUtils.showShort(getApplicationContext(), "请输入新密码");
             return;
         }
-        SendRequest.editUserPhone(newPassword, newPassword, new GenericsCallback<BaseData>(new JsonGenericsSerializator()) {
+        SendRequest.updatePwd(oldPassword, newPassword, new GenericsCallback<BaseData>(new JsonGenericsSerializator()) {
 
             @Override
             public void onBefore(Request request, int id) {
@@ -63,9 +63,10 @@ public class UpdatePhoneActivity extends BaseActivity {
             @Override
             public void onResponse(BaseData response, int id) {
                 if (response.isSuccess()) {
-                    openActivity(UpdatePhoneActivity.class);
+                    ToastUtils.showShort(getApplicationContext(), "修改成功");
+                    finish();
                 } else {
-                    ToastUtils.showShort(getApplicationContext(), response.getMessage());
+                    ToastUtils.showShort(getApplicationContext(), response.getMsg());
                 }
 
             }

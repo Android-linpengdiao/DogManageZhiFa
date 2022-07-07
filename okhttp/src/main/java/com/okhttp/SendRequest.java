@@ -39,6 +39,17 @@ public class SendRequest {
 
     }
 
+    public static void updatePwd(String oldPassword,String newPassword,Callback call) {
+        Map<String, String> headers = new HashMap<>();
+        headers.put("Authorization", BaseApplication.getInstance().getUserInfo().getAuthorization());
+
+        Map<String, String> map = new HashMap<>();
+        map.put("oldPassword", oldPassword);
+        map.put("newPassword", newPassword);
+        OkHttpUtils.post().headers(headers).params(map).url(APIUrls.updatePwd).build().execute(call);
+
+    }
+
     /**
      * 执法端-根据用户身份获取犬只信息
      * @param orgName

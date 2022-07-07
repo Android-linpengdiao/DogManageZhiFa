@@ -61,7 +61,8 @@ public class EnforcementDogInfoActivity extends BaseActivity implements Enforcem
     public static final int type_userPhone = 2;//
     public static final int type_idNum = 3;//
     private int type;
-    private String dogLicenceNum;
+    //    private String dogLicenceNum;
+    private LicenceInfo licenceInfo;
 
     private List<Dog> dogList = new ArrayList<>();
     private Dog dogDetail;
@@ -136,7 +137,7 @@ public class EnforcementDogInfoActivity extends BaseActivity implements Enforcem
                 addressBinding.recyclerView.setAdapter(areaSelectAdapter);
 
                 addressBinding.refreshLayout.setEnableRefresh(false);
-                addressBinding.refreshLayout.setEnableLoadMore(false);
+//                addressBinding.refreshLayout.setEnableLoadMore(false);
                 addressBinding.refreshLayout.setOnLoadMoreListener(new OnLoadMoreListener() {
                     @Override
                     public void onLoadMore(RefreshLayout refreshlayout) {
@@ -150,8 +151,13 @@ public class EnforcementDogInfoActivity extends BaseActivity implements Enforcem
                     public void onClick(View view) {
                         if (areaSelectAdapter.getList().size() > 0) {
                             addressBean = areaSelectAdapter.getList().get(areaSelectAdapter.getSelect());
-                            addressArea = addressBean.getAreaName();
-                            binding.addressView.binding.itemContent.setText(addressArea);
+                            binding.addressView.binding.itemContent.setText(addressBean.getAreaName());
+
+                            addressArea = null;
+                            villageId = null;
+                            detailedAddress = null;
+                            binding.detailedAddressView.binding.itemContent.setText(detailedAddress);
+
                             bottomSheetDialog.cancel();
                         }
                     }
@@ -185,7 +191,7 @@ public class EnforcementDogInfoActivity extends BaseActivity implements Enforcem
                 communityBinding.recyclerView.setAdapter(communitySelectAdapter);
 
                 communityBinding.refreshLayout.setEnableRefresh(false);
-                communityBinding.refreshLayout.setEnableLoadMore(false);
+//                communityBinding.refreshLayout.setEnableLoadMore(false);
                 communityBinding.refreshLayout.setOnLoadMoreListener(new OnLoadMoreListener() {
                     @Override
                     public void onLoadMore(RefreshLayout refreshlayout) {
@@ -229,7 +235,7 @@ public class EnforcementDogInfoActivity extends BaseActivity implements Enforcem
                         if (communitySelectAdapter.getList().size() > 0) {
                             communityBean = communitySelectAdapter.getList().get(communitySelectAdapter.getSelect());
                             villageId = String.valueOf(communityBean.getId());
-                            Integer communityDept = communityBean.getCommunityDept();
+                            addressArea = String.valueOf(communityBean.getCommunityDept());
                             detailedAddress = communityBean.getCommunityName();
                             binding.detailedAddressView.binding.itemContent.setText(detailedAddress);
                             bottomSheetDialog.cancel();
@@ -262,7 +268,7 @@ public class EnforcementDogInfoActivity extends BaseActivity implements Enforcem
         }
         //省110000 、市110100
         SendRequest.getAddressList(communityName, 110000, 110100, addressBean.getId(),
-                communityPager.getCursor(), 100,
+                communityPager.getCursor(), communityPager.getSize(),
                 new GenericsCallback<Pager<CommunityBean>>(new JsonGenericsSerializator()) {
 
                     @Override
@@ -321,7 +327,7 @@ public class EnforcementDogInfoActivity extends BaseActivity implements Enforcem
     private void getAddressAreas(boolean isRefresh) {
         //省110000 、市110100
         SendRequest.getAddressAreas(3, 110100,
-                areasPager.getCursor(), 100,
+                areasPager.getCursor(), areasPager.getSize(),
                 new GenericsCallback<Pager<AddressBean>>(new JsonGenericsSerializator()) {
 
                     @Override
@@ -435,17 +441,22 @@ public class EnforcementDogInfoActivity extends BaseActivity implements Enforcem
                     public void onResponse(ResultClient<LicenceInfo> response, int id) {
                         if (response.isSuccess()) {
                             if (response.getData() != null) {
+                                licenceInfo = response.getData();
+
                                 binding.viewPager.setVisibility(View.VISIBLE);
                                 binding.editContainer.setVisibility(View.INVISIBLE);
-                                dogLicenceNum = response.getData().getIdNum();
                                 certificateFragment.intiCertificate(response.getData());
                                 immuneFragment.intiImmune(response.getData().getImmuneLicenceId() != null ? response.getData().getImmuneLicenceId() : 0);
 
                             } else {
-                                ToastUtils.showShort(getApplicationContext(), "获取犬证信息失败");
+                                licenceInfo = null;
+                                binding.editContainer.setVisibility(View.VISIBLE);
+                                binding.viewPager.setVisibility(View.INVISIBLE);
+
                             }
 
                         } else if (response.getCode() == -1 || response.getCode() == -100044) {
+                            licenceInfo = null;
                             binding.editContainer.setVisibility(View.VISIBLE);
                             binding.viewPager.setVisibility(View.INVISIBLE);
 
@@ -504,53 +515,54 @@ public class EnforcementDogInfoActivity extends BaseActivity implements Enforcem
 
     public void onClickConfirm(View view) {
         Bundle bundle = new Bundle();
-        if (dogLicenceNum != null)
-            bundle.putString("dogLicenceNum", dogLicenceNum);
+        if (licenceInfo != null) {
+            bundle.putSerializable("licenceInfo", licenceInfo);
 
-        Map<String, String> paramsMap = new HashMap<>();
-
-        orgName = binding.dogOwnerName.binding.itemEdit.getText().toString().trim();
-        if (!CommonUtil.isBlank(orgName)) {
-            paramsMap.put("orgName", orgName);
         } else {
-            ToastUtils.showShort(getApplicationContext(), "请输入犬主姓名");
-            return;
-        }
 
-        phoneNum = binding.dogOwnerPhoneView.binding.itemEdit.getText().toString().trim();
-        if (!CommonUtil.isBlank(phoneNum)) {
-            paramsMap.put("phoneNum", phoneNum);
-        } else {
-            ToastUtils.showShort(getApplicationContext(), "请输入手机号码");
-            return;
-        }
+            Map<String, String> paramsMap = new HashMap<>();
 
-        idNum = binding.idNumView.getText().toString().trim();
-        if (!CommonUtil.isBlank(idNum)) {
-            paramsMap.put("idNum", idNum);
-        } else {
-            ToastUtils.showShort(getApplicationContext(), "请输入证件号码");
-            return;
-        }
+            orgName = binding.dogOwnerName.binding.itemEdit.getText().toString().trim();
+            if (!CommonUtil.isBlank(orgName)) {
+                paramsMap.put("orgName", orgName);
+            } else {
+                ToastUtils.showShort(getApplicationContext(), "请输入犬主姓名");
+                return;
+            }
 
-        if (!CommonUtil.isBlank(addressArea)) {
-            paramsMap.put("addressArea", addressArea);
-        } else {
-            ToastUtils.showShort(getApplicationContext(), "请选择省市区");
-            return;
-        }
+            phoneNum = binding.dogOwnerPhoneView.binding.itemEdit.getText().toString().trim();
+            if (!CommonUtil.isBlank(phoneNum)) {
+                paramsMap.put("phoneNum", phoneNum);
+            } else {
+                ToastUtils.showShort(getApplicationContext(), "请输入手机号码");
+                return;
+            }
 
-        if (!CommonUtil.isBlank(detailedAddress)) {
-            paramsMap.put("detailedAddress", detailedAddress);
-        } else {
-            ToastUtils.showShort(getApplicationContext(), "请选择详细地址");
-            return;
-        }
-        paramsMap.put("villageId", villageId);
-        if (!CommonUtil.isBlank(userId))
-            paramsMap.put("userId", userId);
+            idNum = binding.idNumView.getText().toString().trim();
+            if (!CommonUtil.isBlank(idNum)) {
+                paramsMap.put("idNum", idNum);
+            } else {
+                ToastUtils.showShort(getApplicationContext(), "请输入证件号码");
+                return;
+            }
 
-        bundle.putString("paramsJson", GsonUtils.toJson(paramsMap));
+            if (!CommonUtil.isBlank(addressArea)) {
+                paramsMap.put("addressArea", addressArea);
+            } else {
+                ToastUtils.showShort(getApplicationContext(), "请选择省市区");
+                return;
+            }
+
+            if (!CommonUtil.isBlank(detailedAddress)) {
+                paramsMap.put("detailedAddress", detailedAddress);
+            } else {
+                paramsMap.put("villageId", villageId);
+                ToastUtils.showShort(getApplicationContext(), "请选择详细地址");
+                return;
+            }
+            bundle.putString("paramsJson", GsonUtils.toJson(paramsMap));
+
+        }
         openActivity(EnforcementSubmitActivity.class, bundle);
 
     }

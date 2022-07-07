@@ -17,6 +17,7 @@ public class APIUrls {
     //获取用户信息
     public final static String userLoad = URL_DOMAIN + "/web/user/load";
     public final static String getLawUser = URL_DOMAIN + "/user/law/getLawUser";
+    public final static String updatePwd = URL_DOMAIN + "/user/updatePwd";
 
     // ==================================== 犬只管理执法端 =============================================
 

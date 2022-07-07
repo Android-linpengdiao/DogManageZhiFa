@@ -32,6 +32,7 @@ import com.dog.manage.zhifa.app.databinding.ActivityEnforcementSubmitBinding;
 import com.dog.manage.zhifa.app.media.MediaFile;
 import com.dog.manage.zhifa.app.media.MediaSelectActivity;
 import com.dog.manage.zhifa.app.media.MediaUtils;
+import com.dog.manage.zhifa.app.model.LicenceInfo;
 import com.dog.manage.zhifa.app.model.TypeBean;
 import com.dog.manage.zhifa.app.utils.UploadFileManager;
 import com.dog.manage.zhifa.app.view.GridItemDecoration;
@@ -71,14 +72,12 @@ public class EnforcementSubmitActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         binding = getViewData(R.layout.activity_enforcement_submit);
 
-        dogLicenceNum = getIntent().getStringExtra("dogLicenceNum");
+        licenceInfo = (LicenceInfo) getIntent().getSerializableExtra("licenceInfo");
         String paramsJson = getIntent().getStringExtra("paramsJson");
-        Log.i(TAG, "onCreate: paramsJson = " + paramsJson);
         if (!TextUtils.isEmpty(paramsJson)) {
             Gson gson = new Gson();
             paramsMap = gson.fromJson(paramsJson, new TypeToken<Map<String, Object>>() {
             }.getType());
-            Log.i(TAG, "onCreate: paramsMap = " + paramsMap);
         }
 
         GridItemDecoration.Builder builder = new GridItemDecoration.Builder(this);
@@ -207,7 +206,8 @@ public class EnforcementSubmitActivity extends BaseActivity {
     private String illegalFileUrl = "http://dogmanage.file.obs.cn-north-4.myhuaweicloud.com/IMG_20220601_081815.jpg";
     private int illegalTypeId = 0;
     private String illegalTime = null;
-    private String dogLicenceNum = null;
+    //    private String dogLicenceNum = null;
+    private LicenceInfo licenceInfo;
 
     public void onClickConfirm(View view) {
 
@@ -243,8 +243,10 @@ public class EnforcementSubmitActivity extends BaseActivity {
         paramsMap.put("illegalDescribe", illegalDescribe);
         paramsMap.put("illegalMeasure", illegalMeasure);
         paramsMap.put("illegalTime", illegalTime);
-        if (dogLicenceNum != null)
-            paramsMap.put("dogLicenceNum", dogLicenceNum);
+        if (licenceInfo != null) {
+            paramsMap.put("dogLicenceNum", licenceInfo.getIdNum());
+            paramsMap.put("userId", licenceInfo.getUserId() + "");
+        }
 
         SendRequest.saveIllegal(paramsMap, new GenericsCallback<BaseData>(new JsonGenericsSerializator()) {
 

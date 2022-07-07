@@ -733,7 +733,7 @@
                         android:id="@+id/addressView"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        app:item_arrow_visible="true"
+                        app:item_arrow_visible="false"
                         app:item_container_height="@dimen/viewItemHeight"
                         app:item_container_margin_left="@dimen/viewPadding"
                         app:item_container_margin_right="@dimen/viewPadding"
