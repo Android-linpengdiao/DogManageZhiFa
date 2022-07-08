@@ -3,11 +3,25 @@ package com.base.utils;
 import android.annotation.SuppressLint;
 
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
 public class TimeUtils {
+
+    public static long getTimeExamined(String time) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Date date;
+        try {
+            date = dateFormat.parse(time);
+            long dateTime = date.getTime();
+            return dateTime;
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
 
     public static String getTimeVip(long time) {
         Date date = new Date(time);

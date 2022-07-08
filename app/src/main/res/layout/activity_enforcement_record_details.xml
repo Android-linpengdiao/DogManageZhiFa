@@ -25,9 +25,12 @@
             app:tv_title_size="@dimen/titleViewSize" />
 
         <ScrollView
+            android:id="@+id/container"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:overScrollMode="never">
+            android:overScrollMode="never"
+            android:visibility="gone"
+            tools:visibility="visible">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -394,7 +397,7 @@
                     app:item_container_height="@dimen/viewItemHeight"
                     app:item_container_margin_left="@dimen/dp_14"
                     app:item_container_margin_right="@dimen/dp_14"
-                    app:item_content="处罚措施"
+                    app:item_content=""
                     app:item_content_color="#273154"
                     app:item_content_size="@dimen/sp_14"
                     app:item_divider_visible="true"

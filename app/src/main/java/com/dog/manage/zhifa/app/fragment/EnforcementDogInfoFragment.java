@@ -1,6 +1,7 @@
 package com.dog.manage.zhifa.app.fragment;
 
 import android.app.Activity;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -12,6 +13,7 @@ import androidx.databinding.DataBindingUtil;
 
 import com.base.utils.GlideLoader;
 import com.base.utils.GsonUtils;
+import com.base.utils.TimeUtils;
 import com.base.utils.ToastUtils;
 import com.dog.manage.zhifa.app.R;
 import com.dog.manage.zhifa.app.activity.DogDetailsActivity;
@@ -97,6 +99,14 @@ public class EnforcementDogInfoFragment extends BaseFragment {
             binding.detailedAddressView.setText(licenceBean.getDetailedAddress());
             GlideLoader.LoaderDogCover(getActivity(), "", binding.certificateCoverView, 5);
 
+            //1无效2有效
+            binding.immuneLicenceStatusView.setText(licenceBean.getImmuneLicenceStatus() == 1 ? "免疫证状态:无效" : "免疫证状态:有效");
+            if (licenceBean.getSurplusDate() != null) {
+                long surplusDate = licenceBean.getSurplusDate();
+                binding.licenceStatusView.setText(surplusDate > 0 ? "犬证有效" : ("犬证逾期" + Math.abs(surplusDate) + "天"));
+                binding.licenceStatusView.setTextColor(surplusDate > 0 ? Color.parseColor("#273154") : Color.parseColor("#FF2020"));
+            }
+
             binding.dogOwnerInfoView.binding.itemContent.setText(licenceBean.getOrgName());
             binding.dogDetailsView.binding.itemContent.setText(licenceBean.getDogType());
 
@@ -152,6 +162,7 @@ public class EnforcementDogInfoFragment extends BaseFragment {
                 if (response.isSuccess() && response.getData() != null) {
                     immuneView(response.getData());
                 } else {
+                    immuneView(null);
 //                    ToastUtils.showShort(getActivity(), "获取免疫信息失败");
                 }
 
@@ -161,6 +172,7 @@ public class EnforcementDogInfoFragment extends BaseFragment {
 
     private void immuneView(ImmuneDetail immuneDetail) {
         if (immuneDetail != null) {
+            binding.emptyView.setVisibility(View.GONE);
             binding.immuneContainer.setVisibility(View.VISIBLE);
             binding.immuneIdNumView.setText("免疫证明编号：" + immuneDetail.getIdNum());
             binding.immuneDogNameView.setText(immuneDetail.getDogName());
@@ -177,8 +189,16 @@ public class EnforcementDogInfoFragment extends BaseFragment {
             binding.immuneNumView.setText(immuneDetail.getImmuneNum());
             binding.immuneUserView.setText(immuneDetail.getImmuneUser());
             binding.nextImmuneDataView.setText(immuneDetail.getNextImmuneData());
+
+            if (immuneDetail.getNextImmuneData() != null) {
+                long surplusDate = 365 - (System.currentTimeMillis() - TimeUtils.getTimeExamined(immuneDetail.getNextImmuneData())) / (24 * 60 * 60 * 1000);
+                binding.immuneStatusView.setText(surplusDate > 0 ? "免疫证有效" : ("免疫证逾期" + Math.abs(surplusDate) + "天"));
+                binding.immuneStatusView.setTextColor(surplusDate > 0 ? Color.parseColor("#273154") : Color.parseColor("#FF2020"));
+            }
+
         } else {
-            binding.immuneContainer.setVisibility(View.INVISIBLE);
+            binding.emptyView.setVisibility(View.VISIBLE);
+            binding.immuneContainer.setVisibility(View.GONE);
         }
     }
 

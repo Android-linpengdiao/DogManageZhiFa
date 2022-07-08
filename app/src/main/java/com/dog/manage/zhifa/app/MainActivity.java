@@ -72,7 +72,9 @@ public class MainActivity extends BaseActivity {
 
                 } else if (position == 1) {
                     if (checkUserRank(getApplicationContext(), true)) {
-                        openActivity(EnforcementRecordActivity.class);
+                        Bundle bundle = new Bundle();
+                        bundle.putString("title","历史记录");
+                        openActivity(EnforcementRecordActivity.class,bundle);
                     }
 
                 } else if (position == 2) {

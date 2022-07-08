@@ -68,6 +68,18 @@ public class EnforcementRecordDetailsActivity extends BaseActivity {
                 new GenericsCallback<ResultClient<LicenceInfo>>(new JsonGenericsSerializator()) {
 
                     @Override
+                    public void onBefore(Request request, int id) {
+                        super.onBefore(request, id);
+                        LoadingManager.showLoadingDialog(EnforcementRecordDetailsActivity.this);
+                    }
+
+                    @Override
+                    public void onAfter(int id) {
+                        super.onAfter(id);
+                        LoadingManager.hideLoadingDialog(EnforcementRecordDetailsActivity.this);
+                    }
+
+                    @Override
                     public void onError(Call call, Exception e, int id) {
 
                     }
@@ -86,6 +98,8 @@ public class EnforcementRecordDetailsActivity extends BaseActivity {
     }
 
     private void initView(PunishRecord dataBean) {
+        binding.container.setVisibility(View.VISIBLE);
+
         binding.unitNameView.binding.itemContent.setText(dataBean.getUnitName());
         binding.userNameView.binding.itemContent.setText(dataBean.getUserName());
         binding.illegalTypeView.binding.itemContent.setText(

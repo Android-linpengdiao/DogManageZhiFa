@@ -41,6 +41,10 @@ public class EnforcementRecordActivity extends BaseActivity {
         binding = getViewData(R.layout.activity_enforcement_record);
         addActivity(this);
 
+        if (getIntent().hasExtra("title")){
+            binding.topView.binding.itemTitle.setText(getIntent().getStringExtra("title"));
+        }
+
         binding.recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         binding.recyclerView.setNestedScrollingEnabled(false);
         RecycleViewDivider divider = new RecycleViewDivider(getApplicationContext(),

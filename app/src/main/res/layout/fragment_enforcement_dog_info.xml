@@ -81,13 +81,14 @@
                                     android:background="@drawable/image_8" />
 
                                 <TextView
+                                    android:id="@+id/immuneLicenceStatusView"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_below="@+id/certificateCoverView"
                                     android:layout_alignStart="@+id/certificateCoverView"
                                     android:layout_marginTop="@dimen/dp_8"
                                     android:gravity="center"
-                                    android:text="免疫证状态:有效"
+                                    android:text="免疫证状态:"
                                     android:textColor="#000000"
                                     android:textSize="@dimen/certificateSize" />
 
@@ -309,13 +310,14 @@
                     </LinearLayout>
 
                     <com.dog.manage.zhifa.app.view.TextBoldView
+                        android:id="@+id/licenceStatusView"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:paddingBottom="@dimen/dp_22"
-                        android:text="犬证有效"
                         android:textColor="#ff273154"
-                        android:textSize="@dimen/sp_15" />
+                        android:textSize="@dimen/sp_15"
+                        tools:text="犬证有效" />
 
                     <com.dog.manage.zhifa.app.view.ViewItemLayout
                         android:id="@+id/dogOwnerInfoView"
@@ -848,14 +850,27 @@
                     </androidx.cardview.widget.CardView>
 
                     <com.dog.manage.zhifa.app.view.TextBoldView
+                        android:id="@+id/immuneStatusView"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="@dimen/dp_12"
-                        android:text="免疫证有效"
                         android:textColor="#ff273154"
-                        android:textSize="@dimen/sp_15" />
+                        android:textSize="@dimen/sp_15"
+                        tools:text="免疫证有效" />
 
                 </LinearLayout>
+
+                <TextView
+                    android:id="@+id/emptyView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_160"
+                    android:gravity="center"
+                    android:text="暂无免疫信息"
+                    android:textColor="#999999"
+                    android:textSize="@dimen/sp_14"
+                    android:visibility="gone"
+                    tools:visibility="visible"/>
 
 
             </LinearLayout>
