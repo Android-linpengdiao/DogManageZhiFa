@@ -36,6 +36,10 @@ public class EnforcementRecordDetailsActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         binding = getViewData(R.layout.activity_enforcement_record_details);
 
+        if (getIntent().hasExtra("title")){
+            binding.topView.binding.itemTitle.setText(getIntent().getStringExtra("title"));
+        }
+
         PunishRecord dataBean = (PunishRecord) getIntent().getSerializableExtra("dataBean");
         if (dataBean != null) {
             getIllegalDetails(dataBean);

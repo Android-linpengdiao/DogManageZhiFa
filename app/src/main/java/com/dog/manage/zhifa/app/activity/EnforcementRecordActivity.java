@@ -60,6 +60,9 @@ public class EnforcementRecordActivity extends BaseActivity {
                 PunishRecord dataBean = (PunishRecord) object;
                 Bundle bundle = new Bundle();
                 bundle.putSerializable("dataBean", dataBean);
+                if (getIntent().hasExtra("title")){
+                    bundle.putString("title",getIntent().getStringExtra("title"));
+                }
                 openActivity(EnforcementRecordDetailsActivity.class, bundle);
             }
 
