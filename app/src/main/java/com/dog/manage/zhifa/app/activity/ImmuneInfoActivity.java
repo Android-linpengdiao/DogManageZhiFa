@@ -31,7 +31,7 @@ public class ImmuneInfoActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         binding = getViewData(R.layout.activity_immune_info);
 
-        int immuneId = getIntent().getIntExtra("immuneId",0);
+        int immuneId = getIntent().getIntExtra("immuneId", 0);
         intiImmune(immuneId);
     }
 
@@ -76,6 +76,8 @@ public class ImmuneInfoActivity extends BaseActivity {
         binding.immuneNumView.setText(immuneDetail.getImmuneNum());
         binding.immuneUserView.setText(immuneDetail.getImmuneUser());
         binding.nextImmuneDataView.setText(immuneDetail.getNextImmuneData());
+        binding.streetNameView.setText(immuneDetail.getStreetName());
+        binding.detailedAddressView.setText(immuneDetail.getDetailedAddress());
 
 //        if (immuneDetail.getNextImmuneData() != null) {
 //            long surplusDate = 365 - (System.currentTimeMillis() - TimeUtils.getTimeExamined(immuneDetail.getNextImmuneData())) / (24 * 60 * 60 * 1000);

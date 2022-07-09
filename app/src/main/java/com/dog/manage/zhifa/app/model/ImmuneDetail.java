@@ -56,4 +56,6 @@ public class ImmuneDetail implements Serializable {
     private String immuneNum;
     private String immuneUser;
     private String nextImmuneData;
+    private String detailedAddress;
+    private String streetName;
 }

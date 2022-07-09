@@ -13,6 +13,7 @@ import com.dog.manage.zhifa.app.R;
 import com.dog.manage.zhifa.app.databinding.ActivityImmuneSubmitBinding;
 import com.dog.manage.zhifa.app.model.DogByNoseprint;
 import com.dog.manage.zhifa.app.model.LicenceInfo;
+import com.dog.manage.zhifa.app.model.UpdateImmuneLicenceLog;
 import com.okhttp.ResultClient;
 import com.okhttp.SendRequest;
 import com.okhttp.callbacks.GenericsCallback;
@@ -157,14 +158,13 @@ public class ImmuneSubmitActivity extends BaseActivity {
             return;
         }
 
-
-        paramsMap.put("id", dogByNoseprint.getImmuneStatus() + "");
+        paramsMap.put("id", dogByNoseprint.getImmuneLicenceLogId() + "");
         paramsMap.put("immuneName", immuneName);
         paramsMap.put("immuneBatch", immuneBatch);
         paramsMap.put("immuneFactory", immuneFactory);
         paramsMap.put("immuneNum", immuneNum);
 
-        SendRequest.updateImmuneLicenceLog(paramsMap, new GenericsCallback<ResultClient<Integer>>(new JsonGenericsSerializator()) {
+        SendRequest.updateImmuneLicenceLog(paramsMap, new GenericsCallback<ResultClient<UpdateImmuneLicenceLog>>(new JsonGenericsSerializator()) {
 
             @Override
             public void onBefore(Request request, int id) {
@@ -183,10 +183,10 @@ public class ImmuneSubmitActivity extends BaseActivity {
             }
 
             @Override
-            public void onResponse(ResultClient<Integer> response, int id) {
+            public void onResponse(ResultClient<UpdateImmuneLicenceLog> response, int id) {
                 if (response.isSuccess()) {
                     Bundle bundle = new Bundle();
-                    bundle.putInt("immuneId", !CommonUtil.isBlank(response.getData()) ? response.getData() : 0);
+                    bundle.putInt("immuneId", !CommonUtil.isBlank(response.getData()) ? response.getData().getImmuneLicenceId() : 0);
                     openActivity(ImmuneInfoActivity.class, bundle);
                     ToastUtils.showShort(ImmuneSubmitActivity.this, "提交成功");
                     finish();
