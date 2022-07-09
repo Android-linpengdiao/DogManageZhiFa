@@ -1,0 +1,471 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/app_background"
+        android:orientation="vertical">
+
+        <com.dog.manage.zhifa.app.view.TitleView
+            android:id="@+id/titleView"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_48"
+            android:background="@color/colorAppTheme"
+            app:tv_content=""
+            app:tv_content_size="@dimen/sp_14"
+            app:tv_title="犬只信息"
+            app:tv_title_bold="false"
+            app:tv_title_size="@dimen/titleViewSize" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_0"
+            android:layout_marginTop="@dimen/dp_8"
+            android:layout_weight="1"
+            android:overScrollMode="never">
+
+            <LinearLayout
+                android:id="@+id/dogOwnerContainer"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:orientation="vertical">
+
+                <com.dog.manage.zhifa.app.view.ViewItemLayout
+                    android:id="@+id/dogNameView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:item_container_height="@dimen/dp_50"
+                    app:item_container_margin_left="@dimen/viewPadding"
+                    app:item_container_margin_right="@dimen/viewPadding"
+                    app:item_divider_visible="true"
+                    app:item_content=""
+                    app:item_content_color="@color/colorAppTheme"
+                    app:item_content_size="@dimen/sp_14"
+                    app:item_title="犬只昵称"
+                    app:item_title_bold="true"
+                    app:item_title_size="@dimen/sp_14" />
+
+                <com.dog.manage.zhifa.app.view.ViewItemLayout
+                    android:id="@+id/dogColorView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:item_container_height="@dimen/dp_50"
+                    app:item_container_margin_left="@dimen/viewPadding"
+                    app:item_container_margin_right="@dimen/viewPadding"
+                    app:item_content=""
+                    app:item_content_color="@color/colorAppTheme"
+                    app:item_content_size="@dimen/sp_14"
+                    app:item_divider_visible="true"
+                    app:item_title="犬只毛色"
+                    app:item_title_bold="true"
+                    app:item_title_size="@dimen/sp_14" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_50"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingLeft="@dimen/viewPadding"
+                    android:paddingRight="@dimen/viewPadding">
+
+                    <com.dog.manage.zhifa.app.view.TextBoldView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:singleLine="true"
+                        android:text="犬只性别"
+                        android:textColor="#333333"
+                        android:textSize="@dimen/sp_14" />
+
+                    <RadioGroup
+                        android:id="@+id/radioGroupSex"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <RadioButton
+                            android:id="@+id/radioButtonMale"
+                            android:layout_width="@dimen/dp_84"
+                            android:layout_height="@dimen/dp_32"
+                            android:background="@drawable/radio_bg"
+                            android:button="@null"
+                            android:checked="false"
+                            android:gravity="center"
+                            android:text="雄性"
+                            android:textColor="@drawable/text_color"
+                            android:textSize="@dimen/sp_14" />
+
+                        <RadioButton
+                            android:id="@+id/radioButtonFemale"
+                            android:layout_width="@dimen/dp_84"
+                            android:layout_height="@dimen/dp_32"
+                            android:layout_marginLeft="@dimen/dp_10"
+                            android:background="@drawable/radio_bg"
+                            android:button="@null"
+                            android:checked="true"
+                            android:gravity="center"
+                            android:text="雌性"
+                            android:textColor="@drawable/text_color"
+                            android:textSize="@dimen/sp_14" />
+
+
+                    </RadioGroup>
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dividerHeight"
+                    android:background="@color/colorDivider" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_50"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingLeft="@dimen/viewPadding"
+                    android:paddingRight="@dimen/viewPadding">
+
+                    <com.dog.manage.zhifa.app.view.TextBoldView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:singleLine="true"
+                        android:text="是否绝育"
+                        android:textColor="#333333"
+                        android:textSize="@dimen/sp_14" />
+
+                    <RadioGroup
+                        android:id="@+id/radioGroupSterilization"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <RadioButton
+                            android:id="@+id/radioButtonSterilization1"
+                            android:layout_width="@dimen/dp_84"
+                            android:layout_height="@dimen/dp_32"
+                            android:background="@drawable/radio_bg"
+                            android:button="@null"
+                            android:checked="false"
+                            android:gravity="center"
+                            android:text="已绝育"
+                            android:textColor="@drawable/text_color"
+                            android:textSize="@dimen/sp_14" />
+
+                        <RadioButton
+                            android:id="@+id/radioButtonSterilization0"
+                            android:layout_width="@dimen/dp_84"
+                            android:layout_height="@dimen/dp_32"
+                            android:layout_marginLeft="@dimen/dp_10"
+                            android:background="@drawable/radio_bg"
+                            android:button="@null"
+                            android:checked="true"
+                            android:gravity="center"
+                            android:text="未绝育"
+                            android:textColor="@drawable/text_color"
+                            android:textSize="@dimen/sp_14" />
+
+                    </RadioGroup>
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="@dimen/dp_7"
+                    android:layout_marginBottom="@dimen/dp_12"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="@dimen/viewPadding"
+                    android:paddingRight="@dimen/viewPadding"
+                    android:text="温馨提示：已绝育犬只，办理犬证费用减半。"
+                    android:textColor="@color/red"
+                    android:textSize="@dimen/sp_14" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dividerHeight"
+                    android:background="@color/colorDivider" />
+
+                <LinearLayout
+                    android:id="@+id/sterilizationProveContainer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="vertical"
+                    android:paddingLeft="@dimen/viewPadding"
+                    android:paddingRight="@dimen/viewPadding">
+
+                    <com.dog.manage.zhifa.app.view.TextBoldView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dp_20"
+                        android:layout_marginBottom="@dimen/dp_17"
+                        android:text="犬只绝育证明"
+                        android:textColor="#333333"
+                        android:textSize="@dimen/sp_14" />
+
+                    <RelativeLayout
+                        android:layout_width="@dimen/dp_168"
+                        android:layout_height="@dimen/dp_108"
+                        android:layout_marginBottom="@dimen/dp_22"
+                        android:background="@drawable/upload_bg">
+
+                        <ImageView
+                            android:layout_width="@dimen/dp_36"
+                            android:layout_height="@dimen/dp_28"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="@dimen/dp_30"
+                            android:background="@drawable/camera"/>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/dp_68"
+                            android:gravity="center"
+                            android:text="上传绝育证明"
+                            android:textColor="#4669ED"
+                            android:textSize="@dimen/sp_14"
+                            android:textStyle="normal" />
+
+                        <ImageView
+                            android:id="@+id/sterilizationProveView"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"/>
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dividerHeight"
+                    android:background="@color/colorDivider" />
+
+                <com.dog.manage.zhifa.app.view.ViewItemLayout
+                    android:id="@+id/dogAgeView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:item_container_height="@dimen/dp_50"
+                    app:item_container_margin_left="@dimen/viewPadding"
+                    app:item_container_margin_right="@dimen/viewPadding"
+                    app:item_content=""
+                    app:item_content_color="@color/colorAppTheme"
+                    app:item_content_size="@dimen/sp_14"
+                    app:item_divider_visible="true"
+                    app:item_title_bold="true"
+                    app:item_title="犬只年龄"
+                    app:item_title_size="@dimen/sp_14" />
+
+                <com.dog.manage.zhifa.app.view.TextBoldView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:layout_marginTop="@dimen/dp_20"
+                    android:paddingLeft="@dimen/viewPadding"
+                    android:paddingRight="@dimen/viewPadding"
+                    android:singleLine="true"
+                    android:text="犬只免疫证"
+                    android:textColor="#333333"
+                    android:textSize="@dimen/sp_14" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="@dimen/dp_20"
+                    android:layout_marginBottom="@dimen/dp_23"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="@dimen/viewPadding"
+                    android:paddingRight="@dimen/viewPadding"
+                    android:text="该犬只暂未办理免疫证，请在办完犬证后，依据电子犬证去动物医院或防疫站接种，完成免疫证办理。"
+                    android:textColor="@color/red"
+                    android:textSize="@dimen/sp_14" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dividerHeight"
+                    android:background="@color/colorDivider" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="vertical"
+                    android:paddingLeft="@dimen/dp_16"
+                    android:paddingRight="@dimen/dp_16">
+
+                    <com.dog.manage.zhifa.app.view.TextBoldView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dp_20"
+                        android:layout_marginBottom="@dimen/dp_17"
+                        android:text="犬只照片"
+                        android:textColor="#333333"
+                        android:textSize="@dimen/sp_14"
+                        android:textStyle="normal" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/dp_20"
+                        android:orientation="horizontal">
+
+                        <RelativeLayout
+                            android:layout_width="@dimen/dp_0"
+                            android:layout_height="@dimen/dp_108"
+                            android:layout_marginRight="@dimen/dp_5"
+                            android:layout_weight="1"
+                            android:background="@drawable/upload_bg">
+
+                            <ImageView
+                                android:layout_width="@dimen/dp_36"
+                                android:layout_height="@dimen/dp_28"
+                                android:layout_centerHorizontal="true"
+                                android:layout_marginTop="@dimen/dp_30"
+                                android:background="@drawable/camera"/>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/dp_68"
+                                android:gravity="center"
+                                android:text="上传左侧面照片"
+                                android:textColor="#4669ED"
+                                android:textSize="@dimen/sp_14"
+                                android:textStyle="normal" />
+
+                            <ImageView
+                                android:id="@+id/leftFaceView"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"/>
+
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:layout_width="@dimen/dp_0"
+                            android:layout_height="@dimen/dp_108"
+                            android:layout_marginLeft="@dimen/dp_5"
+                            android:layout_marginRight="@dimen/dp_5"
+                            android:layout_weight="1"
+                            android:background="@drawable/upload_bg">
+
+                            <ImageView
+                                android:layout_width="@dimen/dp_36"
+                                android:layout_height="@dimen/dp_28"
+                                android:layout_centerHorizontal="true"
+                                android:layout_marginTop="@dimen/dp_30"
+                                android:background="@drawable/camera"/>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/dp_68"
+                                android:gravity="center"
+                                android:text="上传正面照片"
+                                android:textColor="#4669ED"
+                                android:textSize="@dimen/sp_14"
+                                android:textStyle="normal" />
+
+                            <ImageView
+                                android:id="@+id/centerFaceView"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"/>
+
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:layout_width="@dimen/dp_0"
+                            android:layout_height="@dimen/dp_108"
+                            android:layout_marginLeft="@dimen/dp_5"
+                            android:layout_weight="1"
+                            android:background="@drawable/upload_bg">
+
+                            <ImageView
+                                android:layout_width="@dimen/dp_36"
+                                android:layout_height="@dimen/dp_28"
+                                android:layout_centerHorizontal="true"
+                                android:layout_marginTop="@dimen/dp_30"
+                                android:background="@drawable/camera"/>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/dp_68"
+                                android:gravity="center"
+                                android:text="上右侧面照片"
+                                android:textColor="#4669ED"
+                                android:textSize="@dimen/sp_14"
+                                android:textStyle="normal" />
+
+                            <ImageView
+                                android:id="@+id/rightFaceView"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"/>
+
+                        </RelativeLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dividerHeight"
+                    android:background="@color/colorDivider" />
+
+                <com.dog.manage.zhifa.app.view.ViewItemLayout
+                    android:id="@+id/petTypeView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="@dimen/viewPadding"
+                    android:paddingRight="@dimen/viewPadding"
+                    app:item_container_height="@dimen/dp_50"
+                    app:item_content=""
+                    app:item_content_color="#333333"
+                    app:item_content_size="@dimen/sp_14"
+                    app:item_title="犬只品种"
+                    app:item_title_bold="true"
+                    app:item_title_size="@dimen/sp_14" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dividerHeight"
+                    android:background="@color/colorDivider" />
+
+                <com.dog.manage.zhifa.app.view.ViewItemLayout
+                    android:id="@+id/createPetArchivesView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="@dimen/viewPadding"
+                    android:paddingRight="@dimen/viewPadding"
+                    app:item_container_height="@dimen/dp_50"
+                    app:item_content=""
+                    app:item_content_color="#333333"
+                    app:item_content_size="@dimen/sp_14"
+                    app:item_title="鼻纹信息"
+                    app:item_title_bold="true"
+                    app:item_title_size="@dimen/sp_14" />
+
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dividerHeight"
+                    android:background="@color/colorDivider" />
+
+            </LinearLayout>
+
+        </ScrollView>
+
+    </LinearLayout>
+</layout>

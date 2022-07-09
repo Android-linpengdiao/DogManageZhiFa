@@ -31,7 +31,7 @@ public class ImmuneInfoActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         binding = getViewData(R.layout.activity_immune_info);
 
-        int immuneId = getIntent().getIntExtra("immuneLicenceLogId",0);
+        int immuneId = getIntent().getIntExtra("immuneId",0);
         intiImmune(immuneId);
     }
 

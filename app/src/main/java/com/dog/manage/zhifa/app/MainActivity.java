@@ -1,10 +1,12 @@
 package com.dog.manage.zhifa.app;
 
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 
 import androidx.recyclerview.widget.GridLayoutManager;
 
+import com.base.utils.ToastUtils;
 import com.base.view.OnClickListener;
 import com.dog.manage.zhifa.app.activity.AdvertiseActivity;
 import com.dog.manage.zhifa.app.activity.BaseActivity;
@@ -244,5 +246,22 @@ public class MainActivity extends BaseActivity {
 //            openActivity(UserHomeActivity.class);
         }
 
+    }
+
+    private long lastTime = 0;
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            if (System.currentTimeMillis() - lastTime >= 3000) {
+                lastTime = System.currentTimeMillis();
+                ToastUtils.showShort(MainActivity.this, "再按一次退出应用");
+                return true;
+            }
+//            Intent home = new Intent(Intent.ACTION_MAIN);
+//            home.addCategory(Intent.CATEGORY_HOME);
+//            startActivity(home);
+        }
+        return super.onKeyDown(keyCode, event);
     }
 }

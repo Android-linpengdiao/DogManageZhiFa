@@ -54,8 +54,8 @@ public class ImmuneSubmitActivity extends BaseActivity {
                     return;
                 }
                 Bundle bundle = new Bundle();
-                bundle.putInt("dogId", dogByNoseprint.getDogUserId());
-                openActivity(DogDetailsActivity.class, bundle);
+                bundle.putInt("dogId", dogByNoseprint.getDogId());
+                openActivity(DogInfoActivity.class, bundle);
             }
         });
 
@@ -164,7 +164,7 @@ public class ImmuneSubmitActivity extends BaseActivity {
         paramsMap.put("immuneFactory", immuneFactory);
         paramsMap.put("immuneNum", immuneNum);
 
-        SendRequest.updateImmuneLicenceLog(paramsMap, new GenericsCallback<BaseData>(new JsonGenericsSerializator()) {
+        SendRequest.updateImmuneLicenceLog(paramsMap, new GenericsCallback<ResultClient<Integer>>(new JsonGenericsSerializator()) {
 
             @Override
             public void onBefore(Request request, int id) {
@@ -183,10 +183,10 @@ public class ImmuneSubmitActivity extends BaseActivity {
             }
 
             @Override
-            public void onResponse(BaseData response, int id) {
+            public void onResponse(ResultClient<Integer> response, int id) {
                 if (response.isSuccess()) {
                     Bundle bundle = new Bundle();
-                    bundle.putInt("immuneLicenceLogId", dogByNoseprint.getImmuneLicenceLogId());
+                    bundle.putInt("immuneId", !CommonUtil.isBlank(response.getData()) ? response.getData() : 0);
                     openActivity(ImmuneInfoActivity.class, bundle);
                     ToastUtils.showShort(ImmuneSubmitActivity.this, "提交成功");
                     finish();
