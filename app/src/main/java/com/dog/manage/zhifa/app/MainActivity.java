@@ -10,6 +10,7 @@ import com.dog.manage.zhifa.app.activity.AdvertiseActivity;
 import com.dog.manage.zhifa.app.activity.BaseActivity;
 import com.dog.manage.zhifa.app.activity.EnforcementActivity;
 import com.dog.manage.zhifa.app.activity.EnforcementRecordActivity;
+import com.dog.manage.zhifa.app.activity.ImmuneSubmitActivity;
 import com.dog.manage.zhifa.app.activity.LoginActivity;
 import com.dog.manage.zhifa.app.activity.MessageActivity;
 import com.dog.manage.zhifa.app.activity.SettingsActivity;
@@ -60,21 +61,39 @@ public class MainActivity extends BaseActivity {
         binding.frameItemRecyclerView.setNestedScrollingEnabled(false);
         FrameItemAdapter frameItemAdapter = new FrameItemAdapter(getApplicationContext());
         binding.frameItemRecyclerView.setAdapter(frameItemAdapter);
-        frameItemAdapter.refreshData(Arrays.asList("执法记录", "历史记录", "通知公告", "个人中心", "设置"));
+        if (getUserInfo().getSysType() == 1) {
+            frameItemAdapter.refreshData(Arrays.asList("执法记录", "历史记录", "通知公告", "个人中心", "设置"));
+        } else if (getUserInfo().getSysType() == 2) {
+            frameItemAdapter.refreshData(Arrays.asList("疫苗注射", "设置"));
+        }
         frameItemAdapter.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view, Object object) {
                 int position = (int) object;
                 if (position == 0) {
                     if (checkUserRank(getApplicationContext(), true)) {
-                        openActivity(EnforcementActivity.class);
+                        if (getUserInfo().getSysType() == 1) {
+                            openActivity(EnforcementActivity.class);
+
+                        } else if (getUserInfo().getSysType() == 2) {
+                            Bundle bundle = new Bundle();
+                            bundle.putString("noseprint", "8c3c9249-f4e2-11ec-25xGihUUR");
+                            openActivity(ImmuneSubmitActivity.class, bundle);
+
+                        }
                     }
 
                 } else if (position == 1) {
                     if (checkUserRank(getApplicationContext(), true)) {
-                        Bundle bundle = new Bundle();
-                        bundle.putString("title","历史记录");
-                        openActivity(EnforcementRecordActivity.class,bundle);
+                        if (getUserInfo().getSysType() == 1) {
+                            Bundle bundle = new Bundle();
+                            bundle.putString("title", "历史记录");
+                            openActivity(EnforcementRecordActivity.class, bundle);
+
+                        } else if (getUserInfo().getSysType() == 2) {
+                            openActivity(SettingsActivity.class);
+
+                        }
                     }
 
                 } else if (position == 2) {
@@ -171,8 +190,8 @@ public class MainActivity extends BaseActivity {
                         @Override
                         public void OnBannerClick(int position) {
                             Bundle bundle = new Bundle();
-                            bundle.putSerializable("policiesBean",response.getData());
-                            openActivity(AdvertiseActivity.class,bundle);
+                            bundle.putSerializable("policiesBean", response.getData());
+                            openActivity(AdvertiseActivity.class, bundle);
                         }
                     });
                     List<String> imageList = new ArrayList<>();
@@ -192,7 +211,7 @@ public class MainActivity extends BaseActivity {
     }
 
     public void noticeList() {
-        SendRequest.noticeList(0, 10,
+        SendRequest.noticeList(1, 10,
                 new GenericsCallback<Pager<PoliciesBean>>(new JsonGenericsSerializator()) {
 
                     @Override

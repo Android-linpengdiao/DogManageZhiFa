@@ -8,6 +8,8 @@ public class UserInfo implements Serializable {
     private String Authorization = "";
     private String accessToken;
     private String loginPhone;
+    private String loginUser;
+    private Integer sysType = 1;//终端类型 1 执法 2 医院
 
     private String unitName;
     private String userName;
@@ -45,6 +47,22 @@ public class UserInfo implements Serializable {
 
     public void setLoginPhone(String loginPhone) {
         this.loginPhone = loginPhone;
+    }
+
+    public String getLoginUser() {
+        return loginUser;
+    }
+
+    public void setLoginUser(String loginUser) {
+        this.loginUser = loginUser;
+    }
+
+    public Integer getSysType() {
+        return sysType;
+    }
+
+    public void setSysType(Integer sysType) {
+        this.sysType = sysType;
     }
 
     public String getUnitName() {

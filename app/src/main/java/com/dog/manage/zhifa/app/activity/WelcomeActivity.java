@@ -9,6 +9,7 @@ import android.os.Handler;
 import android.view.View;
 
 import com.base.manager.DialogManager;
+import com.base.utils.CommonUtil;
 import com.dog.manage.zhifa.app.MainActivity;
 import com.dog.manage.zhifa.app.R;
 import com.dog.manage.zhifa.app.databinding.ActivityWelcomeBinding;
@@ -71,36 +72,19 @@ public class WelcomeActivity extends BaseActivity {
     }
 
     private void init() {
-
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                openActivity(MainActivity.class);
-                finish();
+                if (checkUserRank(WelcomeActivity.this)) {
+                    openActivity(MainActivity.class);
+                    finish();
+                } else {
+                    openActivity(LoginActivity.class);
+                    finish();
+                }
             }
         }, 1000);
 
-//        if (CommonUtil.isBlank(getUserInfo()) || CommonUtil.isBlank(getUserInfo().getAuthorization())) {
-//            SendRequest.getVisitor(new GenericsCallback<ResultClient<UserInfo>>(new JsonGenericsSerializator()) {
-//                @Override
-//                public void onError(Call call, Exception e, int id) {
-//
-//                }
-//
-//                @Override
-//                public void onResponse(ResultClient<UserInfo> response, int id) {
-//                    if (response.isSuccess() && response.getData() != null) {
-//                        BaseApplication.getInstance().setUserInfo(response.getData());
-//                        openActivity(MainActivity.class);
-//                        finish();
-//                    } else {
-//                        ToastUtils.showShort(WelcomeActivity.this, response.getMessage());
-//                    }
-//                }
-//            });
-//        } else {
-//            openActivity(MainActivity.class);
-//            finish();
-//        }
+
     }
 }

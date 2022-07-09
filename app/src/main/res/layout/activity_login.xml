@@ -54,7 +54,7 @@
             android:minHeight="@dimen/dp_56"
             android:paddingLeft="@dimen/dp_27"
             android:paddingRight="@dimen/dp_27"
-            android:text="aaaaa"
+            android:text="bbbb"
             android:textColor="#000000"
             android:textColorHint="#999999"
             android:textSize="@dimen/sp_15" />
@@ -73,7 +73,7 @@
             android:minHeight="@dimen/dp_56"
             android:paddingLeft="@dimen/dp_27"
             android:paddingRight="@dimen/dp_27"
-            android:text="admin123"
+            android:text="123456"
             android:textColor="#000000"
             android:textColorHint="#999999"
             android:textSize="@dimen/sp_15" />

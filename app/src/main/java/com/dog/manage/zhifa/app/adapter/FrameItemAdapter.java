@@ -9,6 +9,8 @@ import com.base.view.OnClickListener;
 import com.dog.manage.zhifa.app.R;
 import com.dog.manage.zhifa.app.databinding.ItemFrameBinding;
 
+import java.util.Arrays;
+
 public class FrameItemAdapter extends BaseRecyclerAdapter<String, ItemFrameBinding> {
 
     private OnClickListener onClickListener;
@@ -29,13 +31,20 @@ public class FrameItemAdapter extends BaseRecyclerAdapter<String, ItemFrameBindi
     @Override
     protected void onBindItem(ItemFrameBinding binding, String dataBean, int position) {
 
-        GlideLoader.LoderDrawable(mContext,
-                position == 0 ? R.drawable.icon01 :
-                        position == 1 ? R.drawable.icon02 :
-                                position == 2 ? R.drawable.icon03 :
-                                        position == 3 ? R.drawable.icon04 :
-                                                position == 4 ? R.drawable.icon05 :
-                                                        R.drawable.icon05, binding.iconView);
+        if (getUserInfo().getSysType() == 1) {
+            GlideLoader.LoderDrawable(mContext,
+                    position == 0 ? R.drawable.icon01 :
+                            position == 1 ? R.drawable.icon02 :
+                                    position == 2 ? R.drawable.icon03 :
+                                            position == 3 ? R.drawable.icon04 :
+                                                    position == 4 ? R.drawable.icon05 :
+                                                            R.drawable.icon05, binding.iconView);
+        } else if (getUserInfo().getSysType() == 2) {
+            GlideLoader.LoderDrawable(mContext,
+                    position == 0 ? R.drawable.icon00 : R.drawable.icon05, binding.iconView);
+
+        }
+
         binding.titleView.setText(dataBean);
         binding.getRoot().setOnClickListener(new View.OnClickListener() {
             @Override

@@ -10,8 +10,10 @@ import android.view.View;
 
 import com.base.BaseApplication;
 import com.base.UserInfo;
+import com.base.manager.LoadingManager;
 import com.base.utils.CommonUtil;
 import com.base.utils.ToastUtils;
+import com.dog.manage.zhifa.app.MainActivity;
 import com.dog.manage.zhifa.app.MyClickableSpan;
 import com.dog.manage.zhifa.app.R;
 import com.dog.manage.zhifa.app.databinding.ActivityLoginBinding;
@@ -21,6 +23,7 @@ import com.okhttp.callbacks.GenericsCallback;
 import com.okhttp.sample_okhttp.JsonGenericsSerializator;
 
 import okhttp3.Call;
+import okhttp3.Request;
 
 public class LoginActivity extends BaseActivity {
 
@@ -88,8 +91,21 @@ public class LoginActivity extends BaseActivity {
             ToastUtils.showShort(getApplicationContext(), "请同意服务条款");
             return;
         }
-        SendRequest.userLogin(phone, password, 1,
+        SendRequest.userLogin(phone, password,
                 new GenericsCallback<ResultClient<UserInfo>>(new JsonGenericsSerializator()) {
+
+                    @Override
+                    public void onBefore(Request request, int id) {
+                        super.onBefore(request, id);
+                        LoadingManager.showLoadingDialog(LoginActivity.this);
+                    }
+
+                    @Override
+                    public void onAfter(int id) {
+                        super.onAfter(id);
+                        LoadingManager.hideLoadingDialog(LoginActivity.this);
+                    }
+
                     @Override
                     public void onError(Call call, Exception e, int id) {
 
@@ -100,6 +116,7 @@ public class LoginActivity extends BaseActivity {
                         if (response.isSuccess()) {
                             if (response.getData() != null) {
                                 BaseApplication.getInstance().setUserInfo(response.getData());
+                                openActivity(MainActivity.class);
                                 finishActivity(LoginActivity.class);
                                 finish();
                             } else {

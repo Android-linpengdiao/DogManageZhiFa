@@ -52,7 +52,8 @@ public class SettingsActivity extends BaseActivity {
             @Override
             public void onItemRight() {
                 MsgCache.get(SettingsActivity.this).remove(Constants.USER_INFO);
-                openActivity(MainActivity.class);
+                openActivity(LoginActivity.class);
+                finishActivity(MainActivity.class);
                 finish();
 
             }

@@ -65,7 +65,6 @@ public class EnforcementDogInfoActivity extends BaseActivity implements Enforcem
     private LicenceInfo licenceInfo;
 
     private List<Dog> dogList = new ArrayList<>();
-    private Dog dogDetail;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -99,7 +98,7 @@ public class EnforcementDogInfoActivity extends BaseActivity implements Enforcem
                         new OnClickListener() {
                             @Override
                             public void onClick(View view, Object object) {
-                                dogDetail = (Dog) object;
+                                Dog dogDetail = (Dog) object;
                                 binding.dogCertificateView.binding.itemContent.setText(dogDetail.getDogType());
                                 getLicenceInfo(dogDetail.getNoseprint());
                             }
@@ -401,7 +400,7 @@ public class EnforcementDogInfoActivity extends BaseActivity implements Enforcem
                             if (response.getData() != null) {
                                 dogList = response.getData();
                                 if (response.getData().size() > 0) {
-                                    dogDetail = response.getData().get(0);
+                                    Dog dogDetail = response.getData().get(0);
                                     binding.dogCertificateView.binding.itemContent.setText(dogDetail.getDogType());
                                     getLicenceInfo(dogDetail.getNoseprint());
                                 }

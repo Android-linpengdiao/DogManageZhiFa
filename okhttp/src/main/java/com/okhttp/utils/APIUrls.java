@@ -19,6 +19,16 @@ public class APIUrls {
     public final static String getLawUser = URL_DOMAIN + "/user/law/getLawUser";
     public final static String updatePwd = URL_DOMAIN + "/user/updatePwd";
 
+
+    // ==================================== 犬只管理医院端 =============================================
+
+
+    //医院端-根据鼻纹获取犬只信息
+    public final static String getDogByNoseprint = URL_DOMAIN + "/hospital/dog/getDogByNoseprint";
+    //医院端-保存疫苗信息
+    public final static String updateImmuneLicenceLog = URL_DOMAIN + "/hospital/dog/updateImmuneLicenceLog";
+
+
     // ==================================== 犬只管理执法端 =============================================
 
 

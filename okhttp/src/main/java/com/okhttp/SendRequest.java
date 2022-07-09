@@ -21,13 +21,11 @@ public class SendRequest {
      *
      * @param username 用户名
      * @param password 密码
-     * @param sysType  终端类型 1 执法 2 医院
      */
-    public static void userLogin(String username, String password, int sysType, Callback call) {
+    public static void userLogin(String username, String password, Callback call) {
         Map<String, String> map = new HashMap<>();
         map.put("username", username);
         map.put("password", password);
-        map.put("sysType", String.valueOf(sysType));
         OkHttpUtils.post().params(map).url(APIUrls.userLogin).build().execute(call);
 
     }
@@ -39,7 +37,7 @@ public class SendRequest {
 
     }
 
-    public static void updatePwd(String oldPassword,String newPassword,Callback call) {
+    public static void updatePwd(String oldPassword, String newPassword, Callback call) {
         Map<String, String> headers = new HashMap<>();
         headers.put("Authorization", BaseApplication.getInstance().getUserInfo().getAuthorization());
 
@@ -52,6 +50,7 @@ public class SendRequest {
 
     /**
      * 执法端-根据用户身份获取犬只信息
+     *
      * @param orgName
      * @param userPhone
      * @param idNum
@@ -691,6 +690,38 @@ public class SendRequest {
 
     }
 
+
+    // ==================================== 医院端 =============================================
+
+    /**
+     * 医院端-根据鼻纹获取犬只信息
+     *
+     * @param noseprint 鼻纹信息
+     * @param call
+     */
+    public static void getDogByNoseprint(String noseprint, Callback call) {
+        Map<String, String> headers = new HashMap<>();
+        headers.put("Authorization", BaseApplication.getInstance().getUserInfo().getAuthorization());
+
+        Map<String, String> map = new HashMap<>();
+        if (!CommonUtil.isBlank(noseprint))
+            map.put("noseprint", noseprint);
+        OkHttpUtils.post().headers(headers).params(map).url(APIUrls.getDogByNoseprint).build().execute(call);
+
+    }
+
+    /**
+     * 医院端-保存疫苗信息
+     *
+     * @param map
+     * @param call
+     */
+    public static void updateImmuneLicenceLog(Map<String, String> map, Callback call) {
+        Map<String, String> headers = new HashMap<>();
+        headers.put("Authorization", BaseApplication.getInstance().getUserInfo().getAuthorization());
+        OkHttpUtils.post().headers(headers).params(map).url(APIUrls.updateImmuneLicenceLog).build().execute(call);
+
+    }
 
     // ==================================== 练琴帮 =============================================
 
