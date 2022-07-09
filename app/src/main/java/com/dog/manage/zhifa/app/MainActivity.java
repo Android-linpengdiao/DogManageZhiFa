@@ -79,7 +79,9 @@ public class MainActivity extends BaseActivity {
 
                         } else if (getUserInfo().getSysType() == 2) {
                             Bundle bundle = new Bundle();
-                            bundle.putString("noseprint", "8c3c9249-f4e2-11ec-25xGihUUR");
+//                            bundle.putString("noseprint", "8c3c9249-f4e2-11ec-25xGihUUR");
+//                            bundle.putString("noseprint", "23325059-b2c1-11eb-1Vu7hqwN635");
+                            bundle.putString("noseprint", "23325059-b2c1-11eb-1Vu7hqwN6M6");
                             openActivity(ImmuneSubmitActivity.class, bundle);
 
                         }

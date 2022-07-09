@@ -190,6 +190,9 @@ public class EnforcementDogInfoFragment extends BaseFragment {
             binding.immuneUserView.setText(immuneDetail.getImmuneUser());
             binding.nextImmuneDataView.setText(immuneDetail.getNextImmuneData());
 
+            binding.streetNameView.setText(immuneDetail.getStreetName());
+            binding.immuneDetailedAddressView.setText(immuneDetail.getDetailedAddress());
+
             if (immuneDetail.getNextImmuneData() != null) {
                 long surplusDate = 365 - (System.currentTimeMillis() - TimeUtils.getTimeExamined(immuneDetail.getNextImmuneData())) / (24 * 60 * 60 * 1000);
                 binding.immuneStatusView.setText(surplusDate > 0 ? "免疫证有效" : ("免疫证逾期" + Math.abs(surplusDate) + "天"));
