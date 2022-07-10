@@ -6,6 +6,7 @@ import android.view.View;
 
 import com.base.BaseApplication;
 import com.base.UserInfo;
+import com.base.utils.CommonUtil;
 import com.base.utils.ToastUtils;
 import com.dog.manage.zhifa.app.R;
 import com.dog.manage.zhifa.app.databinding.ActivityUserHomeBinding;
@@ -23,6 +24,13 @@ public class UserHomeActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = getViewData(R.layout.activity_user_home);
+
+        if (!CommonUtil.isBlank(getUserInfo().getPhone()) && getUserInfo().getPhone().length() >= 11) {
+            String phone = getUserInfo().getPhone();
+            binding.userNameView.setText(phone.substring(0, 3) + "****" + phone.substring(7));
+        } else {
+            binding.userNameView.setText(getUserInfo().getLoginPhone());
+        }
 
         SendRequest.getLawUser(new GenericsCallback<ResultClient<UserInfo>>(new JsonGenericsSerializator()) {
             @Override

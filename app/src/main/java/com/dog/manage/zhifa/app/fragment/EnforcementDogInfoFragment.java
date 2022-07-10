@@ -17,15 +17,19 @@ import com.base.utils.TimeUtils;
 import com.base.utils.ToastUtils;
 import com.dog.manage.zhifa.app.R;
 import com.dog.manage.zhifa.app.activity.DogDetailsActivity;
+import com.dog.manage.zhifa.app.activity.DogInfoActivity;
 import com.dog.manage.zhifa.app.activity.DogUserActivity;
 import com.dog.manage.zhifa.app.databinding.FragmentEnforcementDogInfoBinding;
 import com.dog.manage.zhifa.app.model.ImmuneDetail;
 import com.dog.manage.zhifa.app.model.LicenceInfo;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.okhttp.ResultClient;
 import com.okhttp.SendRequest;
 import com.okhttp.callbacks.GenericsCallback;
 import com.okhttp.sample_okhttp.JsonGenericsSerializator;
 
+import java.util.List;
 import java.util.Map;
 
 import okhttp3.Call;
@@ -97,7 +101,15 @@ public class EnforcementDogInfoFragment extends BaseFragment {
             binding.orgNameView.setText(licenceBean.getOrgName());
             binding.awardTimeView.setText(licenceBean.getAwardTime());
             binding.detailedAddressView.setText(licenceBean.getDetailedAddress());
-            GlideLoader.LoaderDogCover(getActivity(), "", binding.certificateCoverView, 5);
+//            GlideLoader.LoaderDogCover(getActivity(), "", binding.certificateCoverView, 5);
+            try {
+                List<String> dogPhotos = new Gson().fromJson(licenceBean.getDogPhoto(), new TypeToken<List<String>>() {
+                }.getType());
+                if (dogPhotos != null && dogPhotos.size() > 0)
+                    GlideLoader.LoderImage(getActivity(), dogPhotos.get(0), binding.certificateCoverView,5);
+            } catch (Exception e) {
+                e.getMessage();
+            }
 
             //1无效2有效
             binding.immuneLicenceStatusView.setText(licenceBean.getImmuneLicenceStatus() == 1 ? "免疫证状态:无效" : "免疫证状态:有效");
@@ -130,7 +142,7 @@ public class EnforcementDogInfoFragment extends BaseFragment {
                     }
                     Bundle bundle = new Bundle();
                     bundle.putInt("dogId", licenceBean.getDogId());
-                    openActivity(DogDetailsActivity.class, bundle);
+                    openActivity(DogInfoActivity.class, bundle);
                 }
             });
 
@@ -192,6 +204,15 @@ public class EnforcementDogInfoFragment extends BaseFragment {
 
             binding.streetNameView.setText(immuneDetail.getStreetName());
             binding.immuneDetailedAddressView.setText(immuneDetail.getDetailedAddress());
+
+            try {
+                List<String> dogPhotos = new Gson().fromJson(immuneDetail.getDogPhoto(), new TypeToken<List<String>>() {
+                }.getType());
+                if (dogPhotos != null && dogPhotos.size() > 0)
+                    GlideLoader.LoderImage(getActivity(), dogPhotos.get(0), binding.immuneCoverView,5);
+            } catch (Exception e) {
+                e.getMessage();
+            }
 
             if (immuneDetail.getNextImmuneData() != null) {
                 long surplusDate = 365 - (System.currentTimeMillis() - TimeUtils.getTimeExamined(immuneDetail.getNextImmuneData())) / (24 * 60 * 60 * 1000);

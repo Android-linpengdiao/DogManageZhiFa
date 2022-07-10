@@ -66,6 +66,7 @@ public class LicenceInfo implements Serializable {
     private Integer immuneLicenceId = 0;
     private Integer immuneLicenceStatus = 0;//1无效2有效
     private String detailedAddress;
+    private String dogPhoto;
 
 
 }

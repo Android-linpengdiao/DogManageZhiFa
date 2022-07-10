@@ -7,16 +7,21 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.base.manager.LoadingManager;
+import com.base.utils.GlideLoader;
 import com.base.utils.TimeUtils;
 import com.base.utils.ToastUtils;
 import com.dog.manage.zhifa.app.R;
 import com.dog.manage.zhifa.app.databinding.ActivityImmuneInfoBinding;
 import com.dog.manage.zhifa.app.model.ImmuneDetail;
 import com.dog.manage.zhifa.app.model.LicenceInfo;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.okhttp.ResultClient;
 import com.okhttp.SendRequest;
 import com.okhttp.callbacks.GenericsCallback;
 import com.okhttp.sample_okhttp.JsonGenericsSerializator;
+
+import java.util.List;
 
 import okhttp3.Call;
 import okhttp3.Request;
@@ -78,6 +83,15 @@ public class ImmuneInfoActivity extends BaseActivity {
         binding.nextImmuneDataView.setText(immuneDetail.getNextImmuneData());
         binding.streetNameView.setText(immuneDetail.getStreetName());
         binding.detailedAddressView.setText(immuneDetail.getDetailedAddress());
+
+        try {
+            List<String> dogPhotos = new Gson().fromJson(immuneDetail.getDogPhoto(), new TypeToken<List<String>>() {
+            }.getType());
+            if (dogPhotos != null && dogPhotos.size() > 0)
+                GlideLoader.LoderImage(ImmuneInfoActivity.this, dogPhotos.get(0), binding.immuneCoverView,5);
+        } catch (Exception e) {
+            e.getMessage();
+        }
 
 //        if (immuneDetail.getNextImmuneData() != null) {
 //            long surplusDate = 365 - (System.currentTimeMillis() - TimeUtils.getTimeExamined(immuneDetail.getNextImmuneData())) / (24 * 60 * 60 * 1000);

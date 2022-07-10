@@ -203,10 +203,9 @@ public class EnforcementSubmitActivity extends BaseActivity {
      * 用户id
      */
 
-    private String illegalFileUrl = "http://dogmanage.file.obs.cn-north-4.myhuaweicloud.com/IMG_20220601_081815.jpg";
+    private String illegalFileUrl = null;
     private int illegalTypeId = 0;
     private String illegalTime = null;
-    //    private String dogLicenceNum = null;
     private LicenceInfo licenceInfo;
 
     public void onClickConfirm(View view) {
@@ -286,7 +285,7 @@ public class EnforcementSubmitActivity extends BaseActivity {
     }
 
     public void onClickCancel(View view) {
-
+        finish();
     }
 
     public void onClickClear(View view) {
@@ -332,31 +331,43 @@ public class EnforcementSubmitActivity extends BaseActivity {
                     }.getType());
                     if (imageList != null && imageList.size() > 0) {
                         String path = imageList.get(0).getPath();
-                        Luban.with(this)
-                                .load(path)// 传人要压缩的图片列表
-                                .ignoreBy(500)// 忽略不压缩图片的大小
-                                .setTargetDir(FileUtils.getMediaPath())// 设置压缩后文件存储位置
-                                .setCompressListener(new OnCompressListener() { //设置回调
+                        Log.i(TAG, "compressImage: path = "+path);
+                        if (path.endsWith(".mp4")){
+                            if (requestCode == request_IllegalFile) {
+                                new Thread(new Runnable() {
                                     @Override
-                                    public void onStart() {
+                                    public void run() {
+                                        uploadFile(path);
                                     }
-
-                                    @Override
-                                    public void onSuccess(File file) {
-                                        if (requestCode == request_IllegalFile) {
-                                            new Thread(new Runnable() {
-                                                @Override
-                                                public void run() {
-                                                    uploadFile(file.getAbsolutePath());
-                                                }
-                                            }).start();
+                                }).start();
+                            }
+                        }else {
+                            Luban.with(this)
+                                    .load(path)// 传人要压缩的图片列表
+                                    .ignoreBy(500)// 忽略不压缩图片的大小
+                                    .setTargetDir(FileUtils.getMediaPath())// 设置压缩后文件存储位置
+                                    .setCompressListener(new OnCompressListener() { //设置回调
+                                        @Override
+                                        public void onStart() {
                                         }
-                                    }
 
-                                    @Override
-                                    public void onError(Throwable e) {
-                                    }
-                                }).launch();//启动压缩
+                                        @Override
+                                        public void onSuccess(File file) {
+                                            if (requestCode == request_IllegalFile) {
+                                                new Thread(new Runnable() {
+                                                    @Override
+                                                    public void run() {
+                                                        uploadFile(file.getAbsolutePath());
+                                                    }
+                                                }).start();
+                                            }
+                                        }
+
+                                        @Override
+                                        public void onError(Throwable e) {
+                                        }
+                                    }).launch();//启动压缩
+                        }
                     }
                 }
             }

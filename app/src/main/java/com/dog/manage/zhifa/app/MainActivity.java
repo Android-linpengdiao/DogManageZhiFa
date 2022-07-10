@@ -1,16 +1,20 @@
 package com.dog.manage.zhifa.app;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
 
 import androidx.recyclerview.widget.GridLayoutManager;
 
+import com.base.utils.PermissionUtils;
 import com.base.utils.ToastUtils;
 import com.base.view.OnClickListener;
 import com.dog.manage.zhifa.app.activity.AdvertiseActivity;
 import com.dog.manage.zhifa.app.activity.BaseActivity;
+import com.dog.manage.zhifa.app.activity.CameraActivity;
 import com.dog.manage.zhifa.app.activity.EnforcementActivity;
+import com.dog.manage.zhifa.app.activity.EnforcementDogInfoActivity;
 import com.dog.manage.zhifa.app.activity.EnforcementRecordActivity;
 import com.dog.manage.zhifa.app.activity.ImmuneSubmitActivity;
 import com.dog.manage.zhifa.app.activity.LoginActivity;
@@ -78,11 +82,17 @@ public class MainActivity extends BaseActivity {
                             openActivity(EnforcementActivity.class);
 
                         } else if (getUserInfo().getSysType() == 2) {
-                            Bundle bundle = new Bundle();
+//                            Bundle bundle = new Bundle();
 //                            bundle.putString("noseprint", "8c3c9249-f4e2-11ec-25xGihUUR");
 //                            bundle.putString("noseprint", "23325059-b2c1-11eb-1Vu7hqwN635");
-                            bundle.putString("noseprint", "23325059-b2c1-11eb-1Vu7hqwN6M6");
-                            openActivity(ImmuneSubmitActivity.class, bundle);
+//                            bundle.putString("noseprint", "23325059-b2c1-11eb-1Vu7hqwN6M6");
+//                            openActivity(ImmuneSubmitActivity.class, bundle);
+
+                            if (checkPermissions(PermissionUtils.CAMERA, 100)) {
+                                Bundle bundle = new Bundle();
+                                bundle.putInt("type", CameraActivity.type_petArchives);
+                                openActivity(CameraActivity.class, bundle, request_petArchive);
+                            }
 
                         }
                     }
@@ -120,6 +130,29 @@ public class MainActivity extends BaseActivity {
 
             }
         });
+    }
+
+    private final int request_petArchive = 100;
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_OK) {
+            switch (requestCode) {
+                case request_petArchive:
+                    if (data != null) {
+                        String petId = data.getStringExtra("petId");
+                        Bundle bundle = new Bundle();
+//                        bundle.putString("noseprint", "8c3c9249-f4e2-11ec-25xGihUUR");
+//                        bundle.putString("noseprint", "23325059-b2c1-11eb-1Vu7hqwN635");
+//                        bundle.putString("noseprint", "23325059-b2c1-11eb-1Vu7hqwN6M6");
+                        bundle.putString("noseprint", petId);
+                        openActivity(ImmuneSubmitActivity.class, bundle);
+
+                    }
+                    break;
+            }
+        }
     }
 
     private void intBanner() {
