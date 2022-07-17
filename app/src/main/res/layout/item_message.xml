@@ -62,6 +62,8 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
+                    android:singleLine="true"
+                    android:layout_marginRight="@dimen/dp_5"
                     tools:text="犬证办理"
                     android:textColor="#323232"
                     android:textSize="@dimen/sp_15" />

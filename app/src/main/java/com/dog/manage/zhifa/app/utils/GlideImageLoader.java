@@ -19,17 +19,15 @@ public class GlideImageLoader extends ImageLoader {
     @Override
     public void displayImage(Context context, Object path, ImageView imageView) {
         //Glide 加载图片简单用法
-        if (round == 0){
-            GlideLoader.LoderDrawable(context, R.drawable.banner, imageView);
-        }else {
-            GlideLoader.LoderDrawable(context, R.drawable.banner_1, imageView,round);
+        String url = (String) path;
+        if (!TextUtils.isEmpty(url) && url.startsWith("http")) {
+            GlideLoader.LoderBannerImage(context, url, imageView, round);
+        } else {
+            if (round == 0){
+                GlideLoader.LoderDrawable(context, R.drawable.banner, imageView);
+            }else {
+                GlideLoader.LoderDrawable(context, R.drawable.banner_1, imageView,round);
+            }
         }
-
-//        String url = (String) path;
-//        if (!TextUtils.isEmpty(url)) {
-//            GlideLoader.LoderBannerImage(context, url, imageView, round);
-//        } else {
-//            GlideLoader.LoderDrawable(context, R.drawable.banner, imageView);
-//        }
     }
 }

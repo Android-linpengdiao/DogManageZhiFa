@@ -16,6 +16,7 @@ import com.dog.manage.zhifa.app.activity.CameraActivity;
 import com.dog.manage.zhifa.app.activity.EnforcementActivity;
 import com.dog.manage.zhifa.app.activity.EnforcementDogInfoActivity;
 import com.dog.manage.zhifa.app.activity.EnforcementRecordActivity;
+import com.dog.manage.zhifa.app.activity.EnforcementSubmitActivity;
 import com.dog.manage.zhifa.app.activity.ImmuneSubmitActivity;
 import com.dog.manage.zhifa.app.activity.LoginActivity;
 import com.dog.manage.zhifa.app.activity.MessageActivity;

@@ -57,6 +57,8 @@ public class AdvertiseActivity extends BaseActivity {
         wvSettings.setDatabaseEnabled(true);
         //去掉右侧导航条
         binding.webView.setScrollBarStyle(WebView.SCROLLBARS_INSIDE_OVERLAY);
+        binding.webView.setHorizontalScrollBarEnabled(false);//水平不显示
+        binding.webView.setVerticalScrollBarEnabled(false); //垂直不显示
         binding.webView.setWebViewClient(new WebViewClient() {
 
             @Override

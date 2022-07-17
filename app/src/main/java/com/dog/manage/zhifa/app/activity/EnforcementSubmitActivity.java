@@ -27,6 +27,7 @@ import com.bigkoo.pickerview.view.OptionsPickerView;
 import com.bigkoo.pickerview.view.TimePickerView;
 import com.dog.manage.zhifa.app.Config;
 import com.dog.manage.zhifa.app.R;
+import com.dog.manage.zhifa.app.adapter.EnforcementImageAdapter;
 import com.dog.manage.zhifa.app.adapter.TypeAdapter;
 import com.dog.manage.zhifa.app.databinding.ActivityEnforcementSubmitBinding;
 import com.dog.manage.zhifa.app.media.MediaFile;
@@ -66,6 +67,8 @@ public class EnforcementSubmitActivity extends BaseActivity {
 
     private ActivityEnforcementSubmitBinding binding;
     private Map<String, String> paramsMap = new HashMap<>();
+    private EnforcementImageAdapter imageAdapter;
+    private List<String> imageList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,7 +83,42 @@ public class EnforcementSubmitActivity extends BaseActivity {
             }.getType());
         }
 
+
+        imageAdapter = new EnforcementImageAdapter(this);
         GridItemDecoration.Builder builder = new GridItemDecoration.Builder(this);
+        builder.color(R.color.transparent);
+        builder.size(CommonUtil.dip2px(this, 2));
+        binding.imageRecyclerView.addItemDecoration(new GridItemDecoration(builder));
+        binding.imageRecyclerView.setLayoutManager(new GridLayoutManager(this, 3));
+        binding.imageRecyclerView.setAdapter(imageAdapter);
+        imageAdapter.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view, Object object) {
+                if (object instanceof Integer) {
+                    int position = (int) object;
+                    if (position == (imageList.size() - 1)) {
+                        if (imageList.size() < 10) {
+                            onClickPicture();
+                        } else {
+                            ToastUtils.showShort(EnforcementSubmitActivity.this, "最多上传9张图片");
+                        }
+                    }
+                }
+            }
+
+            @Override
+            public void onLongClick(View view, Object object) {
+
+            }
+        });
+//        imageList.add("http://dogmanage.file.obs.cn-north-4.myhuaweicloud.com/1658016764923292.jpeg");
+//        imageList.add("http://dogmanage.file.obs.cn-north-4.myhuaweicloud.com/VID_20220717_005206.mp4");
+//        imageList.add("http://dogmanage.file.obs.cn-north-4.myhuaweicloud.com/1658016765135393.jpeg");
+        imageList.add("add");
+        imageAdapter.refreshData(imageList);
+
+
+//        GridItemDecoration.Builder builder = new GridItemDecoration.Builder(this);
         builder.color(R.color.transparent);
         builder.size(CommonUtil.dip2px(this, 10));
         binding.typeRecyclerView.addItemDecoration(new GridItemDecoration(builder));
@@ -210,8 +248,8 @@ public class EnforcementSubmitActivity extends BaseActivity {
 
     public void onClickConfirm(View view) {
 
-        if (CommonUtil.isBlank(illegalFileUrl)) {
-            ToastUtils.showShort(getApplicationContext(), "请上传违法内容");
+        if (imageList.size() <= 1) {
+            ToastUtils.showShort(getApplicationContext(), "请上传违法照片或视频");
             return;
         }
 
@@ -237,7 +275,10 @@ public class EnforcementSubmitActivity extends BaseActivity {
             return;
         }
 
-        paramsMap.put("illegalFileUrl", GsonUtils.toJson(Arrays.asList(illegalFileUrl)));
+        if (imageList.size() > 0 && imageList.indexOf("add") != -1) {
+            imageList.remove("add");
+        }
+        paramsMap.put("illegalFileUrl", GsonUtils.toJson(imageList));
         paramsMap.put("illegalTypeId", String.valueOf(illegalTypeId));
         paramsMap.put("illegalDescribe", illegalDescribe);
         paramsMap.put("illegalMeasure", illegalMeasure);
@@ -296,14 +337,12 @@ public class EnforcementSubmitActivity extends BaseActivity {
 
     /**
      * 上传违法内容
-     *
-     * @param view
      */
-    public void onClickPicture(View view) {
+    public void onClickPicture() {
         if (checkPermissions(PermissionUtils.STORAGE, request_IllegalFile)) {
             Bundle bundle = new Bundle();
-            bundle.putInt("mediaType", MediaUtils.MEDIA_TYPE_PHOTO);
-            bundle.putInt("maxNumber", 1);
+            bundle.putInt("mediaType", MediaUtils.MEDIA_TYPE_ALL);
+            bundle.putInt("maxNumber", 10 - imageAdapter.getList().size());
             openActivity(MediaSelectActivity.class, bundle, request_IllegalFile);
         }
     }
@@ -327,46 +366,53 @@ public class EnforcementSubmitActivity extends BaseActivity {
                 String imageJson = data.getStringExtra("imageJson");
                 if (!TextUtils.isEmpty(imageJson)) {
                     Gson gson = new Gson();
-                    List<MediaFile> imageList = gson.fromJson(imageJson, new TypeToken<List<MediaFile>>() {
+                    List<MediaFile> mediaFiles = gson.fromJson(imageJson, new TypeToken<List<MediaFile>>() {
                     }.getType());
-                    if (imageList != null && imageList.size() > 0) {
-                        String path = imageList.get(0).getPath();
-                        Log.i(TAG, "compressImage: path = "+path);
-                        if (path.endsWith(".mp4")){
-                            if (requestCode == request_IllegalFile) {
-                                new Thread(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        uploadFile(path);
-                                    }
-                                }).start();
-                            }
-                        }else {
-                            Luban.with(this)
-                                    .load(path)// 传人要压缩的图片列表
-                                    .ignoreBy(500)// 忽略不压缩图片的大小
-                                    .setTargetDir(FileUtils.getMediaPath())// 设置压缩后文件存储位置
-                                    .setCompressListener(new OnCompressListener() { //设置回调
+                    if (mediaFiles != null && mediaFiles.size() > 0) {
+                        List<String> mediaFileList = new ArrayList<>();
+                        for (int i = 0; i < mediaFiles.size(); i++) {
+                            MediaFile mediaFile = mediaFiles.get(i);
+                            String path = mediaFile.getPath();
+                            int finalI = i;
+                            if (mediaFile.getType() == MediaFile.VIDEO) {
+                                mediaFileList.add(path);
+                                if (finalI == mediaFiles.size() - 1) {
+                                    new Thread(new Runnable() {
                                         @Override
-                                        public void onStart() {
+                                        public void run() {
+                                            uploadFile(mediaFileList);
                                         }
-
-                                        @Override
-                                        public void onSuccess(File file) {
-                                            if (requestCode == request_IllegalFile) {
-                                                new Thread(new Runnable() {
-                                                    @Override
-                                                    public void run() {
-                                                        uploadFile(file.getAbsolutePath());
-                                                    }
-                                                }).start();
+                                    }).start();
+                                }
+                            } else {
+                                Luban.with(this)
+                                        .load(path)// 传人要压缩的图片列表
+                                        .ignoreBy(500)// 忽略不压缩图片的大小
+                                        .setTargetDir(FileUtils.getMediaPath())// 设置压缩后文件存储位置
+                                        .setCompressListener(new OnCompressListener() { //设置回调
+                                            @Override
+                                            public void onStart() {
                                             }
-                                        }
 
-                                        @Override
-                                        public void onError(Throwable e) {
-                                        }
-                                    }).launch();//启动压缩
+                                            @Override
+                                            public void onSuccess(File file) {
+                                                mediaFileList.add(file.getAbsolutePath());
+                                                if (finalI == mediaFiles.size() - 1) {
+                                                    new Thread(new Runnable() {
+                                                        @Override
+                                                        public void run() {
+                                                            uploadFile(mediaFileList);
+                                                        }
+                                                    }).start();
+                                                }
+//                                                }
+                                            }
+
+                                            @Override
+                                            public void onError(Throwable e) {
+                                            }
+                                        }).launch();//启动压缩
+                            }
                         }
                     }
                 }
@@ -379,43 +425,37 @@ public class EnforcementSubmitActivity extends BaseActivity {
     /**
      * 华为云 上传文件
      *
-     * @param filePath
+     * @param mediaFileList
      */
-    private void uploadFile(String filePath) {
-        Log.i(TAG, "uploadFile: filePath = " + filePath);
-        String fileName = filePath.substring(filePath.lastIndexOf("/") + 1);
-        Log.i(TAG, "uploadFile: fileName = " + fileName);
-        PutObjectRequest request = new PutObjectRequest();
-        request.setBucketName(Config.huaweiBucketName);
-        request.setObjectKey(fileName);
-        request.setFile(new File(filePath));
-        request.setProgressListener(new ProgressListener() {
-            @Override
-            public void progressChanged(ProgressStatus status) {
-                // 获取上传平均速率
-                Log.i(TAG, "uploadFile: AverageSpeed:" + status.getAverageSpeed());
-                // 获取上传进度百分比
-                Log.i(TAG, "uploadFile: TransferPercentage:" + status.getTransferPercentage());
-            }
-        });
-        //每上传1MB数据反馈上传进度
-        request.setProgressInterval(1024 * 1024L);
-        PutObjectResult result = UploadFileManager.getInstance().getObsClient().putObject(request);
-        Log.i(TAG, "uploadFile: getObjectUrl = " + result.getObjectUrl());
-        String url = "http://" + Config.huaweiBucketName + "." + Config.huaweiCloudEndPoint + "/" + fileName;
-        Log.i(TAG, "uploadFile: url = " + url);
-        //http://dogmanage.file.obs.cn-north-4.myhuaweicloud.com/54577243b9b38770.jpg
-
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                illegalFileUrl = url;
-                GlideLoader.LoderImage(EnforcementSubmitActivity.this, url, binding.illegalFileUrlView, 6);
-
-
-            }
-        });
-
-
+    private void uploadFile(List<String> mediaFileList) {
+        LoadingManager.showLoadingDialog(EnforcementSubmitActivity.this,"上传中...");
+        for (int i = 0; i < mediaFileList.size(); i++) {
+            String filePath = mediaFileList.get(i);
+            Log.i(TAG, "uploadFile: filePath = " + filePath);
+            String fileName = filePath.substring(filePath.lastIndexOf("/") + 1);
+            PutObjectRequest request = new PutObjectRequest();
+            request.setBucketName(Config.huaweiBucketName);
+            request.setObjectKey(fileName);
+            request.setFile(new File(filePath));
+            request.setProgressListener(new ProgressListener() {
+                @Override
+                public void progressChanged(ProgressStatus status) {
+                }
+            });
+            //每上传1MB数据反馈上传进度
+            request.setProgressInterval(1024 * 1024L);
+            PutObjectResult result = UploadFileManager.getInstance().getObsClient().putObject(request);
+            String url = "http://" + Config.huaweiBucketName + "." + Config.huaweiCloudEndPoint + "/" + fileName;
+            Log.i(TAG, "uploadFile: url = " + url);
+            imageList.add(imageAdapter.getList().size()-1,url);
+            LoadingManager.hideLoadingDialog(EnforcementSubmitActivity.this);
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    imageAdapter.notifyDataSetChanged();
+                }
+            });
+        }
     }
+
 }
