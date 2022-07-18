@@ -6,6 +6,7 @@ import android.view.View;
 
 import com.base.BaseRecyclerAdapter;
 import com.base.utils.CommonUtil;
+import com.base.utils.FileSizeUtil;
 import com.base.utils.GlideLoader;
 import com.base.utils.ToastUtils;
 import com.base.view.OnClickListener;
@@ -54,6 +55,20 @@ public class MediaFileAdapter extends BaseRecyclerAdapter<MediaFile, ItemMediaFi
                 if (complete && dataBean.getStatus() == 0) {
                     ToastUtils.showShort(mContext, "你最多只能选择" + maxNumber + "个图片");
                     return;
+                }
+                if (dataBean.getType() == MediaFile.VIDEO) {
+                    double ImgSize = FileSizeUtil.getFileOrFilesSize(dataBean.getPath(), FileSizeUtil.SIZETYPE_MB);
+                    if (ImgSize <= 0) {
+                        ToastUtils.showShort(mContext, "视频已损坏");
+                        return;
+                    } else if (ImgSize > 10) {
+                        ToastUtils.showShort(mContext, "视频不能超过10MB");
+                        return;
+                    }
+//                    if (dataBean.getDuration() / 1000 > 30) {
+//                        ToastUtils.showShort(mContext, "视频时长" + 30 + "s以内");
+//                        return;
+//                    }
                 }
                 dataBean.setStatus(dataBean.getStatus() == 0 ? 1 : 0);
                 binding.selectView.setSelected(dataBean.getStatus() == 0 ? false : true);
