@@ -403,12 +403,22 @@ public class EnforcementDogInfoActivity extends BaseActivity implements Enforcem
                                     Dog dogDetail = response.getData().get(0);
                                     binding.dogCertificateView.binding.itemContent.setText(dogDetail.getDogType());
                                     getLicenceInfo(dogDetail.getNoseprint());
+                                } else {
+                                    licenceInfo = null;
+                                    binding.editContainer.setVisibility(View.VISIBLE);
+                                    binding.viewPager.setVisibility(View.INVISIBLE);
                                 }
                             } else {
+                                licenceInfo = null;
+                                binding.editContainer.setVisibility(View.VISIBLE);
+                                binding.viewPager.setVisibility(View.INVISIBLE);
                                 ToastUtils.showShort(getApplicationContext(), "获取犬证信息失败");
                             }
 
                         } else {
+                            licenceInfo = null;
+                            binding.editContainer.setVisibility(View.VISIBLE);
+                            binding.viewPager.setVisibility(View.INVISIBLE);
                             ToastUtils.showShort(getApplicationContext(), !CommonUtil.isBlank(response.getMsg()) ? response.getMsg() : "获取信息失败");
                         }
                     }
