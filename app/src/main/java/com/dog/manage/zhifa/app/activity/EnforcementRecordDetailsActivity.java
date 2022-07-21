@@ -108,7 +108,7 @@ public class EnforcementRecordDetailsActivity extends BaseActivity {
         binding.userNameView.binding.itemContent.setText(dataBean.getUserName());
         binding.illegalTypeView.binding.itemContent.setText(
                 (dataBean.getIllegalTypeId() == 1 ? "犬只伤人" :
-                        dataBean.getIllegalTypeId() == 2 ? "犬吠" :
+                        dataBean.getIllegalTypeId() == 2 ? "禁养犬只" :
                                 dataBean.getIllegalTypeId() == 3 ? "未牵狗绳" :
                                         dataBean.getIllegalTypeId() == 4 ? "其他" : "其他"));
         binding.illegalDescribeView.binding.itemContent.setText(dataBean.getIllegalDescribe());

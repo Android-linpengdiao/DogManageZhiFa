@@ -136,9 +136,9 @@ public class EnforcementSubmitActivity extends BaseActivity {
 
             }
         });
-        //处罚类型 1 犬只伤人 2 犬吠 3 未牵狗绳 4 其他
+        //处罚类型 1 犬只伤人 2 禁养犬只 3 未牵狗绳 4 其他
         typeAdapter.refreshData(Arrays.asList(new TypeBean(1, "犬只伤人"),
-                new TypeBean(2, "犬吠"),
+                new TypeBean(2, "禁养犬只"),
                 new TypeBean(3, "未牵狗绳"),
                 new TypeBean(4, "其他")));
 

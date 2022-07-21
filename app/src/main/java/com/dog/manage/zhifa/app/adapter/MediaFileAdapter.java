@@ -61,14 +61,15 @@ public class MediaFileAdapter extends BaseRecyclerAdapter<MediaFile, ItemMediaFi
                     if (ImgSize <= 0) {
                         ToastUtils.showShort(mContext, "视频已损坏");
                         return;
-                    } else if (ImgSize > 10) {
-                        ToastUtils.showShort(mContext, "视频不能超过10MB");
-                        return;
                     }
-//                    if (dataBean.getDuration() / 1000 > 30) {
-//                        ToastUtils.showShort(mContext, "视频时长" + 30 + "s以内");
+//                    else if (ImgSize > 10) {
+//                        ToastUtils.showShort(mContext, "视频不能超过10MB");
 //                        return;
 //                    }
+                    else if (dataBean.getDuration() / 1000 > 15) {
+                        ToastUtils.showShort(mContext, "视频时长" + 15 + "s以内");
+                        return;
+                    }
                 }
                 dataBean.setStatus(dataBean.getStatus() == 0 ? 1 : 0);
                 binding.selectView.setSelected(dataBean.getStatus() == 0 ? false : true);
