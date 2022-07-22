@@ -11,7 +11,7 @@ public class ImmuneApproveDetail {
     private Integer immuneId;
     private String dogType;
     private String createTime;
-    private Integer dogAge;
+    private String dogAge;
     private Integer lincenceStatus;
     private Integer userId;
     private String userName;

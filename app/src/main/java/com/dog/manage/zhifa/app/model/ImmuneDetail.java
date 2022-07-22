@@ -37,7 +37,7 @@ public class ImmuneDetail implements Serializable {
     private String dogName;
     private String dogColor;
     private Integer dogGender = 0;//犬只性别;0:雌性， 1：雄性
-    private Integer dogAge;
+    private String dogAge;
     private String idNum;
     private Integer lincenceStatus;
     private Integer userId;

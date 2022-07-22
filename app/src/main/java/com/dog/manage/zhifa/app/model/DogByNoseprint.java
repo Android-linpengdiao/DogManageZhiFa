@@ -10,7 +10,7 @@ public class DogByNoseprint {
     private Integer immuneLicenceLogId;
     private Integer dogId;
     private String dogType;
-    private Integer dogAge = 0;
+    private String dogAge;
     private String createdTime;
     private String acceptUnit;
     private Integer unitId;

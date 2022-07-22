@@ -13,7 +13,7 @@ public class Dog implements Serializable {
     private Integer lincenceId = 0;
     private Integer licenceStatus;
     private String dogType;
-    private Integer dogAge = 0;
+    private String dogAge;
     private String createdTime;
     private Integer userId;
     private String userName;

@@ -74,6 +74,22 @@ import java.util.regex.Pattern;
 public class CommonUtil {
     private static final String TAG = "CommonUtil";
 
+    public static String getDogAge(String dogAge) {
+        if (isBlank(dogAge)) {
+            return "0个月";
+        }
+        if (TimeUtils.getTimeDogAge(dogAge) == 0) {
+            return "0个月";
+        }
+        long time = (System.currentTimeMillis() - TimeUtils.getTimeDogAge(dogAge)) / (24 * 60 * 60 * 1000) / 30;
+        if (time > 0) {
+            return (time / 12 > 0 ? time / 12 + "岁" : "") + time % 12 + "个月";
+        } else {
+            return "0个月";
+        }
+
+    }
+
     public static String getDogAge(int dogAge) {
         if (isBlank(dogAge)) {
             return "0个月";

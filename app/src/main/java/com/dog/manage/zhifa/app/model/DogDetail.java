@@ -78,7 +78,7 @@ public class DogDetail {
     private Integer dogGender = 0;//犬只性别;0:雌性， 1：雄性
     private Integer sterilization = 0;//是否绝育;0：否 1：是
     private String sterilizationProve;
-    private Integer dogAge;
+    private String dogAge;
     private String dogPhoto;
     private String dogType;
     private String noseprint;

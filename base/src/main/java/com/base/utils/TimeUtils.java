@@ -58,6 +58,19 @@ public class TimeUtils {
 
     }
 
+    public static long getTimeDogAge(String time) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd");
+        Date date;
+        try {
+            date = dateFormat.parse(time);
+            long dateTime = date.getTime();
+            return dateTime;
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
+
     public static String getMessageTime(long time) {
         DateFormat oldDay = new SimpleDateFormat("dd");
         DateFormat newDay = new SimpleDateFormat("dd");
