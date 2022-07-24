@@ -470,7 +470,10 @@ public class EnforcementDogInfoActivity extends BaseActivity implements Enforcem
                             binding.viewPager.setVisibility(View.INVISIBLE);
 
                         } else {
-                            ToastUtils.showShort(getApplicationContext(), response.getMsg());
+                            licenceInfo = null;
+                            binding.editContainer.setVisibility(View.VISIBLE);
+                            binding.viewPager.setVisibility(View.INVISIBLE);
+//                            ToastUtils.showShort(getApplicationContext(), response.getMsg());
 
                         }
                     }
