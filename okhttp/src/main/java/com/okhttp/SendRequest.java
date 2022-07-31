@@ -839,6 +839,29 @@ public class SendRequest {
     }
 
     /**
+     * 宠物狗面部+鼻纹建档
+     * <p>
+     * file	file	图片文件需要使用post multipart/form-data的方式上传；支持PNG、JPG、JPEG、BMP格式；图片大小最大限制2M；
+     * imageUrl	string	图片的URL地址；支持PNG、JPG、JPEG、BMP格式；优先使用该参数
+     * imageBase64	string	图片base64编码；支持PNG、JPG、JPEG、BMP格式；
+     * 如果同时传入file、imageUrl、imageBase64，本API使用顺序为imageUrl优先，imageBase64最低
+     * <p>
+     * 是否必选 否  recogType	int	识别种类：0（鼻子）、1（正脸），不传默认为0（鼻子）
+     *
+     * @param token
+     * @param filePath
+     * @param call
+     */
+    public static void createPetArchives(String token, int recogType, String filePath, Callback call) {
+        Map<String, String> map = new HashMap<>();
+        map.put("token", token);
+        map.put("recogType", String.valueOf(recogType));
+        String filename = filePath.substring(filePath.lastIndexOf("/") + 1);
+        OkHttpUtils.pet().addFile("file", filename, new File(filePath)).params(map).url(APIUrls.createPetArchives).build().execute(call);
+
+    }
+
+    /**
      * 宠物品种识别
      * <p>
      * file	file	图片文件需要使用post multipart/form-data的方式上传；支持PNG、JPG、JPEG、BMP格式；图片大小最大限制2M；

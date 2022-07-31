@@ -1,4 +1,4 @@
-package com.dog.manage.zhifa.app.media;
+package com.base;
 
 import android.os.Parcel;
 import android.os.Parcelable;

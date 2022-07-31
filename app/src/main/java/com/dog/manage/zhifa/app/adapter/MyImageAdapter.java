@@ -11,7 +11,7 @@ import androidx.viewpager.widget.PagerAdapter;
 import com.base.view.OnClickListener;
 import com.bumptech.glide.Glide;
 import com.dog.manage.zhifa.app.R;
-import com.dog.manage.zhifa.app.media.MediaFile;
+import com.base.MediaFile;
 
 import java.util.List;
 

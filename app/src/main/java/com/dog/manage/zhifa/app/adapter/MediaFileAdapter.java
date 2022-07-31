@@ -12,7 +12,7 @@ import com.base.utils.ToastUtils;
 import com.base.view.OnClickListener;
 import com.dog.manage.zhifa.app.R;
 import com.dog.manage.zhifa.app.databinding.ItemMediaFileBinding;
-import com.dog.manage.zhifa.app.media.MediaFile;
+import com.base.MediaFile;
 
 public class MediaFileAdapter extends BaseRecyclerAdapter<MediaFile, ItemMediaFileBinding> {
 

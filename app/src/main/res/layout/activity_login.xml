@@ -121,7 +121,7 @@
             android:layout_height="match_parent"
             android:gravity="center|bottom"
             android:paddingBottom="@dimen/dp_20"
-            android:text="未注册的手机号登录后自动注册"
+            android:text=""
             android:textColor="#999999"
             android:textSize="@dimen/sp_14" />
 

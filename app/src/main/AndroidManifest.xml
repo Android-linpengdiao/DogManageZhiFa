@@ -21,14 +21,34 @@
         android:roundIcon="@mipmap/ic_icon"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity.DogInfoActivity"></activity>
-        <activity android:name=".activity.ImmuneInfoActivity" />
-        <activity android:name=".activity.ImmuneSubmitActivity" />
-        <activity android:name=".activity.AdvertiseActivity" />
-        <activity android:name=".activity.DogUserActivity" />
-        <activity android:name=".activity.DogDetailsActivity" />
-        <activity android:name=".activity.EnforcementSubmitActivity" />
-        <activity android:name=".activity.EnforcementDogInfoActivity" />
+        <activity
+            android:name=".activity.VideoPlayActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/VideoTheme"></activity>
+        <activity
+            android:name=".activity.DogInfoActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.ImmuneInfoActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.ImmuneSubmitActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.AdvertiseActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.DogUserActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.DogDetailsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.EnforcementSubmitActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.EnforcementDogInfoActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".activity.CameraActivity"
             android:screenOrientation="portrait"

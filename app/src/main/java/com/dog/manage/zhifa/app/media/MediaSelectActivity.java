@@ -6,6 +6,7 @@ import android.view.View;
 
 import androidx.recyclerview.widget.GridLayoutManager;
 
+import com.base.MediaFile;
 import com.base.utils.CommonUtil;
 import com.base.utils.GsonUtils;
 import com.base.utils.ToastUtils;

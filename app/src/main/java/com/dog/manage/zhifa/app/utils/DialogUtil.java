@@ -14,7 +14,7 @@ import androidx.viewpager.widget.ViewPager;
 import com.base.view.OnClickListener;
 import com.dog.manage.zhifa.app.R;
 import com.dog.manage.zhifa.app.adapter.MyImageAdapter;
-import com.dog.manage.zhifa.app.media.MediaFile;
+import com.base.MediaFile;
 
 import java.util.List;
 

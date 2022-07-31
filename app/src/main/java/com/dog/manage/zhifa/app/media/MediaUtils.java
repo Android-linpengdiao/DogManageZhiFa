@@ -5,6 +5,8 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.provider.MediaStore;
 
+import com.base.MediaFile;
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
