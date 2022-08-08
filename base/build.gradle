@@ -1,0 +1,49 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion rootProject.ext.compileSdkVersion
+
+    defaultConfig {
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
+
+    }
+    android {
+        dataBinding {
+            enabled = true
+        }
+    }
+
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.1'
+    implementation 'com.google.android.material:material:1.4.0'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
+
+    api externalAndroidRecyclerView
+    api externalAndroidCardview
+    api externalGlide
+    api externalTransformations
+    api externalEventBus
+    api externalGson
+    api externalEasypermissions
+    api luban
+    api rxjava
+    api rxandroid
+
+    api files('libs/core-3.3.0.jar')
+    api files('libs/TinyPinyin.jar')
+
+//    //上传视频阿里云
+//    api 'com.aliyun.video.android:upload:1.6.2'
+//    api 'com.aliyun.dpa:oss-android-sdk:2.9.5'
+}

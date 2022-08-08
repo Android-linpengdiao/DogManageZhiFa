@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:overScrollMode="never">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                tools:context=".activity.UserHomeActivity">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_216"
+                    android:layout_marginLeft="@dimen/dp_m_2"
+                    android:layout_marginRight="@dimen/dp_m_2"
+                    android:background="@drawable/bk"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:paddingLeft="@dimen/dp_m_2"
+                    android:paddingRight="@dimen/dp_m_2">
+
+                    <ImageView
+                        android:id="@+id/iconView"
+                        android:layout_width="@dimen/dp_80"
+                        android:layout_height="@dimen/dp_80"
+                        android:background="@drawable/head"
+                        android:onClick="onClickHead"
+                        android:padding="@dimen/dp_2" />
+
+                    <TextView
+                        android:id="@+id/userNameView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dp_14"
+                        android:gravity="center"
+                        android:textColor="#ffffff"
+                        android:textSize="@dimen/sp_18"
+                        tools:text="138****2355" />
+                </LinearLayout>
+
+                <com.zyp.cardview.YcCardView
+                    android:id="@+id/vipContainerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dp_8"
+                    android:layout_marginTop="@dimen/dp_m_26"
+                    android:layout_marginRight="@dimen/dp_8"
+                    android:background="@color/white"
+                    app:ycCardCornerRadius="@dimen/dp_8"
+                    app:ycCardElevation="@dimen/dp_8"
+                    app:ycCardMaxElevation="@dimen/dp_8"
+                    app:ycCardPreventCornerOverlap="true"
+                    app:ycStartShadowColor="#296294F8">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:padding="@dimen/dp_24">
+
+                        <TextView
+                            android:id="@+id/unitNameView"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:minHeight="@dimen/dp_30"
+                            android:text="所属单位："
+                            android:textColor="#000000"
+                            android:textSize="@dimen/sp_15" />
+
+                        <TextView
+                            android:id="@+id/unitUserNameView"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:minHeight="@dimen/dp_30"
+                            android:text="姓名："
+                            android:textColor="#000000"
+                            android:textSize="@dimen/sp_15" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:minHeight="@dimen/dp_30"
+                            android:text="职位：辅警"
+                            android:textColor="#000000"
+                            android:textSize="@dimen/sp_15" />
+
+                        <TextView
+                            android:id="@+id/phoneView"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:minHeight="@dimen/dp_30"
+                            android:text="电话："
+                            android:textColor="#000000"
+                            android:textSize="@dimen/sp_15" />
+
+                        <TextView
+                            android:id="@+id/createdTimeView"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:minHeight="@dimen/dp_30"
+                            android:text="开通时间："
+                            android:textColor="#000000"
+                            android:textSize="@dimen/sp_15" />
+
+                        <TextView
+                            android:id="@+id/statusView"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="账号状态："
+                            android:textColor="#000000"
+                            android:textSize="@dimen/sp_15" />
+
+                    </LinearLayout>
+
+                </com.zyp.cardview.YcCardView>
+
+                <com.dog.manage.zhifa.app.view.ViewItemLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dp_18"
+                    android:layout_marginRight="@dimen/dp_18"
+                    android:onClick="onClickRecord"
+                    app:item_arrow_visible="true"
+                    app:item_container_height="@dimen/viewItemHeight"
+                    app:item_container_margin_left="@dimen/dp_15"
+                    app:item_container_margin_right="@dimen/dp_0"
+                    app:item_title="我的执法记录"
+                    app:item_title_color="#666666"
+                    app:item_title_size="@dimen/sp_15" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dividerHeight"
+                    android:layout_marginLeft="@dimen/dp_16"
+                    android:layout_marginRight="@dimen/dp_16"
+                    android:background="@color/colorDivider" />
+
+
+            </LinearLayout>
+        </ScrollView>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_45">
+
+            <ImageView
+                android:layout_width="@dimen/dp_42"
+                android:layout_height="@dimen/dp_42"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/dp_6"
+                android:onClick="onClickBack"
+                android:padding="@dimen/dp_10"
+                android:src="@drawable/arrow_right_right_m"
+                app:tint="@color/white" />
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+</layout>

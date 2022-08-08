@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <com.dog.manage.zhifa.app.view.TitleView
+            android:id="@+id/itemVipView"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_48"
+            app:tv_content=""
+            app:tv_content_size="@dimen/sp_14"
+            app:tv_title="犬只信息"
+            app:tv_title_bold="true"
+            app:tv_title_size="@dimen/titleViewSize" />
+
+        <ScrollView
+            android:id="@+id/container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:overScrollMode="never"
+            android:visibility="gone"
+            tools:visibility="visible">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <com.xw.banner.Banner
+                    android:id="@+id/banner"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_294"
+                    app:xw_banner_layout="@layout/banner_layout"
+                    app:xw_indicator_drawable_selected="@drawable/tab_b"
+                    app:xw_indicator_drawable_unselected="@drawable/tab_b_t50"
+                    app:xw_indicator_height="@dimen/dp_0"
+                    app:xw_indicator_width="@dimen/dp_0"
+                    android:visibility="gone"/>
+
+                <ImageView
+                    android:id="@+id/coverView"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_294"/>
+
+
+                <com.dog.manage.zhifa.app.view.TextBoldView
+                    android:id="@+id/dogNameView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dp_26"
+                    android:layout_marginTop="@dimen/dp_18"
+                    android:gravity="center"
+                    android:textColor="@color/colorAppTheme"
+                    android:textSize="@dimen/sp_18"
+                    tools:text="柯基犬|白色|1岁2个月" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dp_24"
+                    android:layout_marginTop="@dimen/dp_20"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="@dimen/dp_20"
+                        android:layout_height="@dimen/dp_20"
+                        android:layout_marginRight="@dimen/dp_8"
+                        android:padding="@dimen/dp_2"
+                        android:src="@drawable/daohang"
+                        app:tint="@color/colorAppTheme" />
+
+                    <TextView
+                        android:id="@+id/leaveCenterView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:textColor="@color/colorAppTheme"
+                        android:textSize="@dimen/sp_13"
+                        tools:text="北京市公安局犬类留检所" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dp_24"
+                    android:layout_marginTop="@dimen/dp_5"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="@dimen/dp_20"
+                        android:layout_height="@dimen/dp_20"
+                        android:layout_marginRight="@dimen/dp_8"
+                        android:padding="@dimen/dp_2"
+                        android:src="@drawable/dingwei_s" />
+
+                    <TextView
+                        android:id="@+id/centerAddressView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:textColor="@color/colorAppTheme"
+                        android:textSize="@dimen/sp_13"
+                        tools:text="北京市昌平区七里渠甲1号" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dp_24"
+                    android:layout_marginTop="@dimen/dp_5"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="@dimen/dp_20"
+                        android:layout_height="@dimen/dp_20"
+                        android:layout_marginRight="@dimen/dp_8"
+                        android:padding="@dimen/dp_2"
+                        android:src="@drawable/dianhua" />
+
+                    <TextView
+                        android:id="@+id/phoneView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:textColor="@color/colorAppTheme"
+                        android:textSize="@dimen/sp_13"
+                        tools:text="010-49384834" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dp_24"
+                    android:layout_marginTop="@dimen/dp_5"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="@dimen/dp_20"
+                        android:layout_height="@dimen/dp_20"
+                        android:layout_marginRight="@dimen/dp_8"
+                        android:background="@drawable/xinxi" />
+
+                    <TextView
+                        android:id="@+id/idNumView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="犬只编号："
+                        android:textColor="@color/colorAppTheme"
+                        android:textSize="@dimen/sp_13" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dp_24"
+                    android:layout_marginTop="@dimen/dp_5"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="@dimen/dp_20"
+                        android:layout_height="@dimen/dp_20"
+                        android:layout_marginRight="@dimen/dp_8"
+                        android:background="@drawable/circle_gray"
+                        android:visibility="invisible" />
+
+                    <TextView
+                        android:id="@+id/dogGenderView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="犬只性别："
+                        android:textColor="@color/colorAppTheme"
+                        android:textSize="@dimen/sp_13" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dp_24"
+                    android:layout_marginTop="@dimen/dp_5"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="@dimen/dp_20"
+                        android:layout_height="@dimen/dp_20"
+                        android:layout_marginRight="@dimen/dp_8"
+                        android:background="@drawable/circle_gray"
+                        android:visibility="invisible" />
+
+                    <TextView
+                        android:id="@+id/dogShapeView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="犬只体型："
+                        android:textColor="@color/colorAppTheme"
+                        android:textSize="@dimen/sp_13" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dp_24"
+                    android:layout_marginTop="@dimen/dp_5"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="@dimen/dp_20"
+                        android:layout_height="@dimen/dp_20"
+                        android:layout_marginRight="@dimen/dp_8"
+                        android:background="@drawable/circle_gray"
+                        android:visibility="invisible" />
+
+                    <TextView
+                        android:id="@+id/immuneStatus"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="免疫情况："
+                        android:textColor="@color/colorAppTheme"
+                        android:textSize="@dimen/sp_13" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dp_24"
+                    android:layout_marginTop="@dimen/dp_5"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="@dimen/dp_20"
+                        android:layout_height="@dimen/dp_20"
+                        android:layout_marginRight="@dimen/dp_8"
+                        android:background="@drawable/circle_gray"
+                        android:visibility="invisible" />
+
+                    <TextView
+                        android:id="@+id/sterilizationView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="绝育情况："
+                        android:textColor="@color/colorAppTheme"
+                        android:textSize="@dimen/sp_13" />
+                </LinearLayout>
+
+            </LinearLayout>
+        </ScrollView>
+
+    </LinearLayout>
+</layout>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:drawable="@drawable/button_radius_white_8" android:state_selected="false" />
+    <item android:drawable="@drawable/button_stroke_y_8_t8" android:state_selected="true" />
+
+</selector>

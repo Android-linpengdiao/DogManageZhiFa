@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/dp_20"
+        android:paddingRight="@dimen/dp_20">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_88"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/detailedAddressView"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/dp_48"
+                android:layout_weight="1"
+                android:background="@drawable/button_stroke_gray_100"
+                android:gravity="center_vertical"
+                android:hint="按照小区名称搜索"
+                android:paddingLeft="@dimen/dp_27"
+                android:paddingRight="@dimen/dp_10"
+                android:textColor="#333333"
+                android:textColorHint="#999999"
+                android:textSize="@dimen/sp_14" />
+
+            <TextView
+                android:id="@+id/searchView"
+                android:layout_width="@dimen/dp_78"
+                android:layout_height="@dimen/dp_48"
+                android:layout_centerInParent="true"
+                android:layout_marginLeft="@dimen/dp_13"
+                android:background="@drawable/button_theme"
+                android:gravity="center"
+                android:text="查找"
+                android:textColor="#ffffff"
+                android:textSize="@dimen/sp_16" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dividerHeight"
+            android:background="@color/colorDivider" />
+
+        <com.scwang.smart.refresh.layout.SmartRefreshLayout
+            android:id="@+id/refreshLayout"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_268">
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:overScrollMode="never" />
+
+                <TextView
+                    android:id="@+id/emptyView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:text="暂无消息～"
+                    android:textColor="#999999"
+                    android:textSize="@dimen/sp_14"
+                    android:visibility="gone" />
+
+            </RelativeLayout>
+
+        </com.scwang.smart.refresh.layout.SmartRefreshLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dividerHeight"
+            android:background="@color/colorDivider" />
+
+        <TextView
+            android:id="@+id/confirmView"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_48"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="@dimen/dp_26"
+            android:layout_marginBottom="@dimen/dp_26"
+            android:background="@drawable/button_theme"
+            android:gravity="center"
+            android:text="确认选择"
+            android:textColor="#ffffff"
+            android:textSize="@dimen/sp_16" />
+
+    </LinearLayout>
+</layout>

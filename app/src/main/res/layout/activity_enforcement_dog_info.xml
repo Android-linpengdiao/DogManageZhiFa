@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <LinearLayout
+        android:id="@+id/view_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <com.dog.manage.zhifa.app.view.TitleView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_48"
+            android:background="@color/colorAppTheme"
+            app:tv_content=""
+            app:tv_content_size="@dimen/sp_14"
+            app:tv_title="检查结果"
+            app:tv_title_bold="true"
+            app:tv_title_size="@dimen/titleViewSize" />
+
+        <com.dog.manage.zhifa.app.view.ViewItemLayout
+            android:id="@+id/dogCertificateView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/app_background"
+            android:visibility="gone"
+            app:item_arrow_visible="true"
+            app:item_container_height="@dimen/viewItemHeight"
+            app:item_container_margin_left="@dimen/dp_15"
+            app:item_container_margin_right="@dimen/dp_15"
+            app:item_content="选择犬只"
+            app:item_content_color="@color/colorAppTheme"
+            app:item_content_size="@dimen/viewItemContentSize"
+            app:item_divider_visible="true"
+            app:item_title="选择我的犬只"
+            app:item_title_bold="true"
+            app:item_title_size="@dimen/viewItemTitleSize"
+            tools:visibility="visible" />
+
+        <com.dog.manage.zhifa.app.tab.TopTabLayout
+            android:id="@+id/tabLayout"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_56"
+            android:layout_below="@+id/topView"
+            android:layout_centerHorizontal="true"
+            android:overScrollMode="never"
+            android:scrollbars="none"
+            app:yj_tabBackground="@null"
+            app:yj_tabGravity="fill"
+            app:yj_tabIndicatorDrawable="@drawable/tab_indicator"
+            app:yj_tabIndicatorPaddingBottom="5dp"
+            app:yj_tabMode="fixed"
+            app:yj_tabPaddingBottom="0dp"
+            app:yj_tabSelectTextSize="@dimen/sp_16"
+            app:yj_tabSelectedTextColor="@color/colorAppTheme"
+            app:yj_tabTextColor="@color/colorAppTheme"
+            app:yj_tabTextSize="@dimen/sp_16" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <androidx.viewpager.widget.ViewPager
+                android:id="@+id/viewPager"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:overScrollMode="never"
+                android:scrollbars="none"
+                android:visibility="invisible"
+                tools:visibility="visible" />
+
+            <LinearLayout
+                android:id="@+id/editContainer"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:visibility="invisible"
+                tools:visibility="visible">
+
+                <com.dog.manage.zhifa.app.view.TextBoldView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_15"
+                    android:text="查无此信息"
+                    android:textColor="#ff1111"
+                    android:textSize="@dimen/sp_15" />
+
+                <com.dog.manage.zhifa.app.view.TextBoldView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_20"
+                    android:layout_marginBottom="@dimen/dp_15"
+                    android:text="——新建执法录入——"
+                    android:textColor="#273154"
+                    android:textSize="@dimen/sp_15" />
+
+                <com.dog.manage.zhifa.app.view.ViewItemLayout
+                    android:id="@+id/dogOwnerName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/app_background"
+                    app:item_container_height="@dimen/dp_50"
+                    app:item_container_margin_left="@dimen/viewPadding"
+                    app:item_container_margin_right="@dimen/viewPadding"
+                    app:item_divider_visible="true"
+                    app:item_edit_hint="请输入犬主姓名"
+                    app:item_edit=""
+                    app:item_edit_size="@dimen/viewItemTitleSize"
+                    app:item_edit_visible="true"
+                    app:item_title="犬主姓名/单位名称"
+                    app:item_title_bold="true"
+                    app:item_title_size="@dimen/viewItemTitleSize" />
+
+                <com.dog.manage.zhifa.app.view.ViewItemLayout
+                    android:id="@+id/dogOwnerPhoneView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/app_background"
+                    app:item_container_height="@dimen/dp_50"
+                    app:item_container_margin_left="@dimen/viewPadding"
+                    app:item_container_margin_right="@dimen/viewPadding"
+                    app:item_divider_visible="true"
+                    app:item_edit_hint="请输入手机号码"
+                    app:item_edit_size="@dimen/viewItemTitleSize"
+                    app:item_edit=""
+                    app:item_edit_visible="true"
+                    app:item_title="手机号码"
+                    app:item_title_bold="true"
+                    app:item_title_size="@dimen/viewItemTitleSize" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/app_background"
+                    android:orientation="vertical"
+                    android:paddingLeft="@dimen/viewPadding"
+                    android:paddingRight="@dimen/viewPadding">
+
+                    <com.dog.manage.zhifa.app.view.TextBoldView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dp_20"
+                        android:text="身份证号/统一社会信用代码"
+                        android:textColor="#333333"
+                        android:textSize="@dimen/sp_14" />
+
+                    <EditText
+                        android:id="@+id/idNumView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@null"
+                        android:gravity="top|right"
+                        android:hint="请输入证件号码"
+                        android:text=""
+                        android:paddingTop="@dimen/dp_20"
+                        android:paddingBottom="@dimen/dp_14"
+                        android:textColor="#333333"
+                        android:textColorHint="#999999"
+                        android:textSize="@dimen/sp_14" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dividerHeight"
+                    android:background="@color/colorDivider" />
+
+                <com.dog.manage.zhifa.app.view.ViewItemLayout
+                    android:id="@+id/addressView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/app_background"
+                    app:item_arrow_visible="true"
+                    app:item_container_height="@dimen/viewItemHeight"
+                    app:item_container_margin_left="@dimen/viewPadding"
+                    app:item_container_margin_right="@dimen/viewPadding"
+                    app:item_content="请选择省市区"
+                    app:item_content_color="#273154"
+                    app:item_content_size="@dimen/sp_14"
+                    app:item_divider_visible="true"
+                    app:item_title="居住地址"
+                    app:item_title_bold="true"
+                    app:item_title_size="@dimen/sp_14" />
+
+                <com.dog.manage.zhifa.app.view.ViewItemLayout
+                    android:id="@+id/detailedAddressView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/app_background"
+                    app:item_arrow_visible="true"
+                    app:item_container_height="@dimen/viewItemHeight"
+                    app:item_container_margin_left="@dimen/viewPadding"
+                    app:item_container_margin_right="@dimen/viewPadding"
+                    app:item_content="请选择详细地址"
+                    app:item_content_color="#273154"
+                    app:item_content_size="@dimen/sp_14"
+                    app:item_divider_visible="true"
+                    app:item_title="详细地址"
+                    app:item_title_bold="true"
+                    app:item_title_size="@dimen/sp_14" />
+
+<!--                <LinearLayout-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:background="@color/app_background"-->
+<!--                    android:minHeight="@dimen/dp_121"-->
+<!--                    android:orientation="horizontal"-->
+<!--                    android:paddingLeft="@dimen/viewPadding"-->
+<!--                    android:paddingTop="@dimen/dp_12"-->
+<!--                    android:paddingRight="@dimen/viewPadding"-->
+<!--                    android:paddingBottom="@dimen/dp_12">-->
+
+<!--                    <com.dog.manage.zhifa.app.view.TextBoldView-->
+<!--                        android:id="@+id/detailedAddressHintView"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:text="详细地址"-->
+<!--                        android:textColor="#333333"-->
+<!--                        android:textSize="@dimen/sp_14" />-->
+
+<!--                    <EditText-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:background="@null"-->
+<!--                        android:gravity="top|right"-->
+<!--                        android:hint="请输入详细地址"-->
+<!--                        android:minHeight="@dimen/dp_60"-->
+<!--                        android:textColor="#333333"-->
+<!--                        android:textColorHint="#999999"-->
+<!--                        android:textSize="@dimen/sp_14" />-->
+
+<!--                </LinearLayout>-->
+
+<!--                <View-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="@dimen/dividerHeight"-->
+<!--                    android:background="@color/colorDivider" />-->
+
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:background="@drawable/button_bg_w">
+
+                <TextView
+                    android:id="@+id/confirmView"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_48"
+                    android:layout_marginLeft="@dimen/dp_18"
+                    android:layout_marginTop="@dimen/dp_24"
+                    android:layout_marginRight="@dimen/dp_18"
+                    android:layout_marginBottom="@dimen/dp_24"
+                    android:background="@drawable/button_theme"
+                    android:gravity="center"
+                    android:onClick="onClickConfirm"
+                    android:text="录入违法信息"
+                    android:textColor="#ffffffff"
+                    android:textSize="@dimen/sp_15" />
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+
+    </LinearLayout>
+</layout>

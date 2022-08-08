@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <com.dog.manage.zhifa.app.view.TitleView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_48"
+            android:background="@color/colorAppTheme"
+            app:tv_content=""
+            app:tv_content_size="@dimen/sp_14"
+            app:tv_title="消息"
+            app:tv_title_bold="true"
+            app:tv_title_size="@dimen/titleViewSize" />
+
+        <TextView
+            android:id="@+id/noticeTimeView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_24"
+            tools:text="2021.08.09 "
+            android:textColor="#666666"
+            android:textSize="@dimen/sp_12"
+            android:textStyle="normal" />
+
+        <TextView
+            android:id="@+id/noticeContentView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_22"
+            android:layout_marginTop="@dimen/dp_17"
+            android:layout_marginRight="@dimen/dp_22"
+            android:layout_marginBottom="@dimen/dp_17"
+            android:background="@drawable/button_radius_gray_8"
+            android:padding="@dimen/dp_16"
+            tools:text="尊敬的用户您好，您的犬证即将到期，请及时参加年审，请进入首页点击“犬证年审”来进行办理！"
+            android:textColor="#666666"
+            android:textSize="@dimen/sp_14"
+            android:textStyle="normal" />
+
+    </LinearLayout>
+</layout>

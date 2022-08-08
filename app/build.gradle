@@ -1,0 +1,113 @@
+plugins {
+    id 'com.android.application'
+}
+
+android {
+    compileSdkVersion rootProject.ext.compileSdkVersion
+
+    defaultConfig {
+        applicationId "com.dog.manage.zhifa.app"
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode 1
+        versionName "1.0.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
+        ndk {
+            abiFilters "armeabi", "armeabi-v7a", "arm64-v8a"
+        }
+        //lombok
+        javaCompileOptions {
+            annotationProcessorOptions
+                    {
+                        includeCompileClasspath = true
+                    }
+        }
+    }
+
+    signingConfigs {
+        signConfig {
+            storeFile file('../quanzhiguanlizhifa.jks')
+            storePassword "quanzhiguanlizhifa"
+            keyAlias "quanzhiguanlizhifa"
+            keyPassword "quanzhiguanlizhifa"
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.signConfig // 配置release包的签名
+
+            applicationVariants.all { variant ->
+                variant.outputs.all { output ->
+                    def outputFile = output.outputFile
+                    if (outputFile != null && outputFile.name.endsWith('.apk')) {
+                        def fileName = getProductName() + "-${releaseTime()}-v${defaultConfig.versionName}" + ".apk"
+                        outputFileName = fileName
+                    }
+                }
+            }
+
+        }
+        debug {
+            signingConfig signingConfigs.signConfig // 配置debug包的签名
+        }
+    }
+
+    lintOptions {
+        abortOnError false
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    android {
+        dataBinding {
+            enabled = true
+        }
+    }
+}
+
+dependencies {
+
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.1'
+    implementation 'com.google.android.material:material:1.4.0'
+    implementation 'androidx.navigation:navigation-fragment:2.2.2'
+    implementation 'androidx.navigation:navigation-ui:2.2.2'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
+
+    implementation project(':base')
+    implementation project(':okhttp')
+    implementation project(':banner')
+    implementation project(':camera')
+
+    implementation smartrefresh
+    implementation smartrefreshHeaderClassics
+    implementation smartrefreshFooterClassics
+    implementation cardview
+    implementation externalBuglyCrashreport
+    implementation externalBuglyNativecrashreport
+    implementation lombok
+    implementation annotation
+    implementation huaweicloud
+    implementation pickerView
+
+    implementation files('libs\\photoimageview.jar')
+
+}
+
+def getProductName() {//获取产品的名字
+    return "数字化养犬管理系统"
+}
+
+def releaseTime() {//获取当前系统的时间
+    return new Date().format("yyyy-MM-dd", TimeZone.getTimeZone("UTC"))
+}

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_76"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/viewPadding"
+        android:paddingRight="@dimen/viewPadding">
+
+        <RelativeLayout
+            android:layout_width="@dimen/dp_50"
+            android:layout_height="@dimen/dp_50">
+
+            <ImageView
+                android:id="@+id/coverView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/notice" />
+
+            <TextView
+                android:id="@+id/unreadMessageView"
+                android:layout_width="@dimen/dp_10"
+                android:layout_height="@dimen/dp_10"
+                android:layout_alignParentRight="true"
+                android:background="@drawable/unread"
+                android:gravity="center"
+                android:paddingLeft="@dimen/dp_5"
+                android:paddingTop="@dimen/dp_1"
+                android:paddingRight="@dimen/dp_5"
+                android:paddingBottom="@dimen/dp_1"
+                android:text="1"
+                android:textColor="@color/white"
+                android:textSize="@dimen/sp_12"
+                android:visibility="gone"
+                tools:visibility="visible" />
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_12"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <com.dog.manage.zhifa.app.view.TextBoldView
+                    android:id="@+id/noticeTitleView"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:singleLine="true"
+                    android:layout_marginRight="@dimen/dp_5"
+                    tools:text="犬证办理"
+                    android:textColor="#323232"
+                    android:textSize="@dimen/sp_15" />
+
+                <TextView
+                    android:id="@+id/createTimeView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    tools:text="刚刚"
+                    android:textColor="#999999"
+                    android:textSize="@dimen/sp_12" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/noticeContentView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_8"
+                android:singleLine="true"
+                tools:text="尊敬的用户您好,您的犬证即将到期,请及时参加年审,请进入首页点击“犬证年审“来进行办理!"
+                android:textColor="#999999"
+                android:textSize="@dimen/sp_13" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+</layout>
