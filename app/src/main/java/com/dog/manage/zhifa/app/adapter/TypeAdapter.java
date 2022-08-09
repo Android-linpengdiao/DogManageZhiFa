@@ -15,6 +15,11 @@ public class TypeAdapter extends BaseRecyclerAdapter<TypeBean, ItemTypeBinding> 
     private int select = -1;
     private OnClickListener onClickListener;
 
+    public void setSelect(int select) {
+        this.select = select;
+        notifyDataSetChanged();
+    }
+
     public void setOnClickListener(OnClickListener onClickListener) {
         this.onClickListener = onClickListener;
     }

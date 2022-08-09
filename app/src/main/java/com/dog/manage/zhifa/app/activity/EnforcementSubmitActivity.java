@@ -63,6 +63,7 @@ public class EnforcementSubmitActivity extends BaseActivity {
     private Map<String, String> paramsMap = new HashMap<>();
     private EnforcementImageAdapter imageAdapter;
     private List<String> imageList = new ArrayList<>();
+    private TypeAdapter typeAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -117,7 +118,7 @@ public class EnforcementSubmitActivity extends BaseActivity {
         builder.size(CommonUtil.dip2px(this, 10));
         binding.typeRecyclerView.addItemDecoration(new GridItemDecoration(builder));
         binding.typeRecyclerView.setLayoutManager(new GridLayoutManager(this, 3));
-        TypeAdapter typeAdapter = new TypeAdapter(this);
+        typeAdapter = new TypeAdapter(this);
         binding.typeRecyclerView.setAdapter(typeAdapter);
         typeAdapter.setOnClickListener(new OnClickListener() {
             @Override
@@ -324,6 +325,15 @@ public class EnforcementSubmitActivity extends BaseActivity {
     }
 
     public void onClickClear(View view) {
+        imageList.clear();
+        imageList.add("add");
+        imageAdapter.refreshData(imageList);
+        illegalTypeId = 0;
+        typeAdapter.setSelect(-1);
+        binding.illegalDescribeEditText.setText("");
+        binding.illegalMeasureEditText.setText("");
+        illegalTime = null;
+        binding.illegalTimeView.binding.itemContent.setText("");
 
     }
 
