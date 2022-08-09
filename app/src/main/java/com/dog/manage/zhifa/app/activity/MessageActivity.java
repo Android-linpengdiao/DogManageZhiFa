@@ -87,7 +87,7 @@ public class MessageActivity extends BaseActivity {
     }
 
     public void loadData(boolean isRefresh) {
-        SendRequest.sysNoticeList(pager.getCursor(), pager.getSize(),
+        SendRequest.sysAnnounceList(pager.getCursor(), pager.getSize(),
                 new GenericsCallback<Pager<Message>>(new JsonGenericsSerializator()) {
 
                     @Override

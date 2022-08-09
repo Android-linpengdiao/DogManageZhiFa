@@ -19,7 +19,7 @@
             android:background="@color/colorAppTheme"
             app:tv_content=""
             app:tv_content_size="@dimen/sp_14"
-            app:tv_title="消息"
+            app:tv_title="通知公告"
             app:tv_title_bold="true"
             app:tv_title_size="@dimen/titleViewSize" />
 
