@@ -666,6 +666,15 @@ public class SendRequest {
 
     }
 
+    public static void getSysAnnounceById(int noticeId, Callback call) {
+        Map<String, String> headers = new HashMap<>();
+        headers.put("Authorization", BaseApplication.getInstance().getUserInfo().getAuthorization());
+        Map<String, String> map = new HashMap<>();
+        map.put("noticeId", String.valueOf(noticeId));
+        OkHttpUtils.post().headers(headers).params(map).url(APIUrls.getSysAnnounceById).build().execute(call);
+
+    }
+
     /**
      * 犬只领养-留检犬只信息分页列表
      *

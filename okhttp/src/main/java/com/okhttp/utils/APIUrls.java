@@ -55,6 +55,7 @@ public class APIUrls {
      */
     //系统消息
     public final static String sysAnnounceList = URL_DOMAIN + "/sysNotice/sysAnnounceList";
+    public final static String getSysAnnounceById = URL_DOMAIN + "/notice/getSysAnnounceById";
     public final static String sysNoticeList = URL_DOMAIN + "/sysNotice/sysNoticeList";
     public final static String getSysNoticeById = URL_DOMAIN + "/notice/getSysNoticeById";
 

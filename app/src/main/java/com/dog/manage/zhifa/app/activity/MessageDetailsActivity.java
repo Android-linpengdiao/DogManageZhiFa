@@ -33,7 +33,7 @@ public class MessageDetailsActivity extends BaseActivity {
     }
 
     public void loadData(Integer noticeId) {
-        SendRequest.getSysNoticeById(noticeId,
+        SendRequest.getSysAnnounceById(noticeId,
                 new GenericsCallback<ResultClient<PoliciesBean>>(new JsonGenericsSerializator()) {
 
                     @Override
