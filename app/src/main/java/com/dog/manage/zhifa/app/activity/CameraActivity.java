@@ -273,11 +273,13 @@ public class CameraActivity extends BaseActivity {
      * @param filePath
      */
     private void uploadPetImageFindPeytId(String filePath, int requestCode) {
+        Log.i(TAG, "uploadPetImageFindPeytId: filePath = " + filePath);
+        Log.i(TAG, "uploadPetImageFindPeytId: requestCode = " + requestCode);
         //recogType	int	识别种类：0（鼻子）、1（正脸），不传默认为0（鼻子）
         int recogType = 0;
-        if (CommonUtil.isBlank(leftFace) || CommonUtil.isBlank(centerFace) || CommonUtil.isBlank(rightFace)) {
+        if (requestCode == request_LeftFace || requestCode == request_CenterFace || requestCode == request_RightFace) {
             recogType = 1;
-        } else if (CommonUtil.isBlank(archivesOne) || CommonUtil.isBlank(archivesTwo) || CommonUtil.isBlank(archivesThree)) {
+        } else if (requestCode == request_ArchivesOne || requestCode == request_ArchivesTwo || requestCode == request_ArchivesThree) {
             recogType = 0;
         }
         SendRequest.uploadPetImageFindPeytId(getUserInfo().getAccessToken(), recogType, filePath,
@@ -357,6 +359,8 @@ public class CameraActivity extends BaseActivity {
                                 intent.putExtra("petId", response.getData().getPetIds().get(0));
                                 setResult(RESULT_OK, intent);
                                 finish();
+                            } else {
+                                ToastUtils.showShort(CameraActivity.this, "识别不到宠物");
                             }
                         } else {
                             ToastUtils.showShort(CameraActivity.this, response.getMessage());
@@ -433,6 +437,7 @@ public class CameraActivity extends BaseActivity {
      * @param filePath
      */
     private void uploadPetImageFindPeytId(String filePath) {
+        Log.i(TAG, "uploadPetImageFindPeytId: filePath = " + filePath);
         //int	识别种类：0为鼻纹，1为面部
         int recogType = 0;
         SendRequest.uploadPetImageFindPeytId(getUserInfo().getAccessToken(), recogType, filePath,
@@ -452,6 +457,8 @@ public class CameraActivity extends BaseActivity {
                                 intent.putExtra("petId", response.getData().getPetIds().get(0));
                                 setResult(RESULT_OK, intent);
                                 finish();
+                            } else {
+                                ToastUtils.showShort(CameraActivity.this, "识别不到宠物");
                             }
                         } else {
 //                            startTimer();
@@ -902,7 +909,7 @@ public class CameraActivity extends BaseActivity {
 
                                     @Override
                                     public void onSuccess(File file) {
-
+                                        Log.i(TAG, "onSuccess: " + file.getAbsolutePath());
                                         if (requestCode == request_LeftFace) {
                                             leftFace = file.getAbsolutePath();
                                             GlideLoader.LoderImage(CameraActivity.this, leftFace, binding.leftFaceView, 6);

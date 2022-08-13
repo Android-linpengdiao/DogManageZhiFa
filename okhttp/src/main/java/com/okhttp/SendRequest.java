@@ -923,6 +923,8 @@ public class SendRequest {
         map.put("token", token);
         map.put("petType", String.valueOf(0));
         map.put("recogType", String.valueOf(recogType));
+        map.put("topK", String.valueOf(10));
+        Log.i(TAG, "uploadPetImageFindPeytId: "+map.toString());
         String filename = filePath.substring(filePath.lastIndexOf("/") + 1);
         OkHttpUtils.pet().addFile("file", filename, new File(filePath)).params(map).url(APIUrls.uploadPetImageFindPeytId).build().execute(call);
 

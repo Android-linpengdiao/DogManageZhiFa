@@ -14,12 +14,15 @@ import com.dog.manage.zhifa.app.R;
 import com.dog.manage.zhifa.app.databinding.ActivityEnforcementRecordDetailsBinding;
 import com.dog.manage.zhifa.app.model.LicenceInfo;
 import com.dog.manage.zhifa.app.model.PunishRecord;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.okhttp.ResultClient;
 import com.okhttp.SendRequest;
 import com.okhttp.callbacks.GenericsCallback;
 import com.okhttp.sample_okhttp.JsonGenericsSerializator;
 
 import java.util.Arrays;
+import java.util.List;
 
 import okhttp3.Call;
 import okhttp3.Request;
@@ -131,6 +134,15 @@ public class EnforcementRecordDetailsActivity extends BaseActivity {
         binding.orgNameView.setText(licenceBean.getOrgName());
         binding.awardTimeView.setText(licenceBean.getAwardTime());
         binding.detailedAddressView.setText(licenceBean.getDetailedAddress());
-        GlideLoader.LoaderDogCover(EnforcementRecordDetailsActivity.this, "", binding.certificateCoverView, 5);
+//        GlideLoader.LoaderDogCover(EnforcementRecordDetailsActivity.this, "", binding.certificateCoverView, 5);
+        try {
+            List<String> dogPhotos = new Gson().fromJson(licenceBean.getDogPhoto(), new TypeToken<List<String>>() {
+            }.getType());
+            if (dogPhotos != null && dogPhotos.size() > 0)
+                GlideLoader.LoderImage(EnforcementRecordDetailsActivity.this, dogPhotos.get(0), binding.certificateCoverView,5);
+        } catch (Exception e) {
+            e.getMessage();
+        }
+
     }
 }
